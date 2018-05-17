@@ -26,7 +26,7 @@ namespace Time2WorkApp
             }
             else
             {
-                Navigation.PushAsync(new HomePage());
+                Navigation.PushAsync(new MenuPage());
             }
         }
     }
