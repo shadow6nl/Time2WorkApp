@@ -1,12 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Time2WorkApp"
              x:Class="Time2WorkApp.MenuPage">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to the MenuPage!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
-</ContentPage>
+    
+    <TabbedPage.ToolbarItems>
+        <ToolbarItem Text="add"
+                     Clicked="ToolbarItem_Clicked"/>
+    </TabbedPage.ToolbarItems>
+    <local:TimerPage Title="Timer"/>
+    <local:SummaryPage Title="overzicht"/>
+    <local:OptionPage Title="Opties"/>
+</TabbedPage>
