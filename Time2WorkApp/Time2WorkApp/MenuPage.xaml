@@ -10,5 +10,5 @@
     </TabbedPage.ToolbarItems>
     <local:TimerPage Title="Timer"/>
     <local:SummaryPage Title="overzicht"/>
-    <local:OptionPage Title="Opties"/>
+    <local:OptionsPage Title="Opties"/>
 </TabbedPage>
