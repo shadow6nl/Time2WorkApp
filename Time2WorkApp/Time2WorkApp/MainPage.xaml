@@ -4,8 +4,8 @@
              xmlns:local="clr-namespace:Time2WorkApp"
              x:Class="Time2WorkApp.MainPage">
 
-	<Label Text="Welcome to Xamarin.Forms!" 
-           VerticalOptions="Center" 
-           HorizontalOptions="Center" />
-
+    <StackLayout>
+    <Label Text="Welcome to Time2Work"  />
+    <
+    </StackLayout>
 </ContentPage>

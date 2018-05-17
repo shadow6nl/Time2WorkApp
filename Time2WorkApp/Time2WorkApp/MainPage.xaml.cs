@@ -13,5 +13,21 @@ namespace Time2WorkApp
 		{
 			InitializeComponent();
 		}
-	}
+        //loginButton functions
+        private void LoginButton_Clicked(object sender, EventArgs e)
+        {
+            bool isEmailEmpty = string.IsNullOrEmpty(emailEntry.Text);
+            bool ispasswordEmpty = string.IsNullOrEmpty(passwordEntry.Text);
+
+            if (isEmailEmpty || ispasswordEmpty)
+            {
+
+
+            }
+            else
+            {
+                Navigation.PushAsync(new HomePage());
+            }
+        }
+    }
 }
