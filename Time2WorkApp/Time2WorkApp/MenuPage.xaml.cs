@@ -10,7 +10,7 @@ using Xamarin.Forms.Xaml;
 namespace Time2WorkApp
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class MenuPage : ContentPage
+	public partial class MenuPage : TabbedPage
 	{
 		public MenuPage ()
 		{
