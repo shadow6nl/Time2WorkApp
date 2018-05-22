@@ -4,7 +4,15 @@
              x:Class="Time2WorkApp.App">
 	<Application.Resources>
 
-		<!-- Application resource dictionary -->
+        <ResourceDictionary>
+            <Color x:Key="blueColor">#1E90FF</Color>
+            <Color x:Key="whiteColor">#FFFFFF</Color>
 
-	</Application.Resources>
+            <Style x:Key="normalButton" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource blueColor}"/>
+                <Setter Property="TextColor" Value="{StaticResource whiteColor}"/>
+            </Style>
+        </ResourceDictionary>
+
+    </Application.Resources>
 </Application>
