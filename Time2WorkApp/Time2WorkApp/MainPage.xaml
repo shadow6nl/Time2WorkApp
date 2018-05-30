@@ -8,10 +8,10 @@
                  Margin="20">
         
         <Entry x:Name="emailEntry"
-               Placeholder="Email address"
+               Placeholder="Email adres"
                Keyboard="Email"/>
         <Entry x:Name="passwordEntry"
-               Placeholder="Password"
+               Placeholder="Wachtwoord"
                IsPassword="True"/>
         <Button x:Name="LoginButton"
                 Margin="0, 20, 0, 0"
