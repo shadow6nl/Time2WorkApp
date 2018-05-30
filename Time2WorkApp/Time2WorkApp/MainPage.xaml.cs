@@ -26,8 +26,11 @@ namespace Time2WorkApp
             }
             else
             {
+                DisplayAlert("Het werkt", Navigation.ToString(), "Nigguuh");
                 Navigation.PushAsync(new MenuPage());
+                
             }
+             
         }
     }
 }
