@@ -2,11 +2,10 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Time2WorkApp.TimerPage">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to the TimerPage!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+    <StackLayout Margin="5,5">
+    <Button x:Name="startTimeButton"
+            Text="Begin met Werken"
+            BackgroundColor="ForestGreen"
+            TextColor="White"/>
+    </StackLayout>
 </ContentPage>
