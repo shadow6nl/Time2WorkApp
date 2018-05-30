@@ -13,7 +13,7 @@ namespace Time2WorkApp
 		{
 			InitializeComponent();
 
-			MainPage = new Time2WorkApp.MainPage();
+			MainPage = new NavigationPage(new MainPage());
 		}
 
 		protected override void OnStart ()
