@@ -5,7 +5,8 @@
     <ContentPage.Content>
         <StackLayout VerticalOptions="Center" 
                      Margin="20">
-            <Label Text="Voer hier uw gegevens in."/>
+            <Label Text="Voer hier uw gegevens in."
+                   FontSize="Large"/>
             <Entry
                 x:Name="optionFirstname"
                 Placeholder="Voornaam"/>
