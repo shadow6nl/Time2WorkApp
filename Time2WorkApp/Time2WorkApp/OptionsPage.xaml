@@ -5,7 +5,8 @@
     <ContentPage.Content>
         <StackLayout VerticalOptions="Center" 
                      Margin="20">
-            <Label Text="Voer hier uw gegevens in."/>
+            <Label Text="Voer hier uw gegevens in:"
+                   FontSize="25"/>
             <Entry
                 x:Name="optionFirstname"
                 Placeholder="Voornaam"/>
@@ -16,6 +17,10 @@
                 x:Name="optionEmailEntry"
                 Placeholder="Email"
                 Keyboard="Email"/>
+            <Entry
+                x:Name="optionPassword"
+                Placeholder="Wachtwoord"
+                IsPassword="True"/>
             <Entry
                 x:Name="optionBruto"
                 Placeholder="Bruto uurloon"/>

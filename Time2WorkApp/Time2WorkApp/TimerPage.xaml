@@ -2,11 +2,64 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Time2WorkApp.TimerPage">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to the TimerPage!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+    <StackLayout Margin="5,5">
+        <Button x:Name="startTimeButton"
+                HeightRequest="75"
+                Text="Begin met Werken"
+                FontSize="25"
+                BackgroundColor="ForestGreen"
+                TextColor="White"/>
+
+        <Label x:Name="starttimeLabel"
+            Text="00:00:00"
+            FontSize="75"
+            HorizontalOptions="Center"/>
+
+        <Button x:Name="pauseTimeButton"
+                HeightRequest="75"
+                Text="Start Pauze"
+                FontSize="25"
+                BackgroundColor="DarkOrange"
+                TextColor="White"/>
+
+        <Label x:Name="pauseTimerLabel"
+            Text="00:00:00"
+            FontSize="75"
+            HorizontalOptions="Center"/>
+
+        <RelativeLayout >
+            <Switch
+            HorizontalOptions="Start"
+            />
+            <Label Text="Activiteit"
+                   x:Name="topBox" 
+                   FontSize="35"
+	             Color="Red"
+	             RelativeLayout.XConstraint=
+	                 "{ConstraintExpression Type=RelativeToParent,
+	                                        Property=Width,
+	                                        Factor=0.6}"
+	             RelativeLayout.YConstraint=
+	                 "{ConstraintExpression Type=RelativeToParent,
+	                                        Property=Height,
+	                                        Factor=0}" 
+	             RelativeLayout.WidthConstraint=
+	                 "{ConstraintExpression Type=RelativeToParent,
+	                                        Property=Width,
+	                                        Factor=1}"
+	             RelativeLayout.HeightConstraint=
+	                 "{ConstraintExpression Type=Constant,
+	                                        Property=Height,
+	                                        Constant=100}" 
+                   />
+
+        </RelativeLayout>
+
+        <Button x:Name="stopTimeButton"
+                HeightRequest="75"
+                Text="Begin met Werken"
+                FontSize="25"
+                BackgroundColor="Red"
+                TextColor="White"/>
+    </StackLayout>
 </ContentPage>
