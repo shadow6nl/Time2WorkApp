@@ -5,7 +5,7 @@
              x:Class="Time2WorkApp.MenuPage">
     
     <local:TimerPage Title="Timer"/>
-    <local:SummaryPage Title="overzicht"/>
+    <local:SummaryPage Title="Overzicht"/>
     <local:OptionsPage Title="Opties"/>
 </TabbedPage>
 
