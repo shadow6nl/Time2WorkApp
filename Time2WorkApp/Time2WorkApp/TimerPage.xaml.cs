@@ -17,5 +17,21 @@ namespace Time2WorkApp
 			InitializeComponent ();
 		}
 
+        private void activitySwtich_OnToggled(object sender, ToggledEventArgs e)
+        {
+            bool activityToggled = e.Value;
+            activityName.IsVisible = activityToggled;
+            updateActivityButton.IsVisible = activityToggled;
+            if (activityToggled == false)
+            {
+                activityIsUpdatedLabel.IsVisible = false;
+            }
+        }
+
+        private void updateActivityButton_Clicked(object sender, EventArgs e)
+        {
+            activityIsUpdatedLabel.Text = "Huidig activiteit: " + activityName.Text;
+            activityIsUpdatedLabel.IsVisible = true;
+        }
     }
 }
