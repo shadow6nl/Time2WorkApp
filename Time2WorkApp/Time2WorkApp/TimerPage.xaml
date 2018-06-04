@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Time2WorkApp.TimerPage">
-    <StackLayout Margin="5,5">
+    <ScrollView>
+    <StackLayout Margin="20, 10, 20, 20">
         <Button x:Name="startTimeButton"
                 HeightRequest="75"
                 Text="Begin met Werken"
@@ -28,38 +29,47 @@
             HorizontalOptions="Center"/>
 
         <RelativeLayout >
-            <Switch
-            HorizontalOptions="Start"
-            />
-            <Label Text="Activiteit"
-                   x:Name="topBox" 
-                   FontSize="35"
-	             Color="Red"
-	             RelativeLayout.XConstraint=
-	                 "{ConstraintExpression Type=RelativeToParent,
-	                                        Property=Width,
-	                                        Factor=0.6}"
-	             RelativeLayout.YConstraint=
-	                 "{ConstraintExpression Type=RelativeToParent,
-	                                        Property=Height,
-	                                        Factor=0}" 
-	             RelativeLayout.WidthConstraint=
-	                 "{ConstraintExpression Type=RelativeToParent,
-	                                        Property=Width,
-	                                        Factor=1}"
-	             RelativeLayout.HeightConstraint=
-	                 "{ConstraintExpression Type=Constant,
-	                                        Property=Height,
-	                                        Constant=100}" 
-                   />
+                <StackLayout
+                    HorizontalOptions="Start">
+                    <Switch
+                        x:Name="activitySwitch"
+                        HorizontalOptions="Start"/>    
+                </StackLayout>
+                <StackLayout>
+                    <Label Text="Activiteit"
+                       x:Name="topBox" 
+                       FontSize="35"
+                       HorizontalOptions="EndAndExpand"
+                       Margin="190, 0, 0, 0"/>    
+                </StackLayout>
 
         </RelativeLayout>
+        <Entry x:Name="activityName"
+               Placeholder="Waar bent u mee bezig?"
+               HorizontalOptions="Center"
+               IsVisible="True"/>
 
-        <Button x:Name="stopTimeButton"
+        <Button x:Name="updateActivityButton"
+                HeightRequest="35"
+                Text="Start Pauze"
+                FontSize="10"
+                BackgroundColor="Gray"
+                TextColor="White"/>
+        
+        <Label x:Name="activityIsUpdatedLabel"
+               Text="Huidig activiteit: "
+               HorizontalOptions="Center"
+               TextColor="White"
+               BackgroundColor="Green"
+               IsVisible="True"
+               />
+
+            <Button x:Name="stopTimeButton"
                 HeightRequest="75"
-                Text="Begin met Werken"
+                Text="Stop met Werken"
                 FontSize="25"
                 BackgroundColor="Red"
                 TextColor="White"/>
-    </StackLayout>
+        </StackLayout>
+    </ScrollView>
 </ContentPage>
