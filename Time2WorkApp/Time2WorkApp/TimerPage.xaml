@@ -10,7 +10,7 @@
                 FontSize="25"
                 BackgroundColor="ForestGreen"
                 TextColor="White"/>
-
+        
         <Label x:Name="starttimeLabel"
             Text="00:00:00"
             FontSize="75"
@@ -28,24 +28,13 @@
             FontSize="75"
             HorizontalOptions="Center"/>
 
-            <RelativeLayout >
-                <StackLayout>
-                    <Switch/>
-                    <Switch
-                        x:Name="activitySwitch"
-                        Scale="2"
-                        Toggled="activitySwtich_OnToggled"
-                        />
-                </StackLayout>
-                <StackLayout>
-                    <Label Text="Activiteit"
-                       x:Name="topBox" 
-                       FontSize="35"
-                       HorizontalOptions="EndAndExpand"
-                       Margin="190, 0, 0, 0"/>
-                </StackLayout>
+            <Button
+                x:Name="activityToggleButton"
+                Text="Activiteit (verborgen)"
+                TextColor="White"
+                BackgroundColor="Gray"
+                Clicked="activityToggleButton_Clicked"/>
 
-            </RelativeLayout>
             <Entry x:Name="activityName"
                Placeholder="Waar bent u mee bezig?"
                HorizontalOptions="Center"

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -16,22 +17,25 @@ namespace Time2WorkApp
 		{
 			InitializeComponent ();
 		}
+        
+        int activityButtonToggle = 1;
 
-        private void activitySwtich_OnToggled(object sender, ToggledEventArgs e)
+        private void activityToggleButton_Clicked(object sender, EventArgs e)
         {
-            bool activityToggled = e.Value;
-            activityName.IsVisible = activityToggled;
-            updateActivityButton.IsVisible = activityToggled;
-            if (activityToggled == false)
+            activityButtonToggle += 1;
+            bool activityVisible = activityButtonToggle % 2 == 0;
+            activityName.IsVisible = activityVisible;
+            updateActivityButton.IsVisible = activityVisible;
+            if (activityVisible == false)
             {
                 activityIsUpdatedLabel.IsVisible = false;
             }
         }
-
         private void updateActivityButton_Clicked(object sender, EventArgs e)
         {
-            activityIsUpdatedLabel.Text = "Huidig activiteit: " + activityName.Text;
-            activityIsUpdatedLabel.IsVisible = true;
+        activityIsUpdatedLabel.Text = "Huidig activiteit: " + activityName.Text;
+        activityIsUpdatedLabel.IsVisible = true;
+        
         }
     }
 }
