@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Time2WorkApp.FirstUsePage">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="Center"
+                     Margin="20">
+            <Label Text="Voer hier uw gegevens in:"
+                   FontSize="25"/>
+            <Entry
+                x:Name="firstUseFirstname"
+                Placeholder="Voornaam"/>
+            <Entry
+                x:Name="firstUseLastname"
+                Placeholder="Achternaam"/>
+            <Entry
+                x:Name="firstUseBruto"
+                Placeholder="Bruto uurloon"/>
+            <Entry
+                x:Name="firstUseEmailEntry"
+                Placeholder="Email"
+                Keyboard="Email"/>
+            <Entry
+                x:Name="firstUsePassword1"
+                Placeholder="Wachtwoord"
+                IsPassword="True"/>
+            <Entry
+                x:Name="firstUsePassword2"
+                Placeholder="Wachtwoord"
+                IsPassword="True"/>
+            
+
+            <Button
+                x:Name="FirstUseSaveButton"
+                Margin="0, 20, 0, 0"
+                Text="opslaan"
+                Style="{StaticResource normalButton}"
+                Clicked="FirstUseSaveButton_Clicked"/>
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
