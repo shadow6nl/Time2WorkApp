@@ -35,7 +35,7 @@ namespace Time2WorkApp
 
 
             }
-            else if (password1 == password2)
+            else if (password1 != password2)
             {
                 DisplayAlert("Alert", "Wachtwoorden komen niet overeen.", "OKÉ");
             }
