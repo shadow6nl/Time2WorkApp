@@ -36,6 +36,7 @@ namespace Time2WorkApp
             }
         }
 
+        //reset function first time use
         public string IsFirstTime
         {
             get { return Settings.GeneralSettings; }
