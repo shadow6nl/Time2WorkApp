@@ -2,11 +2,80 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Time2WorkApp.TimerPage">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to the TimerPage!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+    <ScrollView>
+    <StackLayout Margin="20, 10, 20, 20">
+            <Label
+                x:Name="datumVanVandaag"
+                HorizontalOptions="Center"
+                FontSize="25"
+                Text="Datum"
+                TextColor="LightSalmon"/>
+
+            <Button x:Name="startTimeButton"
+                HeightRequest="75"
+                Text="Begin met Werken"
+                FontSize="25"
+                BackgroundColor="ForestGreen"
+                TextColor="White"
+                Clicked="startTimeButton_Clicked"/>
+
+            <Label x:Name="beginWerkTijdLabel"
+                   Text="Begin tijd: "
+                   HorizontalOptions="Center"
+                   IsVisible="False"/>
+
+            <Label x:Name="starttimeLabel"
+            Text="00:00:00"
+            FontSize="75"
+            HorizontalOptions="Center"/>
+
+        <Button x:Name="pauseTimeButton"
+                HeightRequest="75"
+                Text="Begin Pauze"
+                FontSize="25"
+                BackgroundColor="Gray"
+                TextColor="White"
+                Clicked="pauseTimeButton_Clicked"
+                IsEnabled="false"/>
+        
+            <Label x:Name="beginPauzeTijdLabel"
+                   Text="Begin datum en tijd: "
+                   HorizontalOptions="Center"
+                   IsVisible="False"/>
+
+            <Label x:Name="pauseTimerLabel"
+            Text="00:00:00"
+            FontSize="75"
+            HorizontalOptions="Center"/>
+
+            <Button
+                x:Name="activityToggleButton"
+                Text="Activiteit"
+                TextColor="White"
+                BackgroundColor="LightBlue"
+                Clicked="activityToggleButton_Clicked"/>
+
+            <Entry x:Name="activityName"
+               Placeholder="Waar bent u mee bezig?"
+               HorizontalOptions="Center"
+               IsVisible="False"/>
+
+        <Button x:Name="updateActivityButton"
+                HeightRequest="35"
+                Text="Update Activiteit"
+                FontSize="10"
+                BackgroundColor="Gray"
+                TextColor="White"
+                IsVisible="False"
+                Clicked="updateActivityButton_Clicked"/>
+
+            <Label x:Name="activityIsUpdatedLabel"
+               Text="Huidig activiteit: "
+               HorizontalOptions="Center"
+               TextColor="White"
+               BackgroundColor="LightGreen"
+               IsVisible="False"
+               />
         </StackLayout>
-    </ContentPage.Content>
+    </ScrollView>
 </ContentPage>

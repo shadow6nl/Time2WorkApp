@@ -2,18 +2,47 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using Time2WorkApp.Helpers;
 using Xamarin.Forms;
 
 namespace Time2WorkApp
 {
 	public partial class App : Application
 	{
+        public string IsFirstTime
+        {
+            get { return Settings.GeneralSettings; }
+            set
+            {
+                if (Settings.GeneralSettings == value)
+                    return;
+
+                Settings.GeneralSettings = value;
+                OnPropertyChanged();
+            }
+        }
+
 		public App ()
 		{
 			InitializeComponent();
 
-			MainPage = new NavigationPage(new MainPage());
+            // Check if the app is running for the first time
+            if (IsFirstTime == "yes")
+            {
+                //if this is the first time, set it to "NO" and load the
+                // Mainpage, which will show at the first time use
+
+                IsFirstTime = "no";
+                MainPage = new NavigationPage(new FirstUsePage());
+            }
+            else
+            {
+                //if this is not the first time,
+                //go to loginpage
+
+                MainPage = new NavigationPage(new MainPage());
+            }
+
 		}
 
 		protected override void OnStart ()

@@ -28,6 +28,7 @@ namespace Time2WorkApp
             {
                 Navigation.PushAsync(new MenuPage());
             }
+             
         }
     }
 }
