@@ -29,7 +29,8 @@
                 x:Name="OptionSaveButton"
                 Margin="0, 20, 0, 0"
                 Text="opslaan"
-                Style="{StaticResource normalButton}"/>
+                Style="{StaticResource normalButton}"
+                Clicked="OptionSaveButton_Clicked"  />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
