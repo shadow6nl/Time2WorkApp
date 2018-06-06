@@ -32,12 +32,12 @@ namespace Time2WorkApp
 
             if (isFirstnameEmpty || isLastnameEmpty || isBrutoEmpty || isEmailEmpty || isPassword1Empty || isPassword2Empty)
             {
-
+                DisplayAlert("Fout", "Vul alle tekstvakken in.", "OK");
 
             }
             else if (password1 != password2)
             {
-                DisplayAlert("Alert", "Wachtwoorden komen niet overeen.", "OKÉ");
+                DisplayAlert("Fout", "Wachtwoorden komen niet overeen.", "OK");
             }
             else
             {
