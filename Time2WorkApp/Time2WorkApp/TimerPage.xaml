@@ -4,35 +4,55 @@
              x:Class="Time2WorkApp.TimerPage">
     <ScrollView>
     <StackLayout Margin="20, 10, 20, 20">
-        <Button x:Name="startTimeButton"
+            <Label
+                x:Name="datumVanVandaag"
+                HorizontalOptions="Center"
+                FontSize="25"
+                Text="Datum"
+                TextColor="LightSalmon"/>
+
+            <Button x:Name="startTimeButton"
                 HeightRequest="75"
                 Text="Begin met Werken"
                 FontSize="25"
                 BackgroundColor="ForestGreen"
-                TextColor="White"/>
-        
-        <Label x:Name="starttimeLabel"
+                TextColor="White"
+                Clicked="startTimeButton_Clicked"/>
+
+            <Label x:Name="beginWerkTijdLabel"
+                   Text="Begin tijd: "
+                   HorizontalOptions="Center"
+                   IsVisible="False"/>
+
+            <Label x:Name="starttimeLabel"
             Text="00:00:00"
             FontSize="75"
             HorizontalOptions="Center"/>
 
         <Button x:Name="pauseTimeButton"
                 HeightRequest="75"
-                Text="Start Pauze"
+                Text="Begin Pauze"
                 FontSize="25"
-                BackgroundColor="DarkOrange"
-                TextColor="White"/>
+                BackgroundColor="Gray"
+                TextColor="White"
+                Clicked="pauseTimeButton_Clicked"
+                IsEnabled="false"/>
+        
+            <Label x:Name="beginPauzeTijdLabel"
+                   Text="Begin datum en tijd: "
+                   HorizontalOptions="Center"
+                   IsVisible="False"/>
 
-        <Label x:Name="pauseTimerLabel"
+            <Label x:Name="pauseTimerLabel"
             Text="00:00:00"
             FontSize="75"
             HorizontalOptions="Center"/>
 
             <Button
                 x:Name="activityToggleButton"
-                Text="Activiteit (verborgen)"
+                Text="Activiteit"
                 TextColor="White"
-                BackgroundColor="Gray"
+                BackgroundColor="LightBlue"
                 Clicked="activityToggleButton_Clicked"/>
 
             <Entry x:Name="activityName"
@@ -53,16 +73,9 @@
                Text="Huidig activiteit: "
                HorizontalOptions="Center"
                TextColor="White"
-               BackgroundColor="Green"
+               BackgroundColor="LightGreen"
                IsVisible="False"
                />
-
-            <Button x:Name="stopTimeButton"
-                HeightRequest="75"
-                Text="Stop met Werken"
-                FontSize="25"
-                BackgroundColor="Red"
-                TextColor="White"/>
         </StackLayout>
     </ScrollView>
 </ContentPage>
