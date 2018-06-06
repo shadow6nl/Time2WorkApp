@@ -95,6 +95,10 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\Activiteiten.cs" />
+    <Compile Include="Model\Pauzes.cs" />
+    <Compile Include="Model\Profiel.cs" />
+    <Compile Include="Model\Werk.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -148,6 +152,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="System.Data.SQLite">
+      <Version>1.0.108</Version>
+    </PackageReference>
     <PackageReference Include="Xam.Plugins.Settings">
       <Version>3.1.1</Version>
     </PackageReference>

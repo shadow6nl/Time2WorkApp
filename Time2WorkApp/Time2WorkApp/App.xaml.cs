@@ -9,6 +9,7 @@ namespace Time2WorkApp
 {
 	public partial class App : Application
 	{
+        public static string DatabaseLocation = string.Empty;
         public string IsFirstTime
         {
             get { return Settings.GeneralSettings; }
@@ -45,7 +46,31 @@ namespace Time2WorkApp
 
 		}
 
-		protected override void OnStart ()
+        public App(string databaseLocation)
+        {
+            InitializeComponent();
+
+            // Check if the app is running for the first time
+            if (IsFirstTime == "yes")
+            {
+                //if this is the first time, set it to "NO" and load the
+                // Mainpage, which will show at the first time use
+
+                IsFirstTime = "no";
+                MainPage = new NavigationPage(new FirstUsePage());
+            }
+            else
+            {
+                //if this is not the first time,
+                //go to loginpage
+
+                MainPage = new NavigationPage(new MainPage());
+            }
+
+            DatabaseLocation = databaseLocation;
+        }
+
+        protected override void OnStart ()
 		{
 			// Handle when your app starts
 		}

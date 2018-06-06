@@ -20,7 +20,12 @@ namespace Time2WorkApp.Droid
             base.OnCreate(bundle);
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
-            LoadApplication(new App());
+
+            string dbName = "time2work_db.sqlite";
+            string folderPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
+            string fullPath = System.IO.Path.Combine(folderPath, dbName);
+
+            LoadApplication(new App(fullPath));
         }
     }
 }

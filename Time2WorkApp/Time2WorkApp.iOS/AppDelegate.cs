@@ -23,7 +23,12 @@ namespace Time2WorkApp.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
-            LoadApplication(new App());
+
+            string dbName = "time2work_db.sqlite";
+            string folderPath = System.IO.Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "..", "Libary");
+            string fullPath = System.IO.Path.Combine(folderPath, dbName);
+
+            LoadApplication(new App(fullPath));
 
             return base.FinishedLaunching(app, options);
         }
