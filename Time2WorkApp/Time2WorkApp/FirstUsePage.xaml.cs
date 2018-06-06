@@ -32,7 +32,7 @@ namespace Time2WorkApp
 
             if (isFirstnameEmpty || isLastnameEmpty || isBrutoEmpty || isEmailEmpty || isPassword1Empty || isPassword2Empty)
             {
-                DisplayAlert("Fout", "Vul alle tekstvakken in", "OK");
+                DisplayAlert("Fout", "Vul alle tekstvakken in.", "OK");
 
             }
             else if (password1 != password2)
