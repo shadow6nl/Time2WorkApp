@@ -31,6 +31,11 @@
                 Text="opslaan"
                 Style="{StaticResource normalButton}"
                 Clicked="OptionSaveButton_Clicked"  />
+
+            <Button x:Name="resetFirstTimeSetup"
+                    Text="Reset"
+                    BackgroundColor="Red"
+                    Clicked="resetFirstTimeSetup_Clicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

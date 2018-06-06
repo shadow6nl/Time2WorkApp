@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Time2WorkApp.Helpers;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -33,7 +34,24 @@ namespace Time2WorkApp
             {
 
             }
+        }
 
+        public string IsFirstTime
+        {
+            get { return Settings.GeneralSettings; }
+            set
+            {
+                if (Settings.GeneralSettings == value)
+                    return;
+
+                Settings.GeneralSettings = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private void resetFirstTimeSetup_Clicked(object sender, EventArgs e)
+        {
+            IsFirstTime = "yes";
         }
     }
 }
