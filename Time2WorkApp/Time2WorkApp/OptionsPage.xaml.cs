@@ -57,7 +57,7 @@ namespace Time2WorkApp
         private void resetPassword_Clicked(object sender, EventArgs e)
         {
             DisplayAlert("Waarschuwing", "U gaat nu uw wachtwoord aanpassen!", "OK");
-            Navigation.PushAsync(new ());
+            Navigation.PushAsync(new NewPasswordPage());
         }
     }
 }

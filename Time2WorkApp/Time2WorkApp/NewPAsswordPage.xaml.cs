@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace Time2WorkApp
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class NewPAsswordPage : ContentPage
+	public partial class NewPasswordPage : ContentPage
 	{
-		public NewPAsswordPage ()
+		public NewPasswordPage ()
 		{
 			InitializeComponent ();
 		}
