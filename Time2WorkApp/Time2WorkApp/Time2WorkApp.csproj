@@ -2,6 +2,9 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <ApplicationIcon />
+    <OutputType>Library</OutputType>
+    <StartupObject />
   </PropertyGroup>
 
   <ItemGroup>
@@ -15,7 +18,7 @@
   <ItemGroup>
     <PackageReference Include="System.Data.SQLite" Version="1.0.108" />
     <PackageReference Include="Xam.Plugins.Settings" Version="3.1.1" />
-    <PackageReference Include="Xamarin.Forms" Version="3.0.0.530893" />
+    <PackageReference Include="Xamarin.Forms" Version="3.0.0.550146" />
   </ItemGroup>
 
   <ItemGroup>

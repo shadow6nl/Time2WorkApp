@@ -50,11 +50,11 @@ namespace Time2WorkApp
             }
         }
 
-        private void resetFirstTimeSetup_Clicked(object sender, EventArgs e)
+        private void ResetFirstTimeSetup_Clicked(object sender, EventArgs e)
         {
             IsFirstTime = "yes";
         }
-        private void resetPassword_Clicked(object sender, EventArgs e)
+        private void ResetPassword_Clicked(object sender, EventArgs e)
         {
             DisplayAlert("Waarschuwing", "U gaat nu uw wachtwoord aanpassen!", "OK");
             Navigation.PushAsync(new NewPasswordPage());
