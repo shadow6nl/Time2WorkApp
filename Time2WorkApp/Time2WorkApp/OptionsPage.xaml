@@ -28,7 +28,7 @@
             <Button
                 x:Name="OptionSaveButton"
                 Margin="0, 20, 0, 0"
-                Text="opslaan"
+                Text="Opslaan"
                 Style="{StaticResource normalButton}"
                 Clicked="OptionSaveButton_Clicked"  />
 
@@ -36,6 +36,10 @@
                     Text="Reset"
                     BackgroundColor="Red"
                     Clicked="resetFirstTimeSetup_Clicked"/>
+            <Button x:Name="resetPassword"
+                    Text="Nieuw wachtwoord"
+                    BackgroundColor="Red"
+                    Clicked="resetPassword_Clicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -33,7 +33,7 @@
             <Button
                 x:Name="FirstUseSaveButton"
                 Margin="0, 20, 0, 0"
-                Text="opslaan"
+                Text="Opslaan"
                 Style="{StaticResource normalButton}"
                 Clicked="FirstUseSaveButton_Clicked"/>
             

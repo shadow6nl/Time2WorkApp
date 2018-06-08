@@ -28,7 +28,7 @@ namespace Time2WorkApp
 
             if (isFirstnameEmpty || isLastnameEmpty || isBrutoEmpty || isEmailEmpty || isPassword1Empty)
             {
-                DisplayAlert("Alert", "Er is nog een tekstvak leeg.", "OKÉ");
+                DisplayAlert("Waarschuwing", "Er is nog een tekstvak leeg.", "OK");
             }
             else
             {
@@ -53,6 +53,11 @@ namespace Time2WorkApp
         private void resetFirstTimeSetup_Clicked(object sender, EventArgs e)
         {
             IsFirstTime = "yes";
+        }
+        private void resetPassword_Clicked(object sender, EventArgs e)
+        {
+            DisplayAlert("Waarschuwing", "U gaat nu uw wachtwoord aanpassen!", "OK");
+            Navigation.PushAsync(new ());
         }
     }
 }
