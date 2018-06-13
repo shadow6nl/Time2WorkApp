@@ -32,16 +32,14 @@
                 Style="{StaticResource normalButton}"
                 Clicked="OptionSaveButton_Clicked"  />
 
-            <Button
-                x:Name="ResetFirstTimeSetup"
-                Text="Reset"
-                BackgroundColor="Red"
-                Clicked="ResetFirstTimeSetup_Clicked"/>
-            <Button
-                x:Name="resetPassword"
-                Text="Nieuw wachtwoord"
-                BackgroundColor="Red"
-                Clicked="ResetPassword_Clicked"/>
+            <Button x:Name="ResetFirstTimeSetup"
+                    Text="Reset"
+                    BackgroundColor="Red"
+                    Clicked="ResetFirstTimeSetup_Clicked"/>
+            <Button x:Name="resetPassword"
+                    Text="Nieuw wachtwoord"
+                    BackgroundColor="Red"
+                    Clicked="ResetPassword_Clicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
