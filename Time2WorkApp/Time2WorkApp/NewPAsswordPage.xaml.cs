@@ -15,14 +15,29 @@ namespace Time2WorkApp
     {
         public NewPasswordPage()
         {
-            //Geeft error als ik uncomment
 
-            //InitializeComponent();
+
+            InitializeComponent();
         }
 
         private void NewPasswordSaveButton_Clicked(object sender, EventArgs e)
         {
-            // save to database logic
-        }
+            bool isoldPasswordEmpty = string.IsNullOrEmpty(oldPassword.Text);
+            bool isnewPassword1Empty = string.IsNullOrEmpty(newPassword1.Text);
+            bool isnewPassword2Empty = string.IsNullOrEmpty(newPassword2.Text);
+
+            bool isoldPasswordinDB = string.IsNullOrEmpty(oldPassword.Text);
+            bool isnewPassword1inDB = string.IsNullOrEmpty(newPassword1.Text);
+            bool isnewPassword2inDB = string.IsNullOrEmpty(newPassword2.Text);
+
+            if (isoldPasswordEmpty || isnewPassword2Empty || isnewPassword2Empty)
+            {
+                DisplayAlert("Waarschuwing", "Er is nog een tekstvak leeg.", "OK");
+            }
+            else
+            {
+                DisplayAlert("Waarschuwing", "Uw wachtwoord is opgeslagen", "OK");
+            }
+    }
     }
 }
