@@ -35,12 +35,41 @@ namespace Time2WorkApp
         int pauzeButtonToggle = 1;
         int startButtonToggle = 1;
 
+        int hours = 0, mins = 0, secs = 0;
+
         //boolean die aangeeft of werk is begonnen
         bool isWorking = false;
+        string TotalTime = "";
 
         //stopwatches voor werktijden en pauzetijden
         Stopwatch workStopWatch = new Stopwatch();
         Stopwatch breakStopWatch = new Stopwatch();
+
+        public void RunTimer(Boolean Value)
+        {
+            Boolean excuteTimer = Value;
+            TimeSpan TimeElement = new TimeSpan();
+
+            Device.StartTimer(new TimeSpan(0, 0, 1), () =>
+            {
+                if (Value)
+                {
+                    /*TotalTime = TotalTime + TimeElement.Add(new TimeSpan(0, 0, 1));
+                    starttimeLabel.Text = string.Format("{0:hh\\:mm\\:ss}", TotalTime); */
+                    // returning true will fire task again in 2 minutes.
+                    secs++;
+                    string currentTimertime = String.Format("{0:00}:{1:00}:{2:00}",
+                     hours, mins, secs);
+                    starttimeLabel.Text = currentTimertime;
+                    return true;
+                }
+
+                // No longer need to recur. Stops firing task
+                return false;
+            });
+
+
+        }
 
         private void activityToggleButton_Clicked(object sender, EventArgs e)
         {
@@ -88,6 +117,7 @@ namespace Time2WorkApp
             //als de startknop de state verandert naar isWorking. Deze wordt dus true NA HET KLIKKEN
             if (isWorking == true)
             {
+                RunTimer(true);
                 //het aanvragen van de huidige systeem tijd 
                 DateTime now = DateTime.Now.ToLocalTime();
                 //de dateTime uitfilteren van de datum en tijd naar TIJD ONLY
@@ -105,7 +135,7 @@ namespace Time2WorkApp
                 //werktijd start
                 workStopWatch.Start();
                 //label weergeeft dat de tijd in is gegaan
-                starttimeLabel.Text = "Tijd loopt";
+                //starttimeLabel.Text = "Tijd loopt";
                 //de start knop wordt veranderd naar een stop knop
                 startTimeButton.BackgroundColor = Color.Red;
                 startTimeButton.Text = "Stop met Werken";
@@ -117,6 +147,7 @@ namespace Time2WorkApp
             //als de stopknop wordt geklikt
             else if (isWorking == false)
             {
+                RunTimer(false);
                 //label van begin tijd wordt verborgen aangezien je niet meer werkt
                 beginWerkTijdLabel.IsVisible = false;
                 //werktijd stopt
