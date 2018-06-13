@@ -14,11 +14,7 @@ namespace Time2WorkApp
 	{
 		public NewPasswordPage ()
 		{
-			InitializeComponent ();
+		   InitializeComponent ();
 		}
     }
-    //private void newpasswordsavebutton_clicked(object sender, eventargs e)
-    //{
-    //    save to database logic
-    //}
 }
