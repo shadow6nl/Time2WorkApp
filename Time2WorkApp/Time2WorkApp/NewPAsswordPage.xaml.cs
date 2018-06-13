@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Time2WorkApp.Helpers;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -34,15 +33,10 @@ namespace Time2WorkApp
                 DisplayAlert("Waarschuwing", "Er is nog een tekstvak leeg.", "OK");
             }
 
-            else if (isoldPasswordinDB || isnewPassword1inDB || isnewPassword2inDB)
-            {
-                DisplayAlert("Waarschuwing", "Verkeerde wachtwoord.", "OK");
-            }
+
 
             else
-            {
                 DisplayAlert("Waarschuwing", "Uw wachtwoord is opgeslagen", "OK");
-            }
         }
     }
 }
