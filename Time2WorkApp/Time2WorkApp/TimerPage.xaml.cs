@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Timers;
 using System.Diagnostics;
 
+
+
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -66,8 +68,6 @@ namespace Time2WorkApp
                 activityIsUpdatedLabel.IsVisible = false;
             }
         }
-
-
         //updatefunctie van de activiteit knop
         private void updateActivityButton_Clicked(object sender, EventArgs e)
         {
@@ -76,7 +76,6 @@ namespace Time2WorkApp
         //weergeef dat de activiteit up to date is
         activityIsUpdatedLabel.IsVisible = true;
         }
-
 
         //functie van de startknop
         private void startTimeButton_Clicked(object sender, EventArgs e)
@@ -105,7 +104,7 @@ namespace Time2WorkApp
                 //werktijd start
                 workStopWatch.Start();
                 //label weergeeft dat de tijd in is gegaan
-                starttimeLabel.Text = "Tijd loopt";
+                //starttimeLabel.Text = "Tijd loopt";
                 //de start knop wordt veranderd naar een stop knop
                 startTimeButton.BackgroundColor = Color.Red;
                 startTimeButton.Text = "Stop met Werken";
@@ -146,7 +145,7 @@ namespace Time2WorkApp
                 bool pauzeIsBezig = pauzeButtonToggle % 2 == 0;
                 //wanneer de knop wordt geklikt en de pauze begint
                 if (pauzeIsBezig == true)
-                {
+                { 
                     //datum en tijd van de pauze worden weergeven
                     DateTime now = DateTime.Now.ToLocalTime();
                     int uur = now.Hour;

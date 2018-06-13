@@ -25,7 +25,7 @@ namespace Time2WorkApp.Droid
             string folderPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
             string fullPath = System.IO.Path.Combine(folderPath, dbName);
 
-            LoadApplication(new App(fullPath));
+            LoadApplication(new App());
         }
     }
 }
