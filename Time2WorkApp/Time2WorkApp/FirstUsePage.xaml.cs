@@ -41,6 +41,9 @@ namespace Time2WorkApp
             }
             else
             {
+                //INSERT INTO profiel.cs (column1,...)
+                //VALUES(firstUseFirstname, firstUseLastname, firstUseBruto,
+                //firstUseEmailEntry, firstUseEmailEntry, firstUsePassword1, firstUsePassword2);
                 Navigation.PushAsync(new MenuPage());
             }
         }
