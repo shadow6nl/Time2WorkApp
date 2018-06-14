@@ -35,10 +35,16 @@ namespace Time2WorkApp
         int pauzeButtonToggle = 1;
         int startButtonToggle = 1;
 
+        int totaalPauzeSec = 0;
+        int totaalPauzeMin = 0;
+        int totaalPauzeHrs = 0;
+
         string currentTimertime;
         string currentBreakTimertime;
         string systeemKlokTijdVerschil;
         int uur, minuut, seconde;
+
+        string totaalGewerkt, totaalPauze;
 
         int breakhours = 0, breakmins = 0, breaksecs = 0;
         int hours = 0, mins = 0, secs = 0;
@@ -51,8 +57,6 @@ namespace Time2WorkApp
         //stopwatches voor werktijden en pauzetijden
         Stopwatch workStopWatch = new Stopwatch();
         Stopwatch breakStopWatch = new Stopwatch();
-
-
 
         public void RunWorkTimer(Boolean Value)
         {
@@ -206,6 +210,14 @@ namespace Time2WorkApp
                 currentBreakTimertime = String.Format("{0:00}:{1:00}:{2:00}",
                         breakhours, breakmins, breaksecs);
                 pauseTimerLabel.Text = currentBreakTimertime;
+
+                totaalPauze = String.Format("{0:00}:{1:00}:{2:00}",
+                    totaalPauzeHrs, totaalPauzeMin, totaalPauzeSec);
+
+                totaalGewerkt = elapsedWorkTime;
+                DisplayAlert("Overzicht", "Je hebt in totaal " + totaalGewerkt + " gewerkt en " + totaalPauze + " pauze gehad.  " + "  (UU:MM:SS)", "Doorgaan");
+
+                workStopWatch.Reset();
             }
         }
         
@@ -289,7 +301,26 @@ namespace Time2WorkApp
                     startTimeButton.BackgroundColor = Color.Red;
                     startTimeButton.Text = "Stop met Werken";
                     startTimeButton.IsEnabled = true;
-                }
+
+                    int dezePauzeSec = breakTs.Seconds;
+                    int dezePauzeMin = breakTs.Minutes;
+                    int dezePauzeHrs = breakTs.Hours;
+
+                
+                    totaalPauzeSec = totaalPauzeSec + dezePauzeSec;
+                    totaalPauzeMin = totaalPauzeMin + dezePauzeMin;
+                    totaalPauzeHrs = totaalPauzeHrs + dezePauzeHrs;
+                    if (totaalPauzeSec > 59)
+                    {
+                        totaalPauzeMin++;
+                    }
+                    if (totaalPauzeMin > 59)
+                    {
+                        totaalPauzeHrs++;
+                    }
+
+                    breakStopWatch.Reset();
+            }
         }
 
 
