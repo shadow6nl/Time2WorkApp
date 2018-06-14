@@ -16,5 +16,17 @@ namespace Time2WorkApp
 		{
 			InitializeComponent ();
 		}
-	}
+
+        private void periodeEenButton_Clicked(object sender, EventArgs e)
+        {
+            overzichtPeriodesLayout.IsVisible = false;
+            overzichtDetailsLayout.IsVisible = true;
+        }
+
+        private void terugNaarOverzichtButton_Clicked(object sender, EventArgs e)
+        {
+            overzichtPeriodesLayout.IsVisible = true;
+            overzichtDetailsLayout.IsVisible = false;
+        }
+    }
 }

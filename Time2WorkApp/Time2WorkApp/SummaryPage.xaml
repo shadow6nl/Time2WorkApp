@@ -4,9 +4,104 @@
              x:Class="Time2WorkApp.SummaryPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to the SummaryPage"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <StackLayout
+                x:Name="overzichtPeriodesLayout"
+                IsVisible="true">
+            <Button x:Name="periodeEenButton"
+                Text="Week 1"
+                   TextColor="Black"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   BackgroundColor="LightGreen"
+                   Margin="5,2.5"
+                   Clicked="periodeEenButton_Clicked"
+                   />
+            <Button Text="Week 2"
+                   TextColor="Black"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   BackgroundColor="LightGreen"
+                   Margin="5,2.5"
+                   />
+            <Button Text="Week 3"
+                   TextColor="Black"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   BackgroundColor="LightGreen"
+                   Margin="5,5"
+                   />
+            </StackLayout>
+            <StackLayout
+                x:Name="overzichtDetailsLayout"
+                IsVisible="False">
+                <StackLayout
+                    BackgroundColor="CornflowerBlue">
+                <Label x:Name="introductionLabel"
+                       Text="Dit is het overzicht van *periode*"
+                       FontSize="20"
+                       TextColor="White"/>
+                <Label x:Name="dateLabel"
+                       Text="Vanaf *begin van periode* tot en met *einde periode*"
+                       FontSize="20"
+                       TextColor="White"/>
+                </StackLayout>
+                <StackLayout
+                    BackgroundColor="SkyBlue">
+                <Label x:Name="totaalGewerktLabel"
+                       Text="Totaal gewerkte uren:  *hoeveelheid uren*"
+                       FontSize="20"
+                       TextColor="White"/>
+                <Label x:Name="totaalPauzeLabel"
+                       Text="Totaal uren op pauze:  *hoeveelheid uren*"
+                       FontSize="20"
+                       TextColor="White"/>
+                </StackLayout>
+                <Label x:Name="brutoLoonLabel"
+                       Text="Totale Bruto loon in deze periode: *uren-X-brutoloon*"
+                       FontSize="20"
+                       TextColor="White"
+                       BackgroundColor="DeepSkyBlue"/>
+
+                <Label
+                    Text="Activiteiten in deze periode:"
+                    FontSize="20"/>
+                <Label
+                    Text="*Activiteit 1*        *hoeveelheid tijd*"
+                    FontSize="15"/>
+                <Label
+                    Text="*Activiteit 2*        *hoeveelheid tijd*"
+                    FontSize="15"/>
+                <Label
+                    Text="*Activiteit 3*        *hoeveelheid tijd*"
+                    FontSize="15"/>
+                <Label
+                    Text="*Activiteit 4*        *hoeveelheid tijd*"
+                    FontSize="15"/>
+                <Label
+                    Text="*Activiteit 5*        *hoeveelheid tijd*"
+                    FontSize="15"/>
+
+                <StackLayout
+                    Margin="15,5">
+                <Button
+                    x:Name="bewerkPeriodeButton"
+                    Text="Bewerk deze periode"
+                    TextColor="Black"
+                    BackgroundColor="GreenYellow"
+                    />
+                <Button
+                    x:Name="verwijderPeriodeButton"
+                    Text="Verwijder deze periode"
+                    BackgroundColor="Red"
+                    />
+                <Button
+                    x:Name="terugNaarOverzichtButton"
+                    Text="Terug naar overzicht van Periodes"
+                    BackgroundColor="ForestGreen"
+                    Clicked="terugNaarOverzichtButton_Clicked"
+                    />
+                </StackLayout>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
