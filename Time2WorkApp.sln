@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Time2WorkApp.iOS", "Time2Wo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Time2WorkApp.UWP", "Time2WorkApp\Time2WorkApp.UWP\Time2WorkApp.UWP.csproj", "{3111A42E-C8DE-42CF-BD2C-B5AA4E88DBFA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Time2WorkApp", "Time2WorkApp\Time2WorkApp\Time2WorkApp.csproj", "{C03A061F-6D79-4D05-8BF3-B34B41C9CEA0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Time2WorkApp", "Time2WorkApp\Time2WorkApp\Time2WorkApp.csproj", "{C03A061F-6D79-4D05-8BF3-B34B41C9CEA0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

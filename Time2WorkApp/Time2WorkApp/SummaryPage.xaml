@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Time2WorkApp.SummaryPage">
     <ContentPage.Content>
+        <ScrollView>
         <StackLayout>
             <StackLayout
                 x:Name="overzichtPeriodesLayout"
@@ -103,5 +104,6 @@
                 </StackLayout>
             </StackLayout>
         </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
