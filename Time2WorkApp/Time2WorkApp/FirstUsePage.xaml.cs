@@ -15,6 +15,7 @@ namespace Time2WorkApp
 	public partial class FirstUsePage : ContentPage
 	{
         DataContext dbContext = new DataContext();
+        Gebruiker current_user;
 
 		public FirstUsePage ()
 		{
@@ -37,7 +38,6 @@ namespace Time2WorkApp
             if (isFirstnameEmpty || isLastnameEmpty || isBrutoEmpty || isEmailEmpty || isPassword1Empty || isPassword2Empty)
             {
                 DisplayAlert("Fout", "Vul alle tekstvakken in.", "OK");
-
             }
             else if (password1 != password2)
             {
@@ -45,9 +45,10 @@ namespace Time2WorkApp
             }
             else
             {
-                //INSERT INTO profiel.cs (column1,...)
-                //VALUES(firstUseFirstname, firstUseLastname, firstUseBruto,
-                //firstUseEmailEntry, firstUseEmailEntry, firstUsePassword1, firstUsePassword2);
+                double Bruto = double.Parse(firstUseBruto.Text);
+                //Writing it to the DB
+
+            
                 Navigation.PushAsync(new MenuPage());
             }
         }
