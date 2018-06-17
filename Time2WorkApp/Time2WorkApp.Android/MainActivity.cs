@@ -83,11 +83,15 @@ namespace Time2WorkApp.Droid
         [PrimaryKey]
         public int id { get; set; }
 
+        public DateTime datum { get; set; }
+
         public string activiteit { get; set; }
 
         public DateTime startTijd { get; set; }
 
         public DateTime stopTijd { get; set; }
+
+        public DateTime totaleTijd { get; set; }
 
         public DateTime pauze { get; set; }
     }
