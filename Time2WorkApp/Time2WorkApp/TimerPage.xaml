@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Time2WorkApp.TimerPage">
     <ScrollView>
-    <StackLayout Margin="20, 10, 20, 20">
+        <StackLayout Margin="20, 10, 20, 20">
             <Label
                 x:Name="datumVanVandaag"
                 HorizontalOptions="Center"
@@ -27,11 +27,28 @@
             <Label x:Name="starttimeLabel"
             Text="00:00:00"
             FontSize="75"
-            HorizontalOptions="Center"/>    
-        
-            
+            HorizontalOptions="Center"/>
 
-           <Button
+            <Button x:Name="pauseTimeButton"
+                HeightRequest="75"
+                Text="Begin Pauze"
+                FontSize="25"
+                BackgroundColor="Gray"
+                TextColor="White"
+                Clicked="pauseTimeButton_Clicked"
+                IsEnabled="false"/>
+
+            <Label x:Name="beginPauzeTijdLabel"
+                   Text="Begin datum en tijd: "
+                   HorizontalOptions="Center"
+                   IsVisible="False"/>
+
+            <Label x:Name="pauseTimerLabel"
+            Text="00:00:00"
+            FontSize="75"
+            HorizontalOptions="Center"/>
+
+            <Button
                 x:Name="activityToggleButton"
                 Text="Activiteit"
                 TextColor="White"
@@ -43,7 +60,7 @@
                HorizontalOptions="Center"
                IsVisible="False"/>
 
-        <Button x:Name="updateActivityButton"
+            <Button x:Name="updateActivityButton"
                 HeightRequest="35"
                 Text="Update Activiteit"
                 FontSize="10"
