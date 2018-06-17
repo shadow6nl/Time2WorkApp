@@ -6,12 +6,16 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using SQLite;
+using Time2WorkApp.Model;
 
 namespace Time2WorkApp
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class FirstUsePage : ContentPage
 	{
+        DataContext dbContext = new DataContext();
+
 		public FirstUsePage ()
 		{
 			InitializeComponent ();
