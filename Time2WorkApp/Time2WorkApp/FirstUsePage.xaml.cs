@@ -46,9 +46,13 @@ namespace Time2WorkApp
             else
             {
                 double Bruto = double.Parse(firstUseBruto.Text);
-                //Writing it to the DB
 
-            
+                //Writing it to the DB
+                current_user = dbContext.db.Table<Gebruiker>().Last();
+                int last_index_gebruiker_1 = current_user.id;
+
+                dbContext.Insert_User_Into_Table(new Gebruiker { id = 1, firstname = firstUseFirstname.Text, lastname = firstUseLastname.Text, brutoloon = Bruto, email = firstUseEmailEntry.Text, password = firstUsePassword1.Text });
+
                 Navigation.PushAsync(new MenuPage());
             }
         }

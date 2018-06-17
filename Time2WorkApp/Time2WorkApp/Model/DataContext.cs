@@ -51,11 +51,11 @@ namespace Time2WorkApp.Model
         {
             db.CreateTable<Gebruiker>();
         }
-        public void Insert_Activity_Into_Table(Gebruiker user) //inserts an instance of an 'Gebruiker' object into the database 
+        public void Insert_User_Into_Table(Gebruiker user) //inserts an instance of an 'Gebruiker' object into the database 
         {
             db.Insert(user);
         }
-        public void Update_Activity_From_Table(Gebruiker user) // looks for the object in the DB where the object's id and ID argument match. changes the sometime atribute and then updates the new value
+        public void Update_User_From_Table(Gebruiker user) // looks for the object in the DB where the object's id and ID argument match. changes the sometime atribute and then updates the new value
         {
 
             db.Update(user);
@@ -67,7 +67,7 @@ namespace Time2WorkApp.Model
 
             return user;
         }
-        public void Delete_Activity_From_Table(Gebruiker user) // deletes an activiteit object from the db (probably looks at corresponding primary key) 
+        public void Delete_User_From_Table(Gebruiker user) // deletes an activiteit object from the db (probably looks at corresponding primary key) 
         {
             db.Delete(user);
         }
