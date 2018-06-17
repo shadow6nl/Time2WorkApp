@@ -10,10 +10,15 @@ namespace Time2WorkApp.Model
     {
         [PrimaryKey]
         public int id { get; set; }
+
         public string firstname { get; set; }
+
         public string lastname { get; set; }
+
         public double brutoloon { get; set; }
+
         public string email { get; set; }
+
         public string password { get; set; }
     }
 }

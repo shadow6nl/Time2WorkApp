@@ -14,7 +14,7 @@ namespace Time2WorkApp
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class FirstUsePage : ContentPage
 	{
-        DataContext dbContext = new DataContext();
+        DataContext dbcontext = new DataContext();
         Gebruiker current_user;
 
 		public FirstUsePage ()
@@ -48,19 +48,16 @@ namespace Time2WorkApp
                 double Bruto = double.Parse(firstUseBruto.Text);
 
                 //Writing it to the DB
-                if (dbContext.db.Table<Gebruiker>().FirstOrDefault() == null)
+                if (dbcontext.db.Table<Gebruiker>().FirstOrDefault() == null)
                 {
-                    dbContext.Insert_User_Into_Table(new Gebruiker { id = 1, firstname = "John", lastname = "Doe" });
+                    dbcontext.Insert_User_Into_Table(new Gebruiker { id = 1, firstname = "John", lastname = "Doe" });
                 }
                 else {
-                    current_user = dbContext.db.Table<Gebruiker>().Last();
                     int last_index_gebruiker_1 = current_user.id;
-
-                    dbContext.Insert_User_Into_Table(new Gebruiker { id = 1, firstname = firstUseFirstname.Text, lastname = firstUseLastname.Text, brutoloon = Bruto, email = firstUseEmailEntry.Text, password = firstUsePassword1.Text });
-
-                    Navigation.PushAsync(new MenuPage());
+                    dbcontext.Insert_User_Into_Table(new Gebruiker { id = last_index_gebruiker_1 + 1, firstname = firstUseFirstname.Text, lastname = firstUseLastname.Text, brutoloon = Bruto, email = firstUseEmailEntry.Text, password = firstUsePassword1.Text });
                 }
-                
+                current_user = dbcontext.db.Table<Gebruiker>().Last();
+                Navigation.PushAsync(new MenuPage());
             }
         }
     }
