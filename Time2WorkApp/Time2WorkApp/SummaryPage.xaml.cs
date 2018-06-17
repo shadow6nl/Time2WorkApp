@@ -21,11 +21,19 @@ namespace Time2WorkApp
 		public SummaryPage ()
 		{
             InitializeComponent();
-            refreshDePaginaDatabase();
+            //refreshDePaginaDatabase();
         }
 
         public void refreshDePaginaDatabase()
         {
+            
+        }
+
+
+        private void Update_Clicked(object sender, EventArgs e)
+        {
+            //refreshDePaginaDatabase();
+
             current_activity = dbContext.db.Table<Activiteit>().Last();
             int last_index_activiteiten1 = current_activity.id;
             int last_index_activiteiten2 = last_index_activiteiten1 - 1;
@@ -78,12 +86,6 @@ namespace Time2WorkApp
             {
                 Activiteit10.Text = dbContext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten10).activiteit;
             }
-        }
-
-
-        private void Update_Clicked(object sender, EventArgs e)
-        {
-            refreshDePaginaDatabase();
         }
 
         
