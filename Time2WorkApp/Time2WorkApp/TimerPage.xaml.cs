@@ -170,19 +170,29 @@ namespace Time2WorkApp
                 RunWorkTimer();
 
                 start_button_start_tijd = DateTime.Now;
-                
-                   
-                
-                
-                int last_index_id_activiteiten = dbcontext.db.Table<Activiteit>().Last().id; 
-                dbcontext.Insert_Activity_Into_Table(new Activiteit { id = last_index_id_activiteiten + 1, startTijd = start_button_start_tijd , activiteit="Unnamed" });
-                current_activity = dbcontext.db.Table<Activiteit>().Last();
+
 
                 
 
+                if (dbcontext.db.Table<Activiteit>().FirstOrDefault() == null)
+                {
+                    dbcontext.Insert_Activity_Into_Table(new Activiteit { id = 1, startTijd = DateTime.Now, activiteit = "placeholder" });
+                }
+                    
                 
+                else
+                {
+                    int last_index_id_activiteiten = dbcontext.db.Table<Activiteit>().Last().id;
+                    dbcontext.Insert_Activity_Into_Table(new Activiteit { id = last_index_id_activiteiten + 1, startTijd = start_button_start_tijd, activiteit = "Unnamed" });
+                    
+                }
 
-                
+                current_activity = dbcontext.db.Table<Activiteit>().Last(); //probeer nog maar eens
+
+
+
+
+
 
                 uur = current_activity.startTijd.Hour;
                 minuut = current_activity.startTijd.Minute;

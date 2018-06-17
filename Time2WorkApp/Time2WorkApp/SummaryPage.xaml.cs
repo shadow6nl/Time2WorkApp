@@ -49,15 +49,45 @@ namespace Time2WorkApp
 
 
             Activiteit1.Text = dbContext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten1).activiteit;
-            Activiteit2.Text = dbContext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten2).activiteit;
-            Activiteit3.Text = dbContext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten3).activiteit;
-            Activiteit4.Text = dbContext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten4).activiteit;
-            Activiteit5.Text = dbContext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten5).activiteit;
-            Activiteit6.Text = dbContext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten6).activiteit;
-            Activiteit7.Text = dbContext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten7).activiteit;
-            Activiteit8.Text = dbContext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten8).activiteit;
-            Activiteit9.Text = dbContext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten9).activiteit;
-            Activiteit10.Text = dbContext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten10).activiteit;
+
+            if(dbContext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten2) != null )
+            {
+                Activiteit2.Text = dbContext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten2).activiteit;  
+            }
+            if(dbContext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten3) != null )
+            {
+                Activiteit3.Text = dbContext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten3).activiteit;
+            }
+            if(dbContext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten4) != null)
+            {
+                Activiteit4.Text = dbContext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten4).activiteit;
+            }
+            if(dbContext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten5) != null)
+            {
+                Activiteit4.Text = dbContext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten5).activiteit;
+            }
+            if (dbContext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten6) != null)
+            {
+                Activiteit6.Text = dbContext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten6).activiteit;
+            }
+            if (dbContext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten7) != null)
+            {
+                Activiteit7.Text = dbContext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten7).activiteit;
+            }
+            if (dbContext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten8) != null)
+            {
+                Activiteit8.Text = dbContext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten8).activiteit;
+            }
+            if (dbContext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten9) != null)
+            {
+                Activiteit9.Text = dbContext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten9).activiteit;
+            }
+            if (dbContext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten10) != null)
+            {
+                Activiteit10.Text = dbContext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten10).activiteit;
+            }
+            
+           
         }
 
 
