@@ -33,7 +33,7 @@ namespace Time2WorkApp
 
         //toggle values voor knoppen.       ipv omschachtig bools te gebruiken, gewoon even en oneven getallen voor het toggelen
         bool activityButtonToggle = false;
-        bool pauzeButtonToggle = false;
+        //bool pauzeButtonToggle = false;
         bool startButtonToggle = false;
 
         
@@ -174,7 +174,7 @@ namespace Time2WorkApp
                 
                 
                 int last_index_id_activiteiten = dbcontext.db.Table<Activiteit>().Last().id; 
-                dbcontext.Insert_Activity_Into_Table(new Activiteit { id = last_index_id_activiteiten + 1, startTijd = start_button_start_tijd , activiteit="unnamed" });
+                dbcontext.Insert_Activity_Into_Table(new Activiteit { id = last_index_id_activiteiten + 1, startTijd = start_button_start_tijd , activiteit="Unnamed" });
                 current_activity = dbcontext.db.Table<Activiteit>().Last();
 
                 
