@@ -31,13 +31,19 @@ namespace Time2WorkApp
             else
             {
                 //comparing to DB
-                //if (dbcontext.db.Table<Gebruiker>().FirstOrDefault() == null)
-                //{
-                //    dbcontext.Get_Gebruiker();
-                //}
-                Navigation.PushAsync(new MenuPage());
+
+                Gebruiker current_user = dbcontext.Get_Gebruiker(1);
+                if (current_user.email == emailEntry.Text && current_user.password == passwordEntry.Text)
+                {
+                    Navigation.PushAsync(new MenuPage());
+                }
+
+                else
+                {
+                    DisplayAlert("Fout", " Email of Wachtwoord niet correct", "OK");
+                }
             }
-             
+
         }
     }
 }
