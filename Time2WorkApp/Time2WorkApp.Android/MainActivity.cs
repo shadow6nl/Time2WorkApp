@@ -27,6 +27,7 @@ namespace Time2WorkApp.Droid
             DateTime randometime = new DateTime(2000, 12, 1, 1, 1, 1);
             DataContext dbcontext = new DataContext();
             dbcontext.Create_table_Activity();
+            dbcontext.Create_table_user();
             //dbcontext.Insert_Activity_Into_Table(new Activiteit{ id = 1, startTijd = randometime, datum = randometime, stopTijd = randometime, totaleTijd = randometime, activiteit = "someactivity" });
 
 
