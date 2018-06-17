@@ -43,6 +43,9 @@ namespace Time2WorkApp
             {
                 DisplayAlert("Fout", "Wachtwoorden komen niet overeen.", "OK");
             }
+
+            
+
             else
             {
                 double Bruto = double.Parse(firstUseBruto.Text);

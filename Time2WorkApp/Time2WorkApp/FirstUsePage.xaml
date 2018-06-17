@@ -15,6 +15,7 @@
                 Placeholder="Achternaam"/>
             <Entry
                 x:Name="firstUseBruto"
+                Keyboard="Numeric"
                 Placeholder="Bruto uurloon"/>
             <Entry
                 x:Name="firstUseEmailEntry"
