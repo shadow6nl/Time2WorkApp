@@ -20,20 +20,12 @@ namespace Time2WorkApp
 
 		public SummaryPage ()
 		{
-
             InitializeComponent();
-
-
-
-
-            
-
+            refreshDePaginaDatabase();
         }
 
-
-        private void Update_Clicked(object sender, EventArgs e)
+        public void refreshDePaginaDatabase()
         {
-
             current_activity = dbContext.db.Table<Activiteit>().Last();
             int last_index_activiteiten1 = current_activity.id;
             int last_index_activiteiten2 = last_index_activiteiten1 - 1;
@@ -50,19 +42,19 @@ namespace Time2WorkApp
 
             Activiteit1.Text = dbContext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten1).activiteit;
 
-            if(dbContext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten2) != null )
+            if (dbContext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten2) != null)
             {
-                Activiteit2.Text = dbContext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten2).activiteit;  
+                Activiteit2.Text = dbContext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten2).activiteit;
             }
-            if(dbContext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten3) != null )
+            if (dbContext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten3) != null)
             {
                 Activiteit3.Text = dbContext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten3).activiteit;
             }
-            if(dbContext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten4) != null)
+            if (dbContext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten4) != null)
             {
                 Activiteit4.Text = dbContext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten4).activiteit;
             }
-            if(dbContext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten5) != null)
+            if (dbContext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten5) != null)
             {
                 Activiteit4.Text = dbContext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten5).activiteit;
             }
@@ -86,10 +78,82 @@ namespace Time2WorkApp
             {
                 Activiteit10.Text = dbContext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten10).activiteit;
             }
-            
-           
         }
 
+
+        private void Update_Clicked(object sender, EventArgs e)
+        {
+            refreshDePaginaDatabase();
+        }
+
+        
+        public void allButtonsInvisible()
+        {
+            maandKnoppen.IsVisible = false;
+            overzichtLayout.IsVisible = true;
+        }
+
+
+        private void januariButton_Clicked(object sender, EventArgs e)
+        {
+            allButtonsInvisible();
+        }
+
+        private void februariButton_Clicked(object sender, EventArgs e)
+        {
+            allButtonsInvisible();
+        }
+
+        private void maartButton_Clicked(object sender, EventArgs e)
+        {
+            allButtonsInvisible();
+        }
+
+        private void aprilButton_Clicked(object sender, EventArgs e)
+        {
+            allButtonsInvisible();
+        }
+
+        private void meiButton_Clicked(object sender, EventArgs e)
+        {
+            allButtonsInvisible();
+        }
+
+        private void juniButton_Clicked(object sender, EventArgs e)
+        {
+            allButtonsInvisible();
+        }
+
+        private void juliButton_Clicked(object sender, EventArgs e)
+        {
+            allButtonsInvisible();
+        }
+
+        private void augustusButton_Clicked(object sender, EventArgs e)
+        {
+            allButtonsInvisible();
+        }
+
+        private void septemberButton_Clicked(object sender, EventArgs e)
+        {
+            allButtonsInvisible();
+        }
+
+        private void oktoberButton_Clicked(object sender, EventArgs e)
+        {
+            allButtonsInvisible();
+        }
+
+        private void novemberButton_Clicked(object sender, EventArgs e)
+        {
+            allButtonsInvisible();
+        }
+
+        private void decemberButton_Clicked(object sender, EventArgs e)
+        {
+            allButtonsInvisible();
+        }
+        
 
     }
 }
