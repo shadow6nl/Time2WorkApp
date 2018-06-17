@@ -30,6 +30,20 @@ namespace Time2WorkApp
             refreshDePaginaDatabase();
         }
 
+        int totaalUren, totaalMinuten, lastHours, lastMinutes;
+
+        public void totaalGewerkteUrenBerekening()
+        {
+
+            totaalUren = totaalUren + lastHours;
+            totaalMinuten = totaalMinuten + lastMinutes;
+            if (totaalMinuten > 59)
+            {
+                totaalUren++;
+                totaalMinuten = totaalMinuten - 60;
+            }
+        }
+
         public void refreshDePaginaDatabase()
         {
             current_activity = dbContext.db.Table<Activiteit>().Last();
@@ -103,61 +117,73 @@ namespace Time2WorkApp
         private void januariButton_Clicked(object sender, EventArgs e)
         {
             allButtonsInvisible();
+            maandLabel.Text = "Januari";
         }
 
         private void februariButton_Clicked(object sender, EventArgs e)
         {
             allButtonsInvisible();
+            maandLabel.Text = "Februari";
         }
 
         private void maartButton_Clicked(object sender, EventArgs e)
         {
             allButtonsInvisible();
+            maandLabel.Text = "Maart";
         }
 
         private void aprilButton_Clicked(object sender, EventArgs e)
         {
             allButtonsInvisible();
+            maandLabel.Text = "April";
         }
 
         private void meiButton_Clicked(object sender, EventArgs e)
         {
             allButtonsInvisible();
+            maandLabel.Text = "Mei";
         }
 
         private void juniButton_Clicked(object sender, EventArgs e)
         {
             allButtonsInvisible();
+            maandLabel.Text = "Juni";
         }
 
         private void juliButton_Clicked(object sender, EventArgs e)
         {
             allButtonsInvisible();
+            maandLabel.Text = "Juli";
         }
 
         private void augustusButton_Clicked(object sender, EventArgs e)
         {
             allButtonsInvisible();
+            maandLabel.Text = "Augustus";
         }
 
         private void septemberButton_Clicked(object sender, EventArgs e)
         {
             allButtonsInvisible();
+            maandLabel.Text = "September";
         }
 
         private void oktoberButton_Clicked(object sender, EventArgs e)
         {
             allButtonsInvisible();
+            maandLabel.Text = "Oktober";
         }
 
         private void novemberButton_Clicked(object sender, EventArgs e)
         {
             allButtonsInvisible();
+            maandLabel.Text = "November";
         }
 
         private void decemberButton_Clicked(object sender, EventArgs e)
         {
             allButtonsInvisible();
+            maandLabel.Text = "December";
         }
         
 
