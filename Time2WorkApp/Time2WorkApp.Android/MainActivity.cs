@@ -101,6 +101,8 @@ namespace Time2WorkApp.Droid
         {
             db.Delete(user);
         }
+       
+        }
     }
 
     [Table("Activiteiten")]
@@ -133,4 +135,3 @@ namespace Time2WorkApp.Droid
         public string email { get; set; }
         public string password { get; set; }
     }
-}

@@ -31,8 +31,8 @@ namespace Time2WorkApp
             else
             {
                 //comparing to DB
-
-                Gebruiker current_user = dbcontext.Get_Gebruiker(1);
+                
+                Gebruiker current_user = dbcontext.Get_Gebruiker(2);
                 if (current_user.email == emailEntry.Text && current_user.password == passwordEntry.Text)
                 {
                     Navigation.PushAsync(new MenuPage());
