@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
 using System.Diagnostics;
+using SQLite;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
