@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Time2WorkApp.Droid</RootNamespace>
     <AssemblyName>Time2WorkApp.Android</AssemblyName>
-    <TargetFrameworkVersion>v8.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v7.1</TargetFrameworkVersion>
     <AndroidApplication>True</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <AndroidResgenClass>Resource</AndroidResgenClass>
