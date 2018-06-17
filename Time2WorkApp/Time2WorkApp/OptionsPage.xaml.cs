@@ -4,19 +4,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Time2WorkApp.Helpers;
-
+using SQLite;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Time2WorkApp.Model;
 
 namespace Time2WorkApp
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class OptionsPage : ContentPage
 	{
-		public OptionsPage ()
+        DataContext dbcontext = new DataContext();
+        Gebruiker current_user;
+        public OptionsPage ()
 		{
 			InitializeComponent ();
-		}
+            
+        }
 
         private void OptionSaveButton_Clicked(object sender, EventArgs e)
         {
@@ -52,6 +56,8 @@ namespace Time2WorkApp
 
         private void ResetFirstTimeSetup_Clicked(object sender, EventArgs e)
         {
+            current_user = dbcontext.db.Table<Gebruiker>().Last();
+            dbcontext.Delete_User_From_Table(current_user);
             IsFirstTime = "yes";
         }
         private void ResetPassword_Clicked(object sender, EventArgs e)
