@@ -9,13 +9,14 @@ using SQLite;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Time2WorkApp.Model;
 
 namespace Time2WorkApp
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class TimerPage : ContentPage
 	{
-		public TimerPage ()
+		public TimerPage () 
 		{
 			InitializeComponent ();
             //datum opvragen
@@ -32,23 +33,22 @@ namespace Time2WorkApp
         }
 
         //toggle values voor knoppen.       ipv omschachtig bools te gebruiken, gewoon even en oneven getallen voor het toggelen
-        int activityButtonToggle = 1;
-        int pauzeButtonToggle = 1;
-        int startButtonToggle = 1;
+        bool activityButtonToggle = false;
+        bool pauzeButtonToggle = false;
+        bool startButtonToggle = false;
 
-        int totaalPauzeSec = 0;
-        int totaalPauzeMin = 0;
-        int totaalPauzeHrs = 0;
+        
 
         string currentTimertime;
         string currentBreakTimertime;
         string systeemKlokTijdVerschil;
-        int uur, minuut, seconde;
+        int uur = 0;                         //begin van loop zet waardes op 0 , later kijk die naar verschil.
+        int minuut = 0;
+        int seconde = 0;
 
-        string totaalGewerkt, totaalPauze;
+        string totaalGewerkt, totaalPauze;                     //niet belangrijk 
 
         int breakhours = 0, breakmins = 0, breaksecs = 0;
-        int hours = 0, mins = 0, secs = 0;
 
         //boolean die aangeeft of werk is begonnen
         bool isWorking = false;
@@ -56,171 +56,192 @@ namespace Time2WorkApp
         bool breakTimerRunning = false;
 
         //stopwatches voor werktijden en pauzetijden
-        Stopwatch workStopWatch = new Stopwatch();
+        Stopwatch workStopWatch = new Stopwatch(); //ah .... ... eigenlijk niet nodig? 
         Stopwatch breakStopWatch = new Stopwatch();
 
-        public void RunWorkTimer(Boolean Value)
-        {
-            Boolean excuteTimer = Value;
 
-            Device.StartTimer(new TimeSpan(0, 0, 1), () =>
-            {
-                if (Value)
+
+        //mijn sectie
+        DateTime start_button_start_tijd;
+        DataContext dbcontext = new DataContext();
+        Activiteit current_activity;
+
+
+
+
+
+
+        public void RunWorkTimer()
+        {
+
+            int hours = 0, mins = 0, secs = 0;
+            TimeSpan interval = new TimeSpan(0, 0, 1);
+
+            
+            
+            
+
+                Device.StartTimer(interval, () =>    //  moet  een false input krijgen..
                 {
-                    if (workTimerRunning)
-                    {
-                    secs++;
-                    if(secs > 59)
-                    {
-                        secs = 0;
-                        mins++;
-                    }
-                    if (mins > 59)
-                    {
-                        mins = 0;
-                        hours++;
-                    }
-                    currentTimertime = String.Format("{0:00}:{1:00}:{2:00}",
-                    hours, mins, secs);
-                    starttimeLabel.Text = currentTimertime;
-                    }
                     
+                        secs++;
+                        if (secs > 59)
+                        {
+                            secs = 0;
+                            mins++;
+                        }
+                        if (mins > 59)
+                        {
+                            mins = 0;
+                            hours++;
+                        }
+
+                        currentTimertime = String.Format("{0:00}:{1:00}:{2:00}",
+                        hours, mins, secs);
+                        starttimeLabel.Text = currentTimertime;
+
+
+                        return workTimerRunning;
                     
-                    return workTimerRunning;
-                }
+
                 // No longer need to recur. Stops firing task
-                return false;
-            });
+                });
 
 
         }
 
-        public void RunBreakTimer(Boolean Value)
+        
+
+
+        //public TimeSpan Timer(bool clicked , DateTime start_time)    //ergens loopje callen die steeds deze functie oproept 
+        //{
+        //    //start timer , stop wanneer knop weer wordt gedrukt ...
+        //    DateTime current_time = DateTime.Now;
+
+        //    while (clicked == true )
+        //    {
+        //        current_time = DateTime.Now;
+        //    }
+
+
+        //    return Return_Total_Time(start_time, current_time);
+
+
+
+        //}
+
+        public TimeSpan Return_Total_Time(DateTime Begintijd , DateTime Eindtijd)
         {
-            Boolean excuteTimer = Value;
+            TimeSpan Total_time = Eindtijd - Begintijd;
 
-            Device.StartTimer(new TimeSpan(0, 0, 1), () =>
-            {
-                if (Value)
-                {
-                    if (breakTimerRunning)
-                    {
-                        breaksecs++;
-                        if (breaksecs > 59)
-                        {
-                            breaksecs = 0;
-                            breakmins++;
-                        }
-                        if (breakmins > 59)
-                        {
-                            breakmins = 0;
-                            breakhours++;
-                        }
-                        currentBreakTimertime = String.Format("{0:00}:{1:00}:{2:00}",
-                        breakhours, breakmins, breaksecs);
-                        pauseTimerLabel.Text = currentBreakTimertime;
-                    }
-                    return breakTimerRunning;
-                }
-                // No longer need to recur. Stops firing task
-                return false;
-            });
-
-
+            return Total_time;
         }
-
-
-
 
 
 
 
         //functie van de startknop
-        private void startTimeButton_Clicked(object sender, EventArgs e)
+        private void startTimeButton_Clicked(object sender, EventArgs e) 
         {
-            //toggle naar even/oneven
-            startButtonToggle += 1;
-            //check of die even of oneven is
-            isWorking = startButtonToggle % 2 == 0;
-            //als de startknop de state verandert naar isWorking. Deze wordt dus true NA HET KLIKKEN
-            if (isWorking == true)
+            ////toggle naar even/oneven
+            //startButtonToggle += 1;
+            ////check of die even of oneven is
+            //isWorking = startButtonToggle % 2 == 0;
+            TimeSpan tijdverschil;
+
+            //TOGGLE
+
+            if (startButtonToggle == true )
             {
+                startButtonToggle = false;
+            }
+            else
+            {
+                startButtonToggle = true;
+            }
+
+
+
+            
+            if (startButtonToggle == true ) 
+            {
+
                 workTimerRunning = true;
-                RunWorkTimer(true);
-                //het aanvragen van de huidige systeem tijd 
-                DateTime now = DateTime.Now.ToLocalTime();
-                //de dateTime uitfilteren van de datum en tijd naar TIJD ONLY
-                uur = now.Hour;
-                minuut = now.Minute;
-                seconde = now.Second;
-                //string format naar Uur:minuut:seconde
+                RunWorkTimer();
+
+                start_button_start_tijd = DateTime.Now;
+                
+                   
+                
+                
+                int last_index_id_activiteiten = dbcontext.db.Table<Activiteit>().Last().id; 
+                dbcontext.Insert_Activity_Into_Table(new Activiteit { id = last_index_id_activiteiten + 1, startTijd = start_button_start_tijd , activiteit="unnamed" });
+                current_activity = dbcontext.db.Table<Activiteit>().Last();
+
+                
+
+                
+
+                
+
+                uur = current_activity.startTijd.Hour;
+                minuut = current_activity.startTijd.Minute;
+                seconde = current_activity.startTijd.Second;
+
                 string systeemKlokTijd = String.Format("{0:00}:{1:00}:{2:00}",
                 uur, minuut, seconde);
                 //assign de tijden aan de label
                 beginWerkTijdLabel.Text = "Begin tijd: " + systeemKlokTijd;
-                //maak de label zichtbaar
                 beginWerkTijdLabel.IsVisible = true;
-
-                //werktijd start
-                workStopWatch.Start();
-                //label weergeeft dat de tijd in is gegaan
-                //starttimeLabel.Text = "Tijd loopt";
+                starttimeLabel.Text = "Tijd loopt";                                       
                 //de start knop wordt veranderd naar een stop knop
-                startTimeButton.BackgroundColor = Color.Red;
-                startTimeButton.Text = "Stop met Werken";
+                startTimeButton.BackgroundColor = Color.Red;                                        
+                startTimeButton.Text = "Stop met activiteit";
+                
 
-                //vanaf nu kun je pauzes nemen, dus de pauze knop wordt actief
-                pauseTimeButton.IsEnabled = true;
-                pauseTimeButton.BackgroundColor = Color.DarkOrange;
+
+                
+                
+
+
             }
-
-
-            //als de stopknop wordt geklikt
-            else if (isWorking == false)
+            else
             {
+
                 workTimerRunning = false;
-                //label van begin tijd wordt verborgen aangezien je niet meer werkt
-                beginWerkTijdLabel.IsVisible = false;
-                //werktijd stopt
-                workStopWatch.Stop();
-                //hoeveelheid gewerkte tijd wordt opgenomen
-                TimeSpan workingTs = workStopWatch.Elapsed;
-                //string wordt geformat zodat de gewerkte tijd kan worden weergeven
+                //update current_activity with new eindtijd
+                current_activity.stopTijd = DateTime.Now;
+                dbcontext.Update_Activity_To_Table(current_activity);
+
+                 
+                tijdverschil = Return_Total_Time(current_activity.startTijd, current_activity.stopTijd);  //returned tijdverschil 
+
                 string elapsedWorkTime = String.Format("{0:00}:{1:00}:{2:00}",
-                workingTs.Hours, workingTs.Minutes, workingTs.Seconds);
-                //label wordt aangepast met de gewerkte tijd
+                tijdverschil.Hours, tijdverschil.Minutes, tijdverschil.Seconds);
                 starttimeLabel.Text = elapsedWorkTime;
-                //starttijdknop wordt aangepast
                 startTimeButton.BackgroundColor = Color.ForestGreen;
-                startTimeButton.Text = "begin met werken";
+                startTimeButton.Text = "Begin met activiteit";   
+                beginWerkTijdLabel.IsVisible = false;
 
-                //pause knop wordt gedisabled aangezien je niet meer bezig bent met werken
-                pauseTimeButton.IsEnabled = false;
-                pauseTimeButton.BackgroundColor = Color.Gray;
+                
+                
 
-                secs = 00;
-                mins = 00;
-                hours = 00;
-                currentTimertime = String.Format("{0:00}:{1:00}:{2:00}",
-                    hours, mins, secs);
-                starttimeLabel.Text = currentTimertime;
 
-                breaksecs = 00;
-                breakmins = 00;
-                breakhours = 00;
-                currentBreakTimertime = String.Format("{0:00}:{1:00}:{2:00}",
-                        breakhours, breakmins, breaksecs);
-                pauseTimerLabel.Text = currentBreakTimertime;
+                DisplayAlert("Overzicht", "Totale tijd van " + current_activity.activiteit+ " " + elapsedWorkTime + "  (UU:MM:SS)", "Doorgaan");
+            } 
+            
+            
+             
 
-                totaalPauze = String.Format("{0:00}:{1:00}:{2:00}",
-                    totaalPauzeHrs, totaalPauzeMin, totaalPauzeSec);
-
-                totaalGewerkt = elapsedWorkTime;
-                DisplayAlert("Overzicht", "Je hebt in totaal " + totaalGewerkt + " gewerkt en " + totaalPauze + " pauze gehad.  " + "  (UU:MM:SS)", "Doorgaan");
-
-                workStopWatch.Reset();
-            }
+            
         }
+
+        
+        
+        
+
+
+
         
 
 
@@ -228,129 +249,32 @@ namespace Time2WorkApp
 
 
 
-        private void pauseTimeButton_Clicked(object sender, EventArgs e)
+
+
+
+
+        private void activityToggleButton_Clicked(object sender, EventArgs e) 
         {
-                pauzeButtonToggle += 1;
-                //check of die even of oneven is
-                bool pauzeIsBezig = pauzeButtonToggle % 2 == 0;
-                //wanneer de knop wordt geklikt en de pauze begint
-                if (pauzeIsBezig == true)
-                {
-                    breaksecs = 0;
-                    breakmins = 0;
-                    breakhours = 0;
-                    breakTimerRunning = true;
-                    RunBreakTimer(true);
-                    workTimerRunning = false;
-                    //datum en tijd van de pauze worden weergeven
-                    DateTime now = DateTime.Now.ToLocalTime();
-                    int uur = now.Hour;
-                    int minuut = now.Minute;
-                    int seconde = now.Second;
-                    string systeemKlokTijd = String.Format("{0:00}:{1:00}:{2:00}",
-                    uur, minuut, seconde);
-                    beginPauzeTijdLabel.Text = "Begin tijd: " + systeemKlokTijd;
-                    beginPauzeTijdLabel.IsVisible = true;
 
-                    //stopwatch wordt stop gezet
-                    workStopWatch.Stop();
-                    //timespan wordt berekent
-                    TimeSpan workingTs = workStopWatch.Elapsed;
-                    string elapsedWorkTime = String.Format("{0:00}:{1:00}:{2:00}",
-                    workingTs.Hours, workingTs.Minutes, workingTs.Seconds);
-                    //label onder de startknop weergeeft de totale tijd tot nu toe
-                    starttimeLabel.Text = elapsedWorkTime;
-                    //startknop verandert van kleur, text en wordt gedisabled
-                    startTimeButton.Text = "korte break";
-                    startTimeButton.BackgroundColor = Color.Gray;
-                    startTimeButton.IsEnabled = false;
-
-                    
-                    //tijd begint te lopen van de pauze
-                    breakStopWatch.Start();
-                    //pause label en knop worden aangepast
-                    //pauseTimerLabel.Text = "tijd loopt";
-                    pauseTimeButton.Text = "stop de pauze";
-                    pauseTimeButton.BackgroundColor = Color.OrangeRed;
-                    
-                }
-
-
-                //wanneer de pauze bezig was en nu gestopt wordt
-                else if (pauzeIsBezig == false)
-                {
-                    breakTimerRunning = false;
-                    workTimerRunning = true;
-                    RunWorkTimer(true);
-                    //Systeemtijd wanneer de pauze begint
-                    beginPauzeTijdLabel.IsVisible = false;
-                    //pausetijd stopt
-                    breakStopWatch.Stop();
-                    //tijd wordt geformat naar een string
-                    TimeSpan breakTs = breakStopWatch.Elapsed;
-                    string elapsedBreakTime = String.Format("{0:00}:{1:00}:{2:00}",
-                    breakTs.Hours, breakTs.Minutes, breakTs.Seconds);
-                    //de pause label weergeeft de verstreken tijd van de pauze
-                    pauseTimerLabel.Text = elapsedBreakTime;
-                    pauseTimeButton.Text = "Begin pauze";
-                    pauseTimeButton.BackgroundColor = Color.DarkOrange;
-
-                    //de tijd van het werken gaat weer verder
-                    workStopWatch.Start();
-                    //de werk knop en label worden aangepast en geenabled
-                    //starttimeLabel.Text = "Tijd loopt";
-                    startTimeButton.BackgroundColor = Color.Red;
-                    startTimeButton.Text = "Stop met Werken";
-                    startTimeButton.IsEnabled = true;
-
-                    int dezePauzeSec = breakTs.Seconds;
-                    int dezePauzeMin = breakTs.Minutes;
-                    int dezePauzeHrs = breakTs.Hours;
-
-                
-                    totaalPauzeSec = totaalPauzeSec + dezePauzeSec;
-                    totaalPauzeMin = totaalPauzeMin + dezePauzeMin;
-                    totaalPauzeHrs = totaalPauzeHrs + dezePauzeHrs;
-                    if (totaalPauzeSec > 59)
-                    {
-                        totaalPauzeMin++;
-                    }
-                    if (totaalPauzeMin > 59)
-                    {
-                        totaalPauzeHrs++;
-                    }
-
-                    breakStopWatch.Reset();
+            if(activityButtonToggle == true )
+            {
+                activityButtonToggle = false;
             }
-        }
+            else
+            {
+                activityButtonToggle = true;
+            }
 
-
-
-
-
-
-
-
-
-
-        private void activityToggleButton_Clicked(object sender, EventArgs e)
-        {
-            //toggle naar even/oneven
-            activityButtonToggle += 1;
-            //check of die even of oneven is
-            bool activityVisible = activityButtonToggle % 2 == 0;
             //zichtbaarheid van activity elementen
-            activityName.IsVisible = activityVisible;
-            updateActivityButton.IsVisible = activityVisible;
+            activityName.IsVisible = activityButtonToggle;
+            updateActivityButton.IsVisible = activityButtonToggle;
             //als activiteit wordt getoggled naar TRUE
-            if (activityVisible == true)
+            if (activityButtonToggle == true)
             {
                 //kleur van de knop wordt lichtgroen
                 activityToggleButton.BackgroundColor = Color.LightGreen;
             }
-
-            //wanneer de activiteit wordt getoggled naar FALSE
-            if (activityVisible == false)
+            else //altijd false als die niet true is :P 
             {
                 //kleur van de knop wordt lichtblauw
                 activityToggleButton.BackgroundColor = Color.LightBlue;
@@ -360,10 +284,14 @@ namespace Time2WorkApp
 
 
         //updatefunctie van de activiteit knop
-        private void updateActivityButton_Clicked(object sender, EventArgs e)
+        private void updateActivityButton_Clicked(object sender, EventArgs e)  //string als argument voor input ... hoort bij hierboven?  ja
         {
+
+            current_activity.activiteit = activityName.Text; //even kijken hoe je een string vanuit axml stuurt
+            dbcontext.Update_Activity_To_Table(current_activity);
+
             //verander huidig activiteit + de entry
-            activityIsUpdatedLabel.Text = "Huidig activiteit: " + activityName.Text;
+            activityIsUpdatedLabel.Text = "Huidig activiteit: " + current_activity.activiteit; 
             //weergeef dat de activiteit up to date is
             activityIsUpdatedLabel.IsVisible = true;
         }

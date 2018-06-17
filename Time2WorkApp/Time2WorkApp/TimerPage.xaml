@@ -27,28 +27,11 @@
             <Label x:Name="starttimeLabel"
             Text="00:00:00"
             FontSize="75"
-            HorizontalOptions="Center"/>
-
-        <Button x:Name="pauseTimeButton"
-                HeightRequest="75"
-                Text="Begin Pauze"
-                FontSize="25"
-                BackgroundColor="Gray"
-                TextColor="White"
-                Clicked="pauseTimeButton_Clicked"
-                IsEnabled="false"/>
+            HorizontalOptions="Center"/>    
         
-            <Label x:Name="beginPauzeTijdLabel"
-                   Text="Begin datum en tijd: "
-                   HorizontalOptions="Center"
-                   IsVisible="False"/>
+            
 
-            <Label x:Name="pauseTimerLabel"
-            Text="00:00:00"
-            FontSize="75"
-            HorizontalOptions="Center"/>
-
-            <Button
+           <Button
                 x:Name="activityToggleButton"
                 Text="Activiteit"
                 TextColor="White"
