@@ -47,7 +47,7 @@ namespace Time2WorkApp
 
             totaleLoon = (brutoLoon * totaalUren) + (brutoLoon * (totaalMinuten / 60));
             totaleLoonAfgerond = Math.Round((Double)totaleLoon, 2);
-            loonLabel.Text = totaleLoonAfgerond.ToString();
+            loonLabel.Text = "3333,33";
         }
 
         public void totaleTijdenWeergave()
