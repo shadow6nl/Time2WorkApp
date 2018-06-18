@@ -30,6 +30,7 @@ namespace Time2WorkApp
             refreshDePaginaDatabase();
         }
 
+
         int totaalUren, totaalMinuten, lastHours, lastMinutes;
 
         public void totaalGewerkteUrenBerekening()
