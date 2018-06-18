@@ -66,8 +66,35 @@ namespace Time2WorkApp
         DataContext dbcontext = new DataContext();
         Activiteit current_activity;
 
+        TimeSpan workingTs, breakTs;
+
+        int totaalUren, totaalMinuten, lastHours, lastMinutes;
+        int pauzeUren, pauzeMinuten, lastPauzeHours, lastPauzeMinutes;
+
+        public void totaalGewerkteUrenBerekening()
+        {
+
+            totaalUren = totaalUren + workingTs.Hours;
+            totaalMinuten = totaalMinuten + workingTs.Minutes;
+            if (totaalMinuten > 59)
+            {
+                totaalUren++;
+                totaalMinuten = totaalMinuten - 60;
+            }
+        }
 
 
+        public void totaalPauzeUrenBerekening()
+        {
+            pauzeUren = pauzeUren + breakTs.Hours;
+            pauzeMinuten = pauzeMinuten + breakTs.Minutes;
+            if (pauzeMinuten > 59)
+            {
+                pauzeUren++;
+                pauzeMinuten = pauzeMinuten - 60;
+            }
+
+        }
 
 
         public void RunWorkTimer(Boolean Value)
@@ -192,13 +219,15 @@ namespace Time2WorkApp
             //als de stopknop wordt geklikt
             else if (isWorking == false)
             {
+
+                
                 workTimerRunning = false;
                 //label van begin tijd wordt verborgen aangezien je niet meer werkt
                 beginWerkTijdLabel.IsVisible = false;
                 //werktijd stopt
                 workStopWatch.Stop();
                 //hoeveelheid gewerkte tijd wordt opgenomen
-                TimeSpan workingTs = workStopWatch.Elapsed;
+                workingTs = workStopWatch.Elapsed;
                 //string wordt geformat zodat de gewerkte tijd kan worden weergeven
                 string elapsedWorkTime = String.Format("{0:00}:{1:00}:{2:00}",
                 workingTs.Hours, workingTs.Minutes, workingTs.Seconds);
@@ -237,6 +266,23 @@ namespace Time2WorkApp
 
                 totaalGewerkt = elapsedWorkTime;
                 DisplayAlert("Overzicht", "Je hebt in totaal " + totaalGewerkt + " gewerkt en " + totaalPauze + " pauze gehad.  " + "  (UU:MM:SS)", "Doorgaan");
+
+
+                //FUNCTIES VOOR GEWERKTE TIJD******************************************************************
+                //functie die uren en minuten OPVRAAGT
+
+                totaalGewerkteUrenBerekening();
+                //functie die uren en minuten stuurt STUURT
+
+
+
+                //FUNCTIES VOOR PAUZE TIJD******************************************************************
+                //functie die uren en minuten OPVRAAGT
+
+                totaalPauzeUrenBerekening();
+                //functie die uren en minuten stuurt STUURT
+
+
 
                 workStopWatch.Reset();
             }
@@ -322,7 +368,7 @@ namespace Time2WorkApp
                 //pausetijd stopt
                 breakStopWatch.Stop();
                 //tijd wordt geformat naar een string
-                TimeSpan breakTs = breakStopWatch.Elapsed;
+                breakTs = breakStopWatch.Elapsed;
                 string elapsedBreakTime = String.Format("{0:00}:{1:00}:{2:00}",
                 breakTs.Hours, breakTs.Minutes, breakTs.Seconds);
                 //de pause label weergeeft de verstreken tijd van de pauze

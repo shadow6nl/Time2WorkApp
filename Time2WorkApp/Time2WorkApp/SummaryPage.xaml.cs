@@ -48,29 +48,7 @@ namespace Time2WorkApp
             loonLabel.Text = totaleLoonAfgerond.ToString();
         }
 
-        public void totaalGewerkteUrenBerekening()
-        {
-
-            totaalUren = totaalUren + lastHours;
-            totaalMinuten = totaalMinuten + lastMinutes;
-            if (totaalMinuten > 59)
-            {
-                totaalUren++;
-                totaalMinuten = totaalMinuten - 60;
-            }
-        }
-
-        public void totaalPauzeUrenBerekening()
-        {
-            pauzeUren = pauzeUren + lastPauzeHours;
-            pauzeMinuten = pauzeMinuten + lastPauzeMinutes;
-            if(pauzeMinuten > 59)
-            {
-                pauzeUren++;
-                pauzeMinuten = pauzeMinuten - 60;
-            }
-
-        }
+        
 
         public void refreshDePaginaDatabase()
         {
