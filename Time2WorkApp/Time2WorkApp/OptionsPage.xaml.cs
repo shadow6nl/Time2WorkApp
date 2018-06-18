@@ -56,7 +56,7 @@ namespace Time2WorkApp
 
         private void ResetFirstTimeSetup_Clicked(object sender, EventArgs e)
         {
-            current_user = dbcontext.db.Table<Gebruiker>().Last();
+            current_user = dbcontext.Get_Gebruiker(2);
             dbcontext.Delete_User_From_Table(current_user);
             IsFirstTime = "yes";
         }
