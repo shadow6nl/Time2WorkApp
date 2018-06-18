@@ -102,6 +102,14 @@
                 TextColor="White"
                 Clicked="Update_Clicked"/>
 
+                        <Button x:Name="terugNaarKnoppenButton"
+                HeightRequest="50"
+                Text="Terug naar overzicht maanden"
+                FontSize="25"
+                BackgroundColor="Orange"
+                TextColor="White"
+                Clicked="terugNaarKnoppenButton_Clicked"/>
+
                     </StackLayout>
 
                 </StackLayout>
