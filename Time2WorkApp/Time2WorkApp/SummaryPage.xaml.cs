@@ -15,16 +15,16 @@ namespace Time2WorkApp
 	public partial class SummaryPage : ContentPage
 	{
 
-        DataContext dbContext = new DataContext();
+        DataContext dbcontext = new DataContext();
         Activiteit current_activity;
         Month current_month;
 
 		public SummaryPage ()
 		{
             InitializeComponent();
-            if (dbContext.db.Table<Activiteit>().FirstOrDefault() == null)
+            if (dbcontext.db.Table<Activiteit>().FirstOrDefault() == null)
             {
-                dbContext.Insert_Activity_Into_Table(new Activiteit { id = 1, activiteit = "Er zijn nog geen activiteiten opgeslagen." });
+                dbcontext.Insert_Activity_Into_Table(new Activiteit { id = 1, activiteit = "Er zijn nog geen activiteiten opgeslagen." });
             }
         }
 
@@ -48,13 +48,16 @@ namespace Time2WorkApp
         public void totaleTijdenWeergave()
         {
             //totaalgewerkte tijd UIT de database
-            //totaalUren = 
-            //totaalMinuten = 
+            current_month = dbcontext.Get_Month("Juni");
+
+            totaalUren = current_month.totaleTijdGewerktUur;
+            totaalMinuten = current_month.totaleTijdgewerktMin;
+             
             tijdGewerktLabel.Text = totaalUren.ToString() + " uur en " + totaalMinuten.ToString() + "minuten";
 
             //totalePAUZE tijd UIT de database
-            //pauzeUren = 
-            //pauzeMinuten = 
+            pauzeUren = current_month.totaleTijdPauzeUur;
+            pauzeMinuten = current_month.totaleTijdPauzeMin;
             tijdOpPauzeLabel.Text = pauzeUren.ToString() + " uur en " + pauzeMinuten.ToString() + "minuten";
         }
 
@@ -68,7 +71,7 @@ namespace Time2WorkApp
 
         public void refreshDePaginaDatabase()
         {
-            current_activity = dbContext.db.Table<Activiteit>().Last();
+            current_activity = dbcontext.db.Table<Activiteit>().Last();
             int last_index_activiteiten1 = current_activity.id;
             int last_index_activiteiten2 = last_index_activiteiten1 - 1;
             int last_index_activiteiten3 = last_index_activiteiten2 - 1;
@@ -83,65 +86,65 @@ namespace Time2WorkApp
 
 
 
-            //string NaamActiviteit1 = dbContext.Get_Activiteit(2).activiteit;
-            //string NaamActiviteit2 = dbContext.Get_Activiteit(3).activiteit;
-            //string NaamActiviteit3 = dbContext.Get_Activiteit(4).activiteit;
-            //string NaamActiviteit4 = dbContext.Get_Activiteit(5).activiteit;
-            //string NaamActiviteit5 = dbContext.Get_Activiteit(6).activiteit;
-            //string NaamActiviteit6 = dbContext.Get_Activiteit(7).activiteit;
-            //string NaamActiviteit7 = dbContext.Get_Activiteit(8).activiteit;
-            //string NaamActiviteit8 = dbContext.Get_Activiteit(9).activiteit;
-            //string NaamActiviteit9 = dbContext.Get_Activiteit(10).activiteit;
-            //string NaamActiviteit10 = dbContext.Get_Activiteit(11).activiteit;
+            //string NaamActiviteit1 = dbcontext.Get_Activiteit(2).activiteit;
+            //string NaamActiviteit2 = dbcontext.Get_Activiteit(3).activiteit;
+            //string NaamActiviteit3 = dbcontext.Get_Activiteit(4).activiteit;
+            //string NaamActiviteit4 = dbcontext.Get_Activiteit(5).activiteit;
+            //string NaamActiviteit5 = dbcontext.Get_Activiteit(6).activiteit;
+            //string NaamActiviteit6 = dbcontext.Get_Activiteit(7).activiteit;
+            //string NaamActiviteit7 = dbcontext.Get_Activiteit(8).activiteit;
+            //string NaamActiviteit8 = dbcontext.Get_Activiteit(9).activiteit;
+            //string NaamActiviteit9 = dbcontext.Get_Activiteit(10).activiteit;
+            //string NaamActiviteit10 = dbcontext.Get_Activiteit(11).activiteit;
 
-            //string TotaleTijdActiviteit1 = dbContext.Get_Activiteit(2).datum.ToString();
-            //string TotaleTijdActiviteit2 = dbContext.Get_Activiteit(2).datum.ToString();
-            //string TotaleTijdActiviteit3 = dbContext.Get_Activiteit(2).datum.ToString();
-            //string TotaleTijdActiviteit4 = dbContext.Get_Activiteit(2).datum.ToString();
-            //string TotaleTijdActiviteit5 = dbContext.Get_Activiteit(2).datum.ToString();
-            //string TotaleTijdActiviteit6 = dbContext.Get_Activiteit(2).datum.ToString();
-            //string TotaleTijdActiviteit7 = dbContext.Get_Activiteit(2).datum.ToString();
-            //string TotaleTijdActiviteit8 = dbContext.Get_Activiteit(2).datum.ToString();
-            //string TotaleTijdActiviteit9 = dbContext.Get_Activiteit(2).datum.ToString();
-            //string TotaleTijdActiviteit10 = dbContext.Get_Activiteit(2).datum.ToString();
+            //string TotaleTijdActiviteit1 = dbcontext.Get_Activiteit(2).datum.ToString();
+            //string TotaleTijdActiviteit2 = dbcontext.Get_Activiteit(2).datum.ToString();
+            //string TotaleTijdActiviteit3 = dbcontext.Get_Activiteit(2).datum.ToString();
+            //string TotaleTijdActiviteit4 = dbcontext.Get_Activiteit(2).datum.ToString();
+            //string TotaleTijdActiviteit5 = dbcontext.Get_Activiteit(2).datum.ToString();
+            //string TotaleTijdActiviteit6 = dbcontext.Get_Activiteit(2).datum.ToString();
+            //string TotaleTijdActiviteit7 = dbcontext.Get_Activiteit(2).datum.ToString();
+            //string TotaleTijdActiviteit8 = dbcontext.Get_Activiteit(2).datum.ToString();
+            //string TotaleTijdActiviteit9 = dbcontext.Get_Activiteit(2).datum.ToString();
+            //string TotaleTijdActiviteit10 = dbcontext.Get_Activiteit(2).datum.ToString();
 
-            //Activiteit1.Text = dbContext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten1).activiteit;
+            //Activiteit1.Text = dbcontext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten1).activiteit;
 
-            //if (dbContext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten2) != null)
+            //if (dbcontext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten2) != null)
             //{
-            //    Activiteit2.Text = "" +  + dbContext.Get_Activiteit(2).totaleTijd.ToString();
+            //    Activiteit2.Text = "" +  + dbcontext.Get_Activiteit(2).totaleTijd.ToString();
             //}
-            //if (dbContext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten3) != null)
+            //if (dbcontext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten3) != null)
             //{
-            //    Activiteit3.Text = dbContext.Get_Activiteit(3).totaleTijd.ToString();
+            //    Activiteit3.Text = dbcontext.Get_Activiteit(3).totaleTijd.ToString();
             //}
-            //if (dbContext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten4) != null)
+            //if (dbcontext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten4) != null)
             //{
-            //    Activiteit4.Text = dbContext.Get_Activiteit(4).totaleTijd.ToString();
+            //    Activiteit4.Text = dbcontext.Get_Activiteit(4).totaleTijd.ToString();
             //}
-            //if (dbContext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten5) != null)
+            //if (dbcontext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten5) != null)
             //{
-            //    Activiteit4.Text = dbContext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten5).activiteit;
+            //    Activiteit4.Text = dbcontext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten5).activiteit;
             //}
-            //if (dbContext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten6) != null)
+            //if (dbcontext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten6) != null)
             //{
-            //    Activiteit6.Text = dbContext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten6).activiteit;
+            //    Activiteit6.Text = dbcontext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten6).activiteit;
             //}
-            //if (dbContext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten7) != null)
+            //if (dbcontext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten7) != null)
             //{
-            //    Activiteit7.Text = dbContext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten7).activiteit;
+            //    Activiteit7.Text = dbcontext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten7).activiteit;
             //}
-            //if (dbContext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten8) != null)
+            //if (dbcontext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten8) != null)
             //{
-            //    Activiteit8.Text = dbContext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten8).activiteit;
+            //    Activiteit8.Text = dbcontext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten8).activiteit;
             //}
-            //if (dbContext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten9) != null)
+            //if (dbcontext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten9) != null)
             //{
-            //    Activiteit9.Text = dbContext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten9).activiteit;
+            //    Activiteit9.Text = dbcontext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten9).activiteit;
             //}
-            //if (dbContext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten10) != null)
+            //if (dbcontext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten10) != null)
             //{
-            //    Activiteit10.Text = dbContext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten10).activiteit;
+            //    Activiteit10.Text = dbcontext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten10).activiteit;
             //}
         }
 
