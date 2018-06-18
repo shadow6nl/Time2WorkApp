@@ -26,9 +26,6 @@ namespace Time2WorkApp
             {
                 dbContext.Insert_Activity_Into_Table(new Activiteit { id = 1, activiteit = "Er zijn nog geen activiteiten opgeslagen." });
             }
-            
-            refreshDePaginaDatabase();
-            totaleLoonBerekening();
         }
 
 
@@ -48,7 +45,26 @@ namespace Time2WorkApp
             loonLabel.Text = totaleLoonAfgerond.ToString();
         }
 
-        
+        public void totaleTijdenWeergave()
+        {
+            //totaalgewerkte tijd UIT de database
+            //totaalUren = 
+            //totaalMinuten = 
+            tijdGewerktLabel.Text = totaalUren.ToString() + " uur en " + totaalMinuten.ToString() + "minuten";
+
+            //totalePAUZE tijd UIT de database
+            //pauzeUren = 
+            //pauzeMinuten = 
+            tijdOpPauzeLabel.Text = pauzeUren.ToString() + " uur en " + pauzeMinuten.ToString() + "minuten";
+        }
+
+        public void refreshTemplate()
+        {
+            refreshDePaginaDatabase();
+            totaleLoonBerekening();
+            totaleTijdenWeergave();
+        }
+
 
         public void refreshDePaginaDatabase()
         {
@@ -133,6 +149,8 @@ namespace Time2WorkApp
         private void Update_Clicked(object sender, EventArgs e)
         {
             refreshDePaginaDatabase();
+            totaleLoonBerekening();
+            totaleTijdenWeergave();
         }
 
         
@@ -140,6 +158,12 @@ namespace Time2WorkApp
         {
             maandKnoppen.IsVisible = false;
             overzichtLayout.IsVisible = true;
+        }
+
+        private void terugNaarKnoppenButton_Clicked()
+        {
+            maandKnoppen.IsVisible = true;
+            overzichtLayout.IsVisible = false;
         }
 
 
