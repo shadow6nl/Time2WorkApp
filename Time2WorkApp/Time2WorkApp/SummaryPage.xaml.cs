@@ -26,12 +26,27 @@ namespace Time2WorkApp
             {
                 dbContext.Insert_Activity_Into_Table(new Activiteit { id = 1, activiteit = "Er zijn nog geen activiteiten opgeslagen." });
             }
-
+            
             refreshDePaginaDatabase();
+            totaleLoonBerekening();
         }
 
 
         int totaalUren, totaalMinuten, lastHours, lastMinutes;
+        int pauzeUren, pauzeMinuten, lastPauzeHours, lastPauzeMinutes;
+
+        double brutoLoon;
+        double totaleLoon;
+        double totaleLoonAfgerond;
+
+
+        public void totaleLoonBerekening()
+        {
+            //Hiervoor is uit de database nodig: BRUTOLOON en TOTALE UREN en TOTALE MINUTEN
+            totaleLoon = (brutoLoon * totaalUren) + (brutoLoon * (totaalMinuten / 60));
+            totaleLoonAfgerond = Math.Round((Double)totaleLoon, 2);
+            loonLabel.Text = totaleLoonAfgerond.ToString();
+        }
 
         public void totaalGewerkteUrenBerekening()
         {
@@ -43,6 +58,18 @@ namespace Time2WorkApp
                 totaalUren++;
                 totaalMinuten = totaalMinuten - 60;
             }
+        }
+
+        public void totaalPauzeUrenBerekening()
+        {
+            pauzeUren = pauzeUren + lastPauzeHours;
+            pauzeMinuten = pauzeMinuten + lastPauzeMinutes;
+            if(pauzeMinuten > 59)
+            {
+                pauzeUren++;
+                pauzeMinuten = pauzeMinuten - 60;
+            }
+
         }
 
         public void refreshDePaginaDatabase()
