@@ -123,9 +123,9 @@ namespace Time2WorkApp.Droid
             db.Update(month);
         }
 
-        public Month Get_Month(int ID) // returns a Month object with the id that matches the ID argument. 
+        public Month Get_Month(string ID) // returns a Month object with the id that matches the ID argument. 
         {
-            Month user = db.Find<Month>(A => A.id == ID);
+            Month user = db.Find<Month>(A => A.maand == ID);
 
             return user;
         }
@@ -174,7 +174,7 @@ namespace Time2WorkApp.Droid
     [PrimaryKey]
     public string maand { get; set; }
     public int totaleTijdGewerktUur { get; set; }
-    public int totaleTijdgewerktMin { get; set }
+    public int totaleTijdgewerktMin { get; set; }
     public DateTime datum_tijd { get; set; }
     public int totaleTijdPauzeUur { get; set; }
     public int totaleTijdPauzeMin { get; set; }

@@ -22,10 +22,6 @@ namespace Time2WorkApp
 		public SummaryPage ()
 		{
             InitializeComponent();
-            if (dbContext.db.Table<Month>().FirstOrDefault() == null)
-            {
-                dbContext.Insert_Activity_Into_Table(new Month{ id = 1, activiteit = "Er zijn nog geen activiteiten opgeslagen." });
-            }
             if (dbContext.db.Table<Activiteit>().FirstOrDefault() == null)
             {
                 dbContext.Insert_Activity_Into_Table(new Activiteit { id = 1, activiteit = "Er zijn nog geen activiteiten opgeslagen." });

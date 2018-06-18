@@ -47,7 +47,7 @@ namespace Time2WorkApp
         string huidigeActiviteit = "";
         int uur, minuut, seconde;
 
-         totaalGewerkt, totaalPauze;
+        string totaalGewerkt, totaalPauze;
 
         int breakhours = 0, breakmins = 0, breaksecs = 0;
         int hours = 0, mins = 0, secs = 0;
@@ -451,7 +451,7 @@ namespace Time2WorkApp
                     else
                     {
                         int last_index_id_activiteiten = dbcontext.db.Table<Activiteit>().Last().id;
-                        dbcontext.Insert_Activity_Into_Table(new Activiteit { id = last_index_id_activiteiten + 1, datum = DateTime.Now, startTijd = now, activiteit = "Werk" });
+                        dbcontext.Insert_Activity_Into_Table(new Activiteit { id = last_index_id_activiteiten + 1, datum = DateTime.Now, startTijd = today, activiteit = "Werk" });
                     }
 
                     current_activity = dbcontext.db.Table<Activiteit>().Last();

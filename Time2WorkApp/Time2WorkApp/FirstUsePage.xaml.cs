@@ -70,7 +70,7 @@ namespace Time2WorkApp
                         dbcontext.Insert_Month_Into_Table(new Month { maand = "April", totaleTijdgewerktMin = 0, totaleTijdGewerktUur = 0, totaleTijdPauzeMin = 0, totaleTijdPauzeUur = 0 });
                         dbcontext.Insert_Month_Into_Table(new Month { maand = "Mei", totaleTijdgewerktMin = 0, totaleTijdGewerktUur = 0, totaleTijdPauzeMin = 0, totaleTijdPauzeUur = 0 });
 
-                        dbcontext.Insert_Month_Into_Table(new Month { maand = "Juni", totaleTijdgewerktMin = 0, totaleTijdGewerktUur = , datum_tijd = });
+                        dbcontext.Insert_Month_Into_Table(new Month { maand = "Juni", totaleTijdgewerktMin = 0, totaleTijdGewerktUur = 0, totaleTijdPauzeMin = 0, totaleTijdPauzeUur = 0 });
 
                         dbcontext.Insert_Month_Into_Table(new Month { maand = "Juli", totaleTijdgewerktMin = 0, totaleTijdGewerktUur = 0, totaleTijdPauzeMin = 0, totaleTijdPauzeUur = 0 });
                         dbcontext.Insert_Month_Into_Table(new Month { maand = "Augustus", totaleTijdgewerktMin = 0, totaleTijdGewerktUur = 0, totaleTijdPauzeMin = 0, totaleTijdPauzeUur = 0 });

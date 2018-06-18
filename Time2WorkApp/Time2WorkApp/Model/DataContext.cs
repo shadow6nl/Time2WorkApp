@@ -89,9 +89,9 @@ namespace Time2WorkApp.Model
             db.Update(month);
         }
 
-        public Month Get_Month(int ID) // returns a Month object with the id that matches the ID argument. 
+        public Month Get_Month(string ID)// returns a Month object with the id that matches the ID argument. 
         {
-            Month user = db.Find<Month>(A => A.id == ID);
+            Month user = db.Find<Month>(A => A.maand == ID);
 
             return user;
         }
