@@ -207,7 +207,7 @@ namespace Time2WorkApp
                 startTimeButton.BackgroundColor = Color.Red;
                 startTimeButton.Text = "Stop met Werken";
 
-                
+
 
 
                 //vanaf nu kun je pauzes nemen, dus de pauze knop wordt actief
@@ -220,7 +220,7 @@ namespace Time2WorkApp
             else if (isWorking == false)
             {
 
-                
+
                 workTimerRunning = false;
                 //label van begin tijd wordt verborgen aangezien je niet meer werkt
                 beginWerkTijdLabel.IsVisible = false;
@@ -275,10 +275,10 @@ namespace Time2WorkApp
                 //functie die uren en minuten stuurt STUURT
                 current_month = dbcontext.Get_Month("Juni");
                 current_month.totaleTijdgewerktMin = totaalMinuten;
-                if(totaalUren < 1) { }
+                if (totaalUren < 1) { }
                 else
                     current_month.totaleTijdGewerktUur = totaalUren;
-                
+
                 dbcontext.Update_Month_From_Table(current_month);
 
 
@@ -487,43 +487,47 @@ namespace Time2WorkApp
                 {
                     activityStopWatch.Stop();
                     DateTime today = new DateTime();
-                    int maand = today.Month;
+                    string maand = today.Month.ToString();
                     TimeSpan elapsedActivityTime = activityStopWatch.Elapsed;
                     elapsedTimeActiviteit = String.Format("{0:00}:{1:00}:{2:00}",
                     elapsedActivityTime.Hours, elapsedActivityTime.Minutes, elapsedActivityTime.Seconds);
 
                     //het opslaan naar de database:**************************************************************************************************************
-                    //int maand
-                    //elapsedTimeActiviteit
-                    //huidigeActiviteit
-
-                    if (dbcontext.db.Table<Activiteit>().FirstOrDefault() == null)
+                    if (current_month.maand == "Juni")
                     {
-                        dbcontext.Insert_Activity_Into_Table(new Activiteit { id = 1, datum = DateTime.Now, startTijd = DateTime.Now, activiteit = "placeholder" });
-                        
+                        maand = current_month.maand;
+                        current_activity = dbcontext.Get_Activiteit(2);
+                        elapsedTimeActiviteit = totaalGewerkt;
+                        huidigeActiviteit = current_activity.activiteit;
+
+                        if (dbcontext.db.Table<Activiteit>().FirstOrDefault() == null)
+                        {
+                            dbcontext.Insert_Activity_Into_Table(new Activiteit { id = 1, datum = DateTime.Now, startTijd = DateTime.Now, activiteit = "placeholder" });
+
+                        }
+
+
+                        else
+                        {
+                            int last_index_id_activiteiten = dbcontext.db.Table<Activiteit>().Last().id;
+                            dbcontext.Insert_Activity_Into_Table(new Activiteit { id = last_index_id_activiteiten + 1, datum = DateTime.Now, startTijd = today, activiteit = "Werk" });
+                        }
+
+                        current_activity = dbcontext.db.Table<Activiteit>().Last();
+
+                        //reset stopwatch en begin opnieuw
+                        activityStopWatch.Reset();
+                        activityStopWatch.Start();
+                        huidigeActiviteit = activityName.Text;
+                        //verander huidig activiteit + de entry
+                        activityIsUpdatedLabel.Text = "Huidig activiteit: " + activityName.Text;
+                        //weergeef dat de activiteit up to date is
+                        activityIsUpdatedLabel.IsVisible = true;
                     }
 
-
-                    else
-                    {
-                        int last_index_id_activiteiten = dbcontext.db.Table<Activiteit>().Last().id;
-                        dbcontext.Insert_Activity_Into_Table(new Activiteit { id = last_index_id_activiteiten + 1, datum = DateTime.Now, startTijd = today, activiteit = "Werk" });
-                    }
-
-                    current_activity = dbcontext.db.Table<Activiteit>().Last();
-
-                    //reset stopwatch en begin opnieuw
-                    activityStopWatch.Reset();
-                    activityStopWatch.Start();
-                    huidigeActiviteit = activityName.Text;
-                    //verander huidig activiteit + de entry
-                    activityIsUpdatedLabel.Text = "Huidig activiteit: " + activityName.Text;
-                    //weergeef dat de activiteit up to date is
-                    activityIsUpdatedLabel.IsVisible = true;
                 }
-                
             }
-        }
 
+        }
     }
 }
