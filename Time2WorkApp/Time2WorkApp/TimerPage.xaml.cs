@@ -59,6 +59,7 @@ namespace Time2WorkApp
         //stopwatches voor werktijden en pauzetijden
         Stopwatch workStopWatch = new Stopwatch();
         Stopwatch breakStopWatch = new Stopwatch();
+        Stopwatch activityStopWatch = new Stopwatch();
 
         DateTime start_button_start_tijd;
         DataContext dbcontext = new DataContext();
@@ -410,6 +411,29 @@ namespace Time2WorkApp
         //updatefunctie van de activiteit knop
         private void updateActivityButton_Clicked(object sender, EventArgs e)
         {
+            string elapsedTimeActiviteit, huidigeActiviteit;
+            if (activityStopWatch.IsRunning == false)
+            {
+                activityStopWatch.Start();
+                huidigeActiviteit = activityName.Text;
+            }
+            else
+            {
+                activityStopWatch.Stop();
+                TimeSpan elapsedActivityTime = activityStopWatch.Elapsed;
+                elapsedTimeActiviteit = String.Format("{0:00}:{1:00}:{2:00}",
+                elapsedActivityTime.Hours, elapsedActivityTime.Minutes, elapsedActivityTime.Seconds);
+
+                //het opslaan naar de database:**************************************************************************************************************
+                //elapsedTimeActiviteit
+                //huidigeActiviteit
+
+                //reset stopwatch en begin opnieuw
+                activityStopWatch.Reset();
+                activityStopWatch.Start();
+                huidigeActiviteit = activityName.Text;
+            }
+            
             //verander huidig activiteit + de entry
             activityIsUpdatedLabel.Text = "Huidig activiteit: " + activityName.Text;
             //weergeef dat de activiteit up to date is
