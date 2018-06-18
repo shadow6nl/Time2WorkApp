@@ -65,7 +65,7 @@ namespace Time2WorkApp
         DateTime start_button_start_tijd;
         DataContext dbcontext = new DataContext();
         Activiteit current_activity;
-
+        Month current_month;
         TimeSpan workingTs, breakTs;
 
         int totaalUren, totaalMinuten, lastHours, lastMinutes;
@@ -273,15 +273,25 @@ namespace Time2WorkApp
 
                 totaalGewerkteUrenBerekening();
                 //functie die uren en minuten stuurt STUURT
-
+                current_month = dbcontext.Get_Month("Juni");
+                current_month.totaleTijdgewerktMin = totaalMinuten;
+                if(totaalUren < 1) { }
+                else
+                    current_month.totaleTijdGewerktUur = totaalUren;
+                
+                dbcontext.Update_Month_From_Table(current_month);
 
 
                 //FUNCTIES VOOR PAUZE TIJD******************************************************************
                 //functie die uren en minuten OPVRAAGT
 
                 totaalPauzeUrenBerekening();
-                //functie die uren en minuten stuurt STUURT
 
+                //functie die uren en minuten stuurt STUURT
+                current_month.totaleTijdPauzeUur = pauzeMinuten;
+                current_month.totaleTijdPauzeMin = pauzeUren;
+
+                dbcontext.Update_Month_From_Table(current_month);
 
 
                 workStopWatch.Reset();

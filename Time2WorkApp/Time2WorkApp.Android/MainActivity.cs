@@ -117,10 +117,10 @@ namespace Time2WorkApp.Droid
         {
             db.Insert(user);
         }
-        public void Update_Month_From_Table(Month month) // looks for the object in the DB where the object's id and ID argument match. changes the sometime atribute and then updates the new value
+        public void Update_Month_From_Table(Month maand) // looks for the object in the DB where the object's id and ID argument match. changes the sometime atribute and then updates the new value
         {
 
-            db.Update(month);
+            db.Update(maand);
         }
 
         public Month Get_Month(string ID) // returns a Month object with the id that matches the ID argument. 
