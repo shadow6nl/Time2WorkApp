@@ -5,41 +5,14 @@
     <ContentPage.Content>
         <StackLayout VerticalOptions="Center" 
                      Margin="20">
-            <Label Text="Voer hier uw gegevens in:"
-                   FontSize="25"/>
-            <Entry
-                x:Name="optionFirstname"
-                Placeholder="Voornaam"/>
-            <Entry
-                x:Name="optionLastname"
-                Placeholder="Achternaam"/>
-            <Entry
-                x:Name="optionEmailEntry"
-                Placeholder="Email"
-                Keyboard="Email"/>
-            <Entry
-                x:Name="optionPassword"
-                Placeholder="Wachtwoord"
-                IsPassword="True"/>
-            <Entry
-                x:Name="optionBruto"
-                Placeholder="Bruto uurloon"/>
-
-            <Button
-                x:Name="OptionSaveButton"
-                Margin="0, 20, 0, 0"
-                Text="Opslaan"
-                Style="{StaticResource normalButton}"
-                Clicked="OptionSaveButton_Clicked"  />
-
-            <Button x:Name="ResetFirstTimeSetup"
-                    Text="Reset"
-                    BackgroundColor="Red"
-                    Clicked="ResetFirstTimeSetup_Clicked"/>
             <Button x:Name="resetPassword"
                     Text="Nieuw wachtwoord"
                     BackgroundColor="Red"
                     Clicked="ResetPassword_Clicked"/>
+            <Button x:Name="ResetFirstTimeSetup"
+                    Text="Reset"
+                    BackgroundColor="Red"
+                    Clicked="ResetFirstTimeSetup_Clicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
