@@ -44,6 +44,7 @@ namespace Time2WorkApp
         string currentTimertime;
         string currentBreakTimertime;
         string systeemKlokTijdVerschil;
+        string huidigeActiviteit = "";
         int uur, minuut, seconde;
 
         string totaalGewerkt, totaalPauze;
@@ -411,33 +412,58 @@ namespace Time2WorkApp
         //updatefunctie van de activiteit knop
         private void updateActivityButton_Clicked(object sender, EventArgs e)
         {
-            string elapsedTimeActiviteit, huidigeActiviteit;
+            string elapsedTimeActiviteit;
             if (activityStopWatch.IsRunning == false)
             {
-                activityStopWatch.Start();
-                huidigeActiviteit = activityName.Text;
+                if (activityName.Text == null)
+                {
+                    DisplayAlert("Waarschuwing", "Vul eerst een activiteit in!", "Doorgaan");
+                }
+                else
+                {
+                    activityStopWatch.Start();
+                    huidigeActiviteit = activityName.Text;
+                    //verander huidig activiteit + de entry
+                    activityIsUpdatedLabel.Text = "Huidig activiteit: " + activityName.Text;
+                    //weergeef dat de activiteit up to date is
+                    activityIsUpdatedLabel.IsVisible = true;
+                }
             }
             else
             {
-                activityStopWatch.Stop();
-                TimeSpan elapsedActivityTime = activityStopWatch.Elapsed;
-                elapsedTimeActiviteit = String.Format("{0:00}:{1:00}:{2:00}",
-                elapsedActivityTime.Hours, elapsedActivityTime.Minutes, elapsedActivityTime.Seconds);
+                if (activityName.Text == "")
+                {
+                    DisplayAlert("Waarschuwing", "Vul eerst een activiteit in!", "Doorgaan");
+                }
+                else if (huidigeActiviteit == activityName.Text)
+                {
+                    DisplayAlert("Waarschuwing", "Hey, je bent al bezig met deze activiteit", "Doorgaan");
+                }
+                else
+                {
+                    activityStopWatch.Stop();
+                    DateTime today = new DateTime();
+                    int maand = today.Month;
+                    TimeSpan elapsedActivityTime = activityStopWatch.Elapsed;
+                    elapsedTimeActiviteit = String.Format("{0:00}:{1:00}:{2:00}",
+                    elapsedActivityTime.Hours, elapsedActivityTime.Minutes, elapsedActivityTime.Seconds);
 
-                //het opslaan naar de database:**************************************************************************************************************
-                //elapsedTimeActiviteit
-                //huidigeActiviteit
+                    //het opslaan naar de database:**************************************************************************************************************
+                    //int maand
+                    //elapsedTimeActiviteit
+                    //huidigeActiviteit
 
-                //reset stopwatch en begin opnieuw
-                activityStopWatch.Reset();
-                activityStopWatch.Start();
-                huidigeActiviteit = activityName.Text;
+                    //reset stopwatch en begin opnieuw
+                    activityStopWatch.Reset();
+                    activityStopWatch.Start();
+                    huidigeActiviteit = activityName.Text;
+                    //verander huidig activiteit + de entry
+                    activityIsUpdatedLabel.Text = "Huidig activiteit: " + activityName.Text;
+                    //weergeef dat de activiteit up to date is
+                    activityIsUpdatedLabel.IsVisible = true;
+                }
+                
             }
-            
-            //verander huidig activiteit + de entry
-            activityIsUpdatedLabel.Text = "Huidig activiteit: " + activityName.Text;
-            //weergeef dat de activiteit up to date is
-            activityIsUpdatedLabel.IsVisible = true;
         }
 
     }
