@@ -18,7 +18,7 @@ namespace Time2WorkApp
         DataContext dbcontext = new DataContext();
         Activiteit current_activity;
         Month current_month;
-
+        Gebruiker current_user;
 		public SummaryPage ()
 		{
             InitializeComponent();
@@ -41,7 +41,9 @@ namespace Time2WorkApp
         {
             //Hiervoor is uit de database nodig: BRUTOLOON en TOTALE UREN en TOTALE MINUTEN
             //BRUTOLOON UIT DE DATABASE
-            //brutoLoon = 
+            current_month = dbcontext.Get_Month("Juni");
+            current_user = dbcontext.Get_Gebruiker(2);
+            brutoLoon = current_user.brutoloon;
 
             totaleLoon = (brutoLoon * totaalUren) + (brutoLoon * (totaalMinuten / 60));
             totaleLoonAfgerond = Math.Round((Double)totaleLoon, 2);
