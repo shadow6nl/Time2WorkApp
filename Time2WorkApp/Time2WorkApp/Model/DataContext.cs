@@ -71,5 +71,33 @@ namespace Time2WorkApp.Model
         {
             db.Delete(user);
         }
+
+
+
+        // functies voor de Month table
+        public void Create_table_Month() // create a table of type <Gebruiker> 
+        {
+            db.CreateTable<Month>();
+        }
+        public void Insert_Month_Into_Table(Month user) //inserts an instance of an 'Gebruiker' object into the database 
+        {
+            db.Insert(user);
+        }
+        public void Update_Month_From_Table(Month month) // looks for the object in the DB where the object's id and ID argument match. changes the sometime atribute and then updates the new value
+        {
+
+            db.Update(month);
+        }
+
+        public Month Get_Month(int ID) // returns a Month object with the id that matches the ID argument. 
+        {
+            Month user = db.Find<Month>(A => A.id == ID);
+
+            return user;
+        }
+        public void Delete_User_From_Table(Month month) // deletes an Month object from the db (probably looks at corresponding primary key) 
+        {
+            db.Delete(month);
+        }
     }
 }

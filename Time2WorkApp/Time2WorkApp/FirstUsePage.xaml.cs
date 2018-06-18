@@ -20,7 +20,7 @@ namespace Time2WorkApp
         public FirstUsePage()
         {
             InitializeComponent();
-        }
+             }
 
         private void FirstUseSaveButton_Clicked(object sender, EventArgs e)
         {
@@ -61,6 +61,24 @@ namespace Time2WorkApp
                     dbcontext.Insert_User_Into_Table(new Gebruiker { id = last_index_gebruiker + 1, firstname = firstUseFirstname.Text, lastname = firstUseLastname.Text, brutoloon = Bruto, email = firstUseEmailEntry.Text, password = firstUsePassword1.Text });
 
                     current_user = dbcontext.db.Table<Gebruiker>().Last();
+
+                    if (dbcontext.db.Table<Month>().FirstOrDefault() == null)
+                    {
+                        dbcontext.Insert_Month_Into_Table(new Month { maand = "Januari", totaleTijdgewerktMin = 0, totaleTijdGewerktUur = 0, totaleTijdPauzeMin = 0, totaleTijdPauzeUur = 0 });
+                        dbcontext.Insert_Month_Into_Table(new Month { maand = "Februari", totaleTijdgewerktMin = 0, totaleTijdGewerktUur = 0, totaleTijdPauzeMin = 0, totaleTijdPauzeUur = 0 });
+                        dbcontext.Insert_Month_Into_Table(new Month { maand = "Maart", totaleTijdgewerktMin = 0, totaleTijdGewerktUur = 0, totaleTijdPauzeMin = 0, totaleTijdPauzeUur = 0 });
+                        dbcontext.Insert_Month_Into_Table(new Month { maand = "April", totaleTijdgewerktMin = 0, totaleTijdGewerktUur = 0, totaleTijdPauzeMin = 0, totaleTijdPauzeUur = 0 });
+                        dbcontext.Insert_Month_Into_Table(new Month { maand = "Mei", totaleTijdgewerktMin = 0, totaleTijdGewerktUur = 0, totaleTijdPauzeMin = 0, totaleTijdPauzeUur = 0 });
+
+                        dbcontext.Insert_Month_Into_Table(new Month { maand = "Juni", totaleTijdgewerktMin = 0, totaleTijdGewerktUur = , datum_tijd = });
+
+                        dbcontext.Insert_Month_Into_Table(new Month { maand = "Juli", totaleTijdgewerktMin = 0, totaleTijdGewerktUur = 0, totaleTijdPauzeMin = 0, totaleTijdPauzeUur = 0 });
+                        dbcontext.Insert_Month_Into_Table(new Month { maand = "Augustus", totaleTijdgewerktMin = 0, totaleTijdGewerktUur = 0, totaleTijdPauzeMin = 0, totaleTijdPauzeUur = 0 });
+                        dbcontext.Insert_Month_Into_Table(new Month { maand = "September", totaleTijdgewerktMin = 0, totaleTijdGewerktUur = 0, totaleTijdPauzeMin = 0, totaleTijdPauzeUur = 0 });
+                        dbcontext.Insert_Month_Into_Table(new Month { maand = "Oktober", totaleTijdgewerktMin = 0, totaleTijdGewerktUur = 0, totaleTijdPauzeMin = 0, totaleTijdPauzeUur = 0 });
+                        dbcontext.Insert_Month_Into_Table(new Month { maand = "November", totaleTijdgewerktMin = 0, totaleTijdGewerktUur = 0, totaleTijdPauzeMin = 0, totaleTijdPauzeUur = 0 });
+                        dbcontext.Insert_Month_Into_Table(new Month { maand = "December", totaleTijdgewerktMin = 0, totaleTijdGewerktUur = 0, totaleTijdPauzeMin = 0, totaleTijdPauzeUur = 0 });
+                    }
                     Navigation.PushAsync(new MenuPage());
                 }
             }

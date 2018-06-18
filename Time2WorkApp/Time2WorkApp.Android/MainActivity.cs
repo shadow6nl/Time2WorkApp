@@ -28,8 +28,9 @@ namespace Time2WorkApp.Droid
             DataContext dbcontext = new DataContext();
             dbcontext.Create_table_Activity();
             dbcontext.Create_table_user();
+            dbcontext.Create_table_Month();
             //dbcontext.Insert_Activity_Into_Table(new Activiteit{ id = 1, startTijd = randometime, datum = randometime, stopTijd = randometime, totaleTijd = randometime, activiteit = "someactivity" });
-            
+
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App());
@@ -169,11 +170,13 @@ namespace Time2WorkApp.Droid
     }
     [Table("Months")] // gebruikers tabel voor de firstuse, login en optionspage
     public class Month
-    {
+{
     [PrimaryKey]
-    public int id { get; set; }
-    public string activiteit { get; set; }
+    public string maand { get; set; }
+    public int totaleTijdGewerktUur { get; set; }
+    public int totaleTijdgewerktMin { get; set }
     public DateTime datum_tijd { get; set; }
-    
+    public int totaleTijdPauzeUur { get; set; }
+    public int totaleTijdPauzeMin { get; set; }
 }
 

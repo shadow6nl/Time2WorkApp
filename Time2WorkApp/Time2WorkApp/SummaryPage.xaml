@@ -63,7 +63,7 @@
                 x:Name="activiteitenLayout"
                 IsVisible="True">
                         <Label x:Name="Activiteit1"  IsVisible="True"
-                    Text="*Activiteit 1*        *hoeveelheid tijd*"
+                    Text="*Activiteit *        *hoeveelheid tijd*"
                     FontSize="15"/>
                         <Label x:Name="Activiteit2"  IsVisible="True"
                     Text="*Activiteit 2*        *hoeveelheid tijd*"
