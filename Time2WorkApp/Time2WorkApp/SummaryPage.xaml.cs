@@ -40,6 +40,9 @@ namespace Time2WorkApp
         public void totaleLoonBerekening()
         {
             //Hiervoor is uit de database nodig: BRUTOLOON en TOTALE UREN en TOTALE MINUTEN
+            //BRUTOLOON UIT DE DATABASE
+            //brutoLoon = 
+
             totaleLoon = (brutoLoon * totaalUren) + (brutoLoon * (totaalMinuten / 60));
             totaleLoonAfgerond = Math.Round((Double)totaleLoon, 2);
             loonLabel.Text = totaleLoonAfgerond.ToString();
@@ -53,12 +56,12 @@ namespace Time2WorkApp
             totaalUren = current_month.totaleTijdGewerktUur;
             totaalMinuten = current_month.totaleTijdgewerktMin;
              
-            tijdGewerktLabel.Text = totaalUren.ToString() + " uur en " + totaalMinuten.ToString() + "minuten";
+            tijdGewerktLabel.Text = totaalUren.ToString() + " uur en " + totaalMinuten.ToString() + " minuten";
 
             //totalePAUZE tijd UIT de database
             pauzeUren = current_month.totaleTijdPauzeUur;
             pauzeMinuten = current_month.totaleTijdPauzeMin;
-            tijdOpPauzeLabel.Text = pauzeUren.ToString() + " uur en " + pauzeMinuten.ToString() + "minuten";
+            tijdOpPauzeLabel.Text = pauzeUren.ToString() + " uur en " + pauzeMinuten.ToString() + " minuten";
         }
 
         public void refreshTemplate()
