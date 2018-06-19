@@ -259,7 +259,11 @@ namespace Time2WorkApp
                     totaalPauzeHrs, totaalPauzeMin, totaalPauzeSec);
 
                 //update current_activity with new eindtijd
-                current_activity.totaleTijd = totaalPauze;
+                if (totaalPauze != null)
+                {
+                    current_activity = dbcontext.db.Table<Activiteit>().Last();
+                    current_activity.totaleTijd = totaalPauze;
+                }
                 dbcontext.Update_Activity_To_Table(current_activity);
 
 
@@ -493,9 +497,7 @@ namespace Time2WorkApp
                     elapsedActivityTime.Hours, elapsedActivityTime.Minutes, elapsedActivityTime.Seconds);
 
                     //het opslaan naar de database:**************************************************************************************************************
-                    if (current_month.maand == "Juni")
-                    {
-                        maand = current_month.maand;
+                        
                         current_activity = dbcontext.Get_Activiteit(2);
                         elapsedTimeActiviteit = totaalGewerkt;
                         huidigeActiviteit = current_activity.activiteit;
@@ -530,4 +532,3 @@ namespace Time2WorkApp
 
         }
     }
-}

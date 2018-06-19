@@ -117,19 +117,19 @@ namespace Time2WorkApp
 
             //if (dbcontext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten2) != null)
             //{
-            //    Activiteit2.Text = "" +  + dbcontext.Get_Activiteit(2).totaleTijd.ToString();
+            //    Activiteit2.Text = dbcontext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten5).activiteit;
             //}
             //if (dbcontext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten3) != null)
             //{
-            //    Activiteit3.Text = dbcontext.Get_Activiteit(3).totaleTijd.ToString();
+            //    Activiteit3.Text = dbcontext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten5).activiteit;
             //}
             //if (dbcontext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten4) != null)
             //{
-            //    Activiteit4.Text = dbcontext.Get_Activiteit(4).totaleTijd.ToString();
+            //    Activiteit4.Text = dbcontext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten5).activiteit;
             //}
             //if (dbcontext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten5) != null)
             //{
-            //    Activiteit4.Text = dbcontext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten5).activiteit;
+            //    Activiteit5.Text = dbcontext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten5).activiteit;
             //}
             //if (dbcontext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten6) != null)
             //{
