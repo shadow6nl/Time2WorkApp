@@ -496,11 +496,21 @@ namespace Time2WorkApp
                     elapsedTimeActiviteit = String.Format("{0:00}:{1:00}:{2:00}",
                     elapsedActivityTime.Hours, elapsedActivityTime.Minutes, elapsedActivityTime.Seconds);
 
-                    //het opslaan naar de database:**************************************************************************************************************
-                        
-                        current_activity = dbcontext.Get_Activiteit(2);
-                        elapsedTimeActiviteit = totaalGewerkt;
-                        huidigeActiviteit = current_activity.activiteit;
+                    if (dbcontext.db.Table<Activiteit>().FirstOrDefault() == null)
+                    {
+                        dbcontext.Insert_Activity_Into_Table(new Activiteit { id = 1, datum = DateTime.Now, startTijd = DateTime.Now, activiteit = "placeholder" });
+
+                    }
+
+
+                    else
+                    {
+                        int last_index_id_activiteiten = dbcontext.db.Table<Activiteit>().Last().id;
+                        dbcontext.Insert_Activity_Into_Table(new Activiteit { id = last_index_id_activiteiten + 1, datum = DateTime.Now, activiteitUren = elapsedActivityTime.Hours, activiteitMinuten = elapsedActivityTime.Minutes, activiteit = "Werk" });
+
+                        int laatsteID = dbcontext.db.Table<Activiteit>().Last().id;
+                        int iDdieWeNodigHebben;
+                        bool weHebbenDeID = false;
 
                         if (dbcontext.db.Table<Activiteit>().FirstOrDefault() == null)
                         {
@@ -511,7 +521,7 @@ namespace Time2WorkApp
 
                         else
                         {
-                            int last_index_id_activiteiten = dbcontext.db.Table<Activiteit>().Last().id;
+                           
                             dbcontext.Insert_Activity_Into_Table(new Activiteit { id = last_index_id_activiteiten + 1, datum = DateTime.Now, startTijd = today, activiteit = "Werk" });
                         }
 
@@ -526,9 +536,33 @@ namespace Time2WorkApp
                         //weergeef dat de activiteit up to date is
                         activityIsUpdatedLabel.IsVisible = true;
                     }
+                    //for (int i = dbcontext.Get_Activiteit(2).id; i<laatsteID; i++)
+                    //{
+                    //    if (weHebbenDeID = true)
+                    //    {
+                    //        dbcontext.db.Table<Activiteit>().Last().totaleTijd =   dbcontext.db.Table<Activiteit>().Last().activiteitMinuten + dbcontext.db.Table<Activiteit>().Last().activiteitUren + dbcontext.db.Table<Activiteit>().Last().totaleTijd;
+                    //    }
+                    //    else if (dbcontext.db.Table<Activiteit>().Last().activiteit = 
+                    //    {
+
+                    //    }
+                }
+
+
+
+
+                        //het opslaan naar de database:**************************************************************************************************************
+
+                        current_activity = dbcontext.db.Table<Activiteit>().Last();
+                        elapsedTimeActiviteit = totaalGewerkt;
+                        huidigeActiviteit = current_activity.activiteit;
+
+
+                    }
+
 
                 }
             }
 
         }
-    }
+    
