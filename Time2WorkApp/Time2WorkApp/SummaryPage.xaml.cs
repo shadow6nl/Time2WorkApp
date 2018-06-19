@@ -32,6 +32,8 @@ namespace Time2WorkApp
         int totaalUren, totaalMinuten, lastHours, lastMinutes;
         int pauzeUren, pauzeMinuten, lastPauzeHours, lastPauzeMinutes;
 
+        double minutenDoorZestig;
+
         double brutoLoon;
         double totaleLoon;
         double totaleLoonAfgerond;
@@ -44,8 +46,12 @@ namespace Time2WorkApp
             current_month = dbcontext.Get_Month("Juni");
             current_user = dbcontext.Get_Gebruiker(2);
             brutoLoon = current_user.brutoloon;
+            totaalUren = current_month.totaleTijdGewerktUur;
+            totaalMinuten = current_month.totaleTijdgewerktMin;
+            minutenDoorZestig = totaalMinuten;
+            minutenDoorZestig = minutenDoorZestig / 60;
 
-            totaleLoon = (brutoLoon * totaalUren) + (brutoLoon * (totaalMinuten / 60));
+            totaleLoon = (brutoLoon * totaalUren) + (brutoLoon * minutenDoorZestig);
             totaleLoonAfgerond = Math.Round((Double)totaleLoon, 2);
             loonLabel.Text = totaleLoonAfgerond.ToString();
         }
@@ -63,7 +69,7 @@ namespace Time2WorkApp
             //totalePAUZE tijd UIT de database
             pauzeUren = current_month.totaleTijdPauzeUur;
             pauzeMinuten = current_month.totaleTijdPauzeMin;
-            tijdOpPauzeLabel.Text = pauzeUren.ToString() + " uur en " + pauzeMinuten.ToString() + " minuten";
+            tijdOpPauzeLabel.Text = pauzeMinuten.ToString() + " uur en " + pauzeUren.ToString() + " minuten";
         }
 
         public void refreshTemplate()
@@ -71,6 +77,13 @@ namespace Time2WorkApp
             refreshDePaginaDatabase();
             totaleLoonBerekening();
             totaleTijdenWeergave();
+        }
+
+        public void alleValuesNul()
+        {
+            tijdGewerktLabel.Text = "0" + " uur en " + "0" + " minuten";
+            tijdOpPauzeLabel.Text = "0" + " uur en " + "0" + " minuten";
+            loonLabel.Text = "0";
         }
 
 
@@ -157,8 +170,11 @@ namespace Time2WorkApp
         private void Update_Clicked(object sender, EventArgs e)
         {
             refreshDePaginaDatabase();
-            totaleLoonBerekening();
-            totaleTijdenWeergave();
+            if (maandLabel.Text == "Juni")
+            {
+                totaleLoonBerekening();
+                totaleTijdenWeergave();
+            }
         }
 
         
@@ -177,72 +193,84 @@ namespace Time2WorkApp
 
         private void januariButton_Clicked(object sender, EventArgs e)
         {
+            alleValuesNul();
             allButtonsInvisible();
             maandLabel.Text = "Januari";
         }
 
         private void februariButton_Clicked(object sender, EventArgs e)
         {
+            alleValuesNul();
             allButtonsInvisible();
             maandLabel.Text = "Februari";
         }
 
         private void maartButton_Clicked(object sender, EventArgs e)
         {
+            alleValuesNul();
             allButtonsInvisible();
             maandLabel.Text = "Maart";
         }
 
         private void aprilButton_Clicked(object sender, EventArgs e)
         {
+            alleValuesNul();
             allButtonsInvisible();
             maandLabel.Text = "April";
         }
 
         private void meiButton_Clicked(object sender, EventArgs e)
         {
+            alleValuesNul();
             allButtonsInvisible();
             maandLabel.Text = "Mei";
         }
 
         private void juniButton_Clicked(object sender, EventArgs e)
         {
+            refreshTemplate();
             allButtonsInvisible();
             maandLabel.Text = "Juni";
         }
 
         private void juliButton_Clicked(object sender, EventArgs e)
         {
+            alleValuesNul();
             allButtonsInvisible();
             maandLabel.Text = "Juli";
         }
 
         private void augustusButton_Clicked(object sender, EventArgs e)
         {
+            alleValuesNul();
             allButtonsInvisible();
             maandLabel.Text = "Augustus";
         }
 
         private void septemberButton_Clicked(object sender, EventArgs e)
         {
+            alleValuesNul();
             allButtonsInvisible();
             maandLabel.Text = "September";
         }
 
         private void oktoberButton_Clicked(object sender, EventArgs e)
         {
+            alleValuesNul();
             allButtonsInvisible();
             maandLabel.Text = "Oktober";
         }
 
         private void novemberButton_Clicked(object sender, EventArgs e)
         {
+            alleValuesNul();
             allButtonsInvisible();
             maandLabel.Text = "November";
         }
 
         private void decemberButton_Clicked(object sender, EventArgs e)
         {
+            alleValuesNul();
             allButtonsInvisible();
             maandLabel.Text = "December";
         }
@@ -250,3 +278,38 @@ namespace Time2WorkApp
                    
     }
 }
+
+/*Check in de DB wat de laatste ID is en zet die in een variabale
+int laatsteID = (LaatsteIDuitDB)
+int iDdieWeNodigHebben;
+bool weHebbenDeID = false;
+
+for (int i = 2; i<laatsteID ; i++)
+{
+    if(weHebbenDeID = true)
+    {
+    
+    }
+
+    else if (naam van de activiteit = naam activiteit bij deze ID)
+    {
+    iDdieWeNodigHebben = i;
+    weHebbenDeID = true;
+    }
+}
+
+*/
+
+//DAARNA DEZE FIXEN: ********************************************************************
+/*activiteit laten stoppen wanneer pauze knop ingedrukt wordt
+activiteiten zichtbaar maken met IsVisible wanneer er iets in de tabel staat
+pauze timer resetten als je stopt met werken
+*/
+
+
+//activiteiten tabel met:
+//naam van de activiteit
+//totaal uren activiteit
+//totaal minuten activiteit
+//maand activiteit
+

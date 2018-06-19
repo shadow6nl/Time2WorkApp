@@ -299,6 +299,9 @@ namespace Time2WorkApp
 
 
                 workStopWatch.Reset();
+                totaalPauzeSec = 0;
+                totaalPauzeMin = 0;
+                totaalPauzeHrs = 0;
             }
         }
 
