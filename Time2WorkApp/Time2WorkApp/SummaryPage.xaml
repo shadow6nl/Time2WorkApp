@@ -61,7 +61,7 @@
 
                     <StackLayout
                 x:Name="activiteitenLayout"
-                IsVisible="True">
+                IsVisible="False">
                         <Label x:Name="Activiteit1"  IsVisible="True"
                     Text="*Activiteit *        *hoeveelheid tijd*"
                     FontSize="15"/>
@@ -92,7 +92,11 @@
                         <Label x:Name="Activiteit10"  IsVisible="True"
                     Text="*Activiteit 10*        *hoeveelheid tijd*"
                     FontSize="15"/>
+                    </StackLayout>
 
+                    
+                    <StackLayout
+                IsVisible="True">
 
                         <Button x:Name="update_overview_button"
                 HeightRequest="50"
