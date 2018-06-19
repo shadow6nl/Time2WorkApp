@@ -136,7 +136,19 @@ namespace Time2WorkApp.Droid
 
     }
 }
-    
+    //DAARNA DEZE FIXEN: ********************************************************************
+    /*activiteit laten stoppen wanneer pauze knop ingedrukt wordt
+    activiteiten zichtbaar maken met IsVisible wanneer er iets in de tabel staat
+    loon fixen
+    */
+
+
+    //activiteiten tabel met:
+    //naam van de activiteit
+    //totaal uren activiteit
+    //totaal minuten activiteit
+    //maand activiteit
+
 
     [Table("Activiteiten")]
     public class Activiteit //something
