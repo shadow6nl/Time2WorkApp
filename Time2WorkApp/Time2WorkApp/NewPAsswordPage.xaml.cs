@@ -7,12 +7,16 @@ using Time2WorkApp.Helpers;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Time2WorkApp.Model;
 
 namespace Time2WorkApp
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NewPasswordPage : ContentPage
     {
+        DataContext dbcontext = new DataContext();
+        Gebruiker current_user;
+
         public NewPasswordPage()
         {
 
@@ -38,7 +42,12 @@ namespace Time2WorkApp
             else
             {   //if fields are correct this will pop-up
                 DisplayAlert("Waarschuwing", "Uw wachtwoord is opgeslagen", "OK");
+
+                current_user = dbcontext.Get_Gebruiker(2);
+                dbcontext.Update_User_From_Table(new Gebruiker { password = newPassword1.Text });
             }
-    }
+            Navigation.PushAsync(new OptionsPage());
+
+        }
     }
 }
