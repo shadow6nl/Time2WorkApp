@@ -22,6 +22,9 @@ namespace Time2WorkApp.Model
         public string totaleTijd { get; set; }
 
         public DateTime pauze { get; set; }
+
+        public int activiteitUren { get; set; }
+        public int activiteitMinuten { get; set; }
     }
 }
 

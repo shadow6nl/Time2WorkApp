@@ -113,9 +113,9 @@ namespace Time2WorkApp.Droid
         {
             db.CreateTable<Month>();
         }
-        public void Insert_Month_Into_Table(Month user) //inserts an instance of an 'Gebruiker' object into the database 
+        public void Insert_Month_Into_Table(Month maand) //inserts an instance of an 'Gebruiker' object into the database 
         {
-            db.Insert(user);
+            db.Insert(maand);
         }
         public void Update_Month_From_Table(Month maand) // looks for the object in the DB where the object's id and ID argument match. changes the sometime atribute and then updates the new value
         {
@@ -129,7 +129,7 @@ namespace Time2WorkApp.Droid
 
             return user;
         }
-        public void Delete_User_From_Table(Month month) // deletes an Month object from the db (probably looks at corresponding primary key) 
+        public void Delete_Month_From_Table(Month month) // deletes an Month object from the db (probably looks at corresponding primary key) 
         {
             db.Delete(month);
         }
@@ -167,6 +167,9 @@ namespace Time2WorkApp.Droid
         public DateTime totaleTijd { get; set; }
 
         public DateTime pauze { get; set; }
+
+        public DateTime activiteitUren { get; set; }
+        public DateTime activiteitMinuten { get; set; }
     }
 
     [Table("Gebruikers")] // gebruikers tabel voor de firstuse, login en optionspage
