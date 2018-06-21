@@ -29,7 +29,24 @@
                 x:Name="firstUsePassword2"
                 Placeholder="Wachtwoord"
                 IsPassword="True"/>
-            
+
+            <Label Text="Voer hier uw activiteiten in:"
+                   FontSize="25"/>
+            <Entry
+                x:Name="activiteit1"
+                Placeholder="Activiteit 1"/>
+            <Entry
+                x:Name="activiteit2"
+                Placeholder="Activiteit 2"/>
+            <Entry
+                x:Name="activiteit3"
+                Placeholder="Activiteit 3"/>
+            <Entry
+                x:Name="activiteit4"
+                Placeholder="Activiteit 4"/>
+            <Entry
+                x:Name="activiteit5"
+                Placeholder="Activiteit 5"/>
 
             <Button
                 x:Name="FirstUseSaveButton"
