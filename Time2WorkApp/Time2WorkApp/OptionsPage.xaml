@@ -3,21 +3,27 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Time2WorkApp.OptionsPage">
     <ContentPage.Content>
-        <StackLayout VerticalOptions="Center" 
+        <StackLayout 
                      Margin="20">
-            <Label Text="welkom op de opties pagina.
-                         Hier kunt u, uw wachtwoord aanpassen of de gehele app reseten.
-                         let wel op als u een Factory reset uitvoerd bent u al u voorafgaande gegevens kwijt."
-                   FontSize="10"
+            <Label Text="Welkom op de opties pagina. Hier kunt u, uw wachtwoord aanpassen of de gehele app reseten. Let wel op als u een Factory reset uitvoerd bent u al u voorafgaande gegevens kwijt."
+                   FontSize="15"
+                   Margin="0,0,0, 50"
+                   TextColor="Black"
+                   FontAttributes="Bold"
                 />
-            <Button x:Name="resetPassword"
+
+            <StackLayout
+                VerticalOptions="Center">
+                <Button x:Name="resetPassword"
                     Text="Nieuw wachtwoord"
                     BackgroundColor="Red"
                     Clicked="ResetPassword_Clicked"/>
-            <Button x:Name="ResetFirstTimeSetup"
+                <Button x:Name="ResetFirstTimeSetup"
                     Text="Factory Reset!"
                     BackgroundColor="Red"
                     Clicked="ResetFirstTimeSetup_Clicked"/>
+            </StackLayout>
+            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

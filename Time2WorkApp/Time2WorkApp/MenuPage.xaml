@@ -4,8 +4,9 @@
              xmlns:local="clr-namespace:Time2WorkApp"
              x:Class="Time2WorkApp.MenuPage">
     <TabbedPage.ToolbarItems>
-        <ToolbarItem Text="?"
-                     Clicked="ToolbarItem_Clicked"/>
+        <ToolbarItem Text="info"
+                     Clicked="ToolbarItem_Clicked"
+                     />
     </TabbedPage.ToolbarItems>
     
     <local:TimerPage Title="Timer"/>
