@@ -31,19 +31,12 @@ namespace Time2WorkApp
             bool isPassword1Empty = string.IsNullOrEmpty(firstUsePassword1.Text);
             bool isPassword2Empty = string.IsNullOrEmpty(firstUsePassword2.Text);
 
-            //controle voor activiteiten tekstvakken
-            bool isActiviteit1Empty = string.IsNullOrEmpty(activiteit1.Text);
-            bool isActiviteit2Empty = string.IsNullOrEmpty(activiteit2.Text);
-            bool isActiviteit3Empty = string.IsNullOrEmpty(activiteit3.Text);
-            bool isActiviteit4Empty = string.IsNullOrEmpty(activiteit4.Text);
-            bool isActiviteit5Empty = string.IsNullOrEmpty(activiteit5.Text);
 
             //It works
             string password1 = firstUsePassword1.Text;
             string password2 = firstUsePassword2.Text;
 
-            if (isFirstnameEmpty || isLastnameEmpty || isBrutoEmpty || isEmailEmpty || isPassword1Empty || isPassword2Empty
-                || isActiviteit1Empty || isActiviteit2Empty|| isActiviteit3Empty || isActiviteit4Empty || isActiviteit5Empty)
+            if (isFirstnameEmpty || isLastnameEmpty || isBrutoEmpty || isEmailEmpty || isPassword1Empty || isPassword2Empty)
             {
                 DisplayAlert("Fout", "Vul alle tekstvakken in. Anders kan de app niet optimaal gebruikt worden.", "OK");
             }

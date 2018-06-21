@@ -44,7 +44,8 @@ namespace Time2WorkApp
                 DisplayAlert("Waarschuwing", "Uw wachtwoord is opgeslagen", "OK");
 
                 current_user = dbcontext.Get_Gebruiker(2);
-                dbcontext.Update_User_From_Table(new Gebruiker { password = newPassword1.Text });
+                current_user.password = newPassword1.Text;
+                dbcontext.Update_User_From_Table(current_user);
             }
             Navigation.PushAsync(new OptionsPage());
 

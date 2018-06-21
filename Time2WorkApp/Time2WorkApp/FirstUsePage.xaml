@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Time2WorkApp.FirstUsePage">
     <ContentPage.Content>
+        <ScrollView>
         <StackLayout VerticalOptions="Center"
                      Margin="20">
             <Label Text="Voer hier uw gegevens in:"
@@ -30,24 +31,6 @@
                 Placeholder="Wachtwoord"
                 IsPassword="True"/>
 
-            <Label Text="Voer hier uw activiteiten in:"
-                   FontSize="25"/>
-            <Entry
-                x:Name="activiteit1"
-                Placeholder="Activiteit 1"/>
-            <Entry
-                x:Name="activiteit2"
-                Placeholder="Activiteit 2"/>
-            <Entry
-                x:Name="activiteit3"
-                Placeholder="Activiteit 3"/>
-            <Entry
-                x:Name="activiteit4"
-                Placeholder="Activiteit 4"/>
-            <Entry
-                x:Name="activiteit5"
-                Placeholder="Activiteit 5"/>
-
             <Button
                 x:Name="FirstUseSaveButton"
                 Margin="0, 20, 0, 0"
@@ -56,5 +39,6 @@
                 Clicked="FirstUseSaveButton_Clicked"/>
             
         </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

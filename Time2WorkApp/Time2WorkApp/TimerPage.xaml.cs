@@ -16,6 +16,17 @@ namespace Time2WorkApp
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class TimerPage : ContentPage
     {
+
+        // Dictionary to get Color from color name.
+        Dictionary<string, Color> activityToUpdate = new Dictionary<string, Color>
+        {
+            { "Lesgeven", Color.Aqua },
+            { "Nakijken", Color.Black },
+            { "Vergaderen", Color.Blue },     
+            { "Administratie", Color.Gray },
+            { "Voorbereiden", Color.Green },
+        };
+
         public TimerPage()
         {
             InitializeComponent();
@@ -30,6 +41,45 @@ namespace Time2WorkApp
             dag, maand, jaar);
             //assign de string aan de label
             datumVanVandaag.Text = systeemDatum;
+
+
+            Picker picker = new Picker
+            {
+                Title = "Activiteit:",
+                VerticalOptions = LayoutOptions.CenterAndExpand
+            };
+
+            foreach (string activityNumber in activityToUpdate.Keys)
+            {
+                picker.Items.Add(activityNumber);
+            }
+
+            // Create BoxView for displaying picked Color
+            BoxView boxView = new BoxView
+            {
+                WidthRequest = 150,
+                HeightRequest = 150,
+                HorizontalOptions = LayoutOptions.Center,
+                VerticalOptions = LayoutOptions.CenterAndExpand
+            };
+
+            picker.SelectedIndexChanged += (sender, args) =>
+            {
+                if (picker.SelectedIndex == -1)
+                {
+                    boxView.Color = Color.Default;
+                }
+                else
+                {
+                    string activityNumber = picker.Items[picker.SelectedIndex];
+                    boxView.Color = activityToUpdate[activityNumber];
+                }
+            };
+
+
+            mainStackLayout.Children.Add(picker);
+            mainStackLayout.Children.Add(boxView);
+
         }
 
         //toggle values voor knoppen.       ipv omschachtig bools te gebruiken, gewoon even en oneven getallen voor het toggelen
@@ -259,12 +309,12 @@ namespace Time2WorkApp
                     totaalPauzeHrs, totaalPauzeMin, totaalPauzeSec);
 
                 //update current_activity with new eindtijd
-                if (totaalPauze != null)
-                {
-                    current_activity = dbcontext.db.Table<Activiteit>().Last();
-                    current_activity.totaleTijd = totaalPauze;
-                }
-                dbcontext.Update_Activity_To_Table(current_activity);
+                //if (totaalPauze != null)
+                //{   
+                //    current_activity = dbcontext.db.Table<Activiteit>().Last();
+                //    current_activity.totaleTijd = totaalPauze;
+                //}
+                //dbcontext.Update_Activity_To_Table(current_activity);
 
 
 
@@ -490,8 +540,8 @@ namespace Time2WorkApp
                 {
                     DisplayAlert("Waarschuwing", "Hey, je bent al bezig met deze activiteit", "Doorgaan");
                 }
-                else
-                {
+                else { 
+                
                     activityStopWatch.Stop();
                     DateTime today = new DateTime();
                     string maand = today.Month.ToString();
@@ -499,36 +549,43 @@ namespace Time2WorkApp
                     elapsedTimeActiviteit = String.Format("{0:00}:{1:00}:{2:00}",
                     elapsedActivityTime.Hours, elapsedActivityTime.Minutes, elapsedActivityTime.Seconds);
 
-                    if (dbcontext.db.Table<Activiteit>().FirstOrDefault() == null)
-                    {
-                        dbcontext.Insert_Activity_Into_Table(new Activiteit { id = 1, datum = DateTime.Now, startTijd = DateTime.Now, activiteit = "placeholder" });
 
+
+
+
+
+
+                    if (dbcontext.Get_Activiteit(1).activiteit == "Lesgeven")
+                    {
+                        dbcontext.Get_Activiteit(1).totaleTijd = elapsedTimeActiviteit;
                     }
 
-
-                    else
+                    else if (dbcontext.Get_Activiteit(2).activiteit == "Nakijken")
                     {
-                        int last_index_id_activiteiten = dbcontext.db.Table<Activiteit>().Last().id;
-                        dbcontext.Insert_Activity_Into_Table(new Activiteit { id = last_index_id_activiteiten + 1, datum = DateTime.Now, activiteitUren = elapsedActivityTime.Hours, activiteitMinuten = elapsedActivityTime.Minutes, activiteit = "Werk" });
+                        dbcontext.Get_Activiteit(2).totaleTijd = elapsedTimeActiviteit;
+                    }
 
-                        int laatsteID = dbcontext.db.Table<Activiteit>().Last().id;
-                        int iDdieWeNodigHebben;
-                        bool weHebbenDeID = false;
+                    else if (dbcontext.Get_Activiteit(3).activiteit == "Vergaderen")
+                    {
+                        dbcontext.Get_Activiteit(3).totaleTijd = elapsedTimeActiviteit;
+                    }
 
-                        if (dbcontext.db.Table<Activiteit>().FirstOrDefault() == null)
-                        {
-                            dbcontext.Insert_Activity_Into_Table(new Activiteit { id = 1, datum = DateTime.Now, startTijd = DateTime.Now, activiteit = "placeholder" });
+                    else if (dbcontext.Get_Activiteit(4).activiteit == "Administratie")
+                    {
+                        dbcontext.Get_Activiteit(4).totaleTijd = elapsedTimeActiviteit;
+                    }
 
-                        }
+                    else if (dbcontext.Get_Activiteit(5).activiteit == "Voorbereiden")
+                    {
+                        dbcontext.Get_Activiteit(5).totaleTijd = elapsedTimeActiviteit;
+                    }
+                    dbcontext.Update_Activity_To_Table(current_activity);
+                    //dbcontext.Insert_Activity_Into_Table(new Activiteit { id = 1, datum = DateTime.Now, totaleTijd = elapsedTimeActiviteit, activiteit = dbcontext.Get_Activiteit(2).activiteit });
+                
 
+                    
 
-                        else
-                        {
-                           
-                            dbcontext.Insert_Activity_Into_Table(new Activiteit { id = last_index_id_activiteiten + 1, datum = DateTime.Now, startTijd = today, activiteit = "Werk" });
-                        }
-
-                        current_activity = dbcontext.db.Table<Activiteit>().Last();
+        
 
                         //reset stopwatch en begin opnieuw
                         activityStopWatch.Reset();
@@ -539,16 +596,7 @@ namespace Time2WorkApp
                         //weergeef dat de activiteit up to date is
                         activityIsUpdatedLabel.IsVisible = true;
                     }
-                    //for (int i = dbcontext.Get_Activiteit(2).id; i<laatsteID; i++)
-                    //{
-                    //    if (weHebbenDeID = true)
-                    //    {
-                    //        dbcontext.db.Table<Activiteit>().Last().totaleTijd =   dbcontext.db.Table<Activiteit>().Last().activiteitMinuten + dbcontext.db.Table<Activiteit>().Last().activiteitUren + dbcontext.db.Table<Activiteit>().Last().totaleTijd;
-                    //    }
-                    //    else if (dbcontext.db.Table<Activiteit>().Last().activiteit = 
-                    //    {
-
-                    //    }
+               
                 }
 
 
@@ -567,5 +615,4 @@ namespace Time2WorkApp
                 }
             }
 
-        }
-    
+        
