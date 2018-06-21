@@ -5,12 +5,17 @@
     <ContentPage.Content>
         <StackLayout VerticalOptions="Center" 
                      Margin="20">
+            <Label Text="welkom op de opties pagina.
+                         Hier kunt u, uw wachtwoord aanpassen of de gehele app reseten.
+                         let wel op als u een Factory reset uitvoerd bent u al u voorafgaande gegevens kwijt."
+                   FontSize="10"
+                />
             <Button x:Name="resetPassword"
                     Text="Nieuw wachtwoord"
                     BackgroundColor="Red"
                     Clicked="ResetPassword_Clicked"/>
             <Button x:Name="ResetFirstTimeSetup"
-                    Text="Reset"
+                    Text="Factory Reset!"
                     BackgroundColor="Red"
                     Clicked="ResetFirstTimeSetup_Clicked"/>
         </StackLayout>
