@@ -16,6 +16,17 @@ namespace Time2WorkApp
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class TimerPage : ContentPage
     {
+
+        // Dictionary to get Color from color name.
+        Dictionary<string, Color> activityToUpdate = new Dictionary<string, Color>
+        {
+            { "Lesgeven", Color.Aqua },
+            { "Nakijken", Color.Black },
+            { "Vergaderen", Color.Blue },     
+            { "Administratie", Color.Gray },
+            { "Voorbereiden", Color.Green },
+        };
+
         public TimerPage()
         {
             InitializeComponent();
@@ -30,6 +41,45 @@ namespace Time2WorkApp
             dag, maand, jaar);
             //assign de string aan de label
             datumVanVandaag.Text = systeemDatum;
+
+
+            Picker picker = new Picker
+            {
+                Title = "Activiteit:",
+                VerticalOptions = LayoutOptions.CenterAndExpand
+            };
+
+            foreach (string activityNumber in activityToUpdate.Keys)
+            {
+                picker.Items.Add(activityNumber);
+            }
+
+            // Create BoxView for displaying picked Color
+            BoxView boxView = new BoxView
+            {
+                WidthRequest = 150,
+                HeightRequest = 150,
+                HorizontalOptions = LayoutOptions.Center,
+                VerticalOptions = LayoutOptions.CenterAndExpand
+            };
+
+            picker.SelectedIndexChanged += (sender, args) =>
+            {
+                if (picker.SelectedIndex == -1)
+                {
+                    boxView.Color = Color.Default;
+                }
+                else
+                {
+                    string activityNumber = picker.Items[picker.SelectedIndex];
+                    boxView.Color = activityToUpdate[activityNumber];
+                }
+            };
+
+
+            mainStackLayout.Children.Add(picker);
+            mainStackLayout.Children.Add(boxView);
+
         }
 
         //toggle values voor knoppen.       ipv omschachtig bools te gebruiken, gewoon even en oneven getallen voor het toggelen
