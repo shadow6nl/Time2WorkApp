@@ -3,9 +3,41 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Time2WorkApp.InfoPage">
     <ContentPage.Content>
-        <StackLayout VerticalOptions="Center" 
+        <ScrollView>
+            <StackLayout VerticalOptions="Center" 
                      Margin="20">
-            <Label Text="Welcome to Xamarin.Forms!"/>
-        </StackLayout>
+                <Label Text="welkom op de informatie pagina."
+                       TextColor="Black"
+                       FontAttributes="Bold"
+                       FontSize="15"/>
+                <Label Text="Hier kunt u uitleg vinden over de Time2Work app."
+                       TextColor="Black"
+                       FontSize="15"/>
+
+                <Label Text="Informatie over de Timer pagina."
+                       TextColor="Black"
+                       FontAttributes="Bold"
+                       FontSize="15"/>
+                <Label Text="****************************************************."
+                       TextColor="Black"
+                       FontSize="15"/>
+                
+                <Label Text="Informatie over de Overzicht pagina."
+                       TextColor="Black"
+                       FontAttributes="Bold"
+                       FontSize="15"/>
+                <Label Text="*****************************************************."
+                       TextColor="Black"
+                       FontSize="15"/>
+                
+                <Label Text="Informatie over de Opties pagina."
+                       TextColor="Black"
+                       FontAttributes="Bold"
+                       FontSize="15"/>
+                <Label Text="*******************************************************."
+                       TextColor="Black"
+                       FontSize="15"/>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
