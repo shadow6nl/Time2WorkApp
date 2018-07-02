@@ -50,26 +50,12 @@
             FontSize="75"
             HorizontalOptions="Center"/>
 
-            <Button
-                x:Name="activityToggleButton"
-                Text="Activiteit"
-                TextColor="White"
-                BackgroundColor="LightBlue"
-                Clicked="activityToggleButton_Clicked"/>
 
-            <Entry x:Name="activityName"
-               Placeholder="Waar bent u mee bezig?"
-               HorizontalOptions="Center"
-               IsVisible="False"/>
 
-            <Button x:Name="updateActivityButton"
-                HeightRequest="35"
-                Text="Update Activiteit"
-                FontSize="10"
-                BackgroundColor="Gray"
-                TextColor="White"
-                IsVisible="False"
-                Clicked="updateActivityButton_Clicked"/>
+            <Picker x:Name="MyPicker"    
+                    Title="Kies Activiteit"
+                    SelectedIndexChanged="MyPicker_Clicked"
+                    />
 
             <Label x:Name="activityIsUpdatedLabel"
                Text="Huidig activiteit: "

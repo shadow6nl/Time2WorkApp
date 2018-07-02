@@ -14,6 +14,8 @@ namespace Time2WorkApp
 		public MenuPage ()
 		{
 			InitializeComponent ();
+
+            
 		}
 
         private void ToolbarItem_Clicked(object sender, EventArgs e)

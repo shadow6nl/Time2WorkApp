@@ -10,79 +10,16 @@ using SQLite;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Time2WorkApp.Model;
+using Time2WorkApp.Helpers;
 
 namespace Time2WorkApp
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class TimerPage : ContentPage
     {
-
-        // Dictionary to get Color from color name.
-        Dictionary<string, Color> activityToUpdate = new Dictionary<string, Color>
-        {
-            { "Lesgeven", Color.Aqua },
-            { "Nakijken", Color.Black },
-            { "Vergaderen", Color.Blue },     
-            { "Administratie", Color.Gray },
-            { "Voorbereiden", Color.Green },
-        };
-
-        public TimerPage()
-        {
-            InitializeComponent();
-            //datum opvragen
-            DateTime now = DateTime.Now.ToLocalTime();
-            //dag, maand en jaar eruit filteren
-            int dag = now.Day;
-            int maand = now.Month;
-            int jaar = now.Year;
-            //string format zodat de datum als string kan worden weergeven in formaat: dag-maand-jaar
-            string systeemDatum = String.Format("{0:00}-{1:00}-{2:00}",
-            dag, maand, jaar);
-            //assign de string aan de label
-            datumVanVandaag.Text = systeemDatum;
-
-
-            Picker picker = new Picker
-            {
-                Title = "Activiteit:",
-                VerticalOptions = LayoutOptions.CenterAndExpand
-            };
-
-            foreach (string activityNumber in activityToUpdate.Keys)
-            {
-                picker.Items.Add(activityNumber);
-            }
-
-            // Create BoxView for displaying picked Color
-            BoxView boxView = new BoxView
-            {
-                WidthRequest = 150,
-                HeightRequest = 150,
-                HorizontalOptions = LayoutOptions.Center,
-                VerticalOptions = LayoutOptions.CenterAndExpand
-            };
-
-            picker.SelectedIndexChanged += (sender, args) =>
-            {
-                if (picker.SelectedIndex == -1)
-                {
-                    boxView.Color = Color.Default;
-                }
-                else
-                {
-                    string activityNumber = picker.Items[picker.SelectedIndex];
-                    boxView.Color = activityToUpdate[activityNumber];
-                }
-            };
-
-
-            mainStackLayout.Children.Add(picker);
-            mainStackLayout.Children.Add(boxView);
-
-        }
-
         //toggle values voor knoppen.       ipv omschachtig bools te gebruiken, gewoon even en oneven getallen voor het toggelen
+
+
         int activityButtonToggle = 1;
         int pauzeButtonToggle = 1;
         int startButtonToggle = 1;
@@ -98,6 +35,8 @@ namespace Time2WorkApp
         int uur, minuut, seconde;
 
         string totaalGewerkt, totaalPauze;
+        string activiteit_naam = "Lesgeven"; //blijft lesgeven als er niets anders gekozen wordt
+
 
         int breakhours = 0, breakmins = 0, breaksecs = 0;
         int hours = 0, mins = 0, secs = 0;
@@ -120,6 +59,131 @@ namespace Time2WorkApp
 
         int totaalUren, totaalMinuten, lastHours, lastMinutes;
         int pauzeUren, pauzeMinuten, lastPauzeHours, lastPauzeMinutes;
+
+
+
+
+        // Dictionary to get Color from color name.
+        //Dictionary<string, Color> activityToUpdate = new Dictionary<string, Color>
+        //{
+        //    { "Lesgeven", Color.Aqua },
+        //    { "Nakijken", Color.Black },
+        //    { "Vergaderen", Color.Blue },     
+        //    { "Administratie", Color.Gray },
+        //    { "Voorbereiden", Color.Green },
+        //};
+
+        
+
+
+        public TimerPage()
+        {
+            InitializeComponent();
+
+            //dbcontext.Insert_User_Into_Table(new Gebruiker { id = 1, brutoloon = 10000, email = "A", password = "A" });
+
+            //if(dbcontext.db.Table<Activiteit>().FirstOrDefault( x => x.id == 0 ) == null )  
+            //{
+            //    dbcontext.Insert_Activity_Into_Table(new Activiteit { id = 0,  activiteit = "Lesgeven" });
+            //}
+            //if (dbcontext.db.Table<Activiteit>().FirstOrDefault(x => x.id == 1) == null)
+            //{
+            //    dbcontext.Insert_Activity_Into_Table(new Activiteit { id = 1,  activiteit = "Nakijken" });
+            //}
+            //if (dbcontext.db.Table<Activiteit>().FirstOrDefault(x => x.id == 2) == null)
+            //{
+            //    dbcontext.Insert_Activity_Into_Table(new Activiteit { id = 2, activiteit = "Vergaderen" });
+            //}
+            //if (dbcontext.db.Table<Activiteit>().FirstOrDefault(x => x.id == 3) == null)
+            //{
+            //    dbcontext.Insert_Activity_Into_Table(new Activiteit { id = 3,  activiteit = "Administratie" });
+            //}
+            //if (dbcontext.db.Table<Activiteit>().FirstOrDefault(x => x.id == 4) == null)
+            //{
+            //    dbcontext.Insert_Activity_Into_Table(new Activiteit { id = 4,  activiteit = "Voorbereiden" });
+            //}
+            //if (dbcontext.db.Table<Activiteit>().FirstOrDefault(x => x.id == 5) == null)
+            //{
+            //    dbcontext.Insert_Activity_Into_Table(new Activiteit { id = 5,  activiteit = "Pauze" });
+            //}          
+
+
+
+
+            //datum opvragen
+            DateTime now = DateTime.Now.ToLocalTime();
+            //dag, maand en jaar eruit filteren
+            int dag = now.Day;
+            int maand = now.Month;
+            int jaar = now.Year;
+            //string format zodat de datum als string kan worden weergeven in formaat: dag-maand-jaar
+            string systeemDatum = String.Format("{0:00}-{1:00}-{2:00}",
+            dag, maand, jaar);
+            //assign de string aan de label
+            datumVanVandaag.Text = systeemDatum;
+
+
+            //Picker picker = new Picker
+            //{
+            //    Title = "Activiteit:",
+            //    VerticalOptions = LayoutOptions.CenterAndExpand
+
+            //};
+
+            //foreach (string activityNumber in activityToUpdate.Keys)
+            //{
+            //    picker.Items.Add(activityNumber);
+            //}
+
+            // Create BoxView for displaying picked Color
+            //BoxView boxView = new BoxView
+            //{
+            //    WidthRequest = 150,
+            //    HeightRequest = 150,
+            //    HorizontalOptions = LayoutOptions.Center,
+            //    VerticalOptions = LayoutOptions.CenterAndExpand
+            //};
+
+            //picker.SelectedIndexChanged += (sender, args) =>
+            //{
+            //    if (picker.SelectedIndex == -1)
+            //    {
+            //        boxView.Color = Color.Default;
+            //    }
+            //    else
+            //    {
+            //        string activityNumber = picker.Items[picker.SelectedIndex];
+            //        boxView.Color = activityToUpdate[activityNumber];
+            //    }
+            //};         
+
+
+
+
+            //mainStackLayout.Children.Add(picker);
+            //mainStackLayout.Children.Add(boxView);
+
+
+            MyPicker.Items.Add("Lesgeven");
+            MyPicker.Items.Add("Nakijken");
+            MyPicker.Items.Add("Vergaderen");
+            MyPicker.Items.Add("Administratie");
+            MyPicker.Items.Add("Voorbereiden");
+
+        }
+
+        private void MyPicker_Clicked(object sender, EventArgs e)
+        {
+            activiteit_naam = MyPicker.Items[MyPicker.SelectedIndex];
+        }
+
+
+
+
+
+
+
+        
 
         public void totaalGewerkteUrenBerekening()
         {
@@ -226,6 +290,9 @@ namespace Time2WorkApp
         //functie van de startknop
         private void startTimeButton_Clicked(object sender, EventArgs e)
         {
+            
+
+            
             //toggle naar even/oneven
             startButtonToggle += 1;
             //check of die even of oneven is
@@ -255,14 +322,22 @@ namespace Time2WorkApp
                 //starttimeLabel.Text = "Tijd loopt";
                 //de start knop wordt veranderd naar een stop knop
                 startTimeButton.BackgroundColor = Color.Red;
-                startTimeButton.Text = "Stop met Werken";
-
-
-
+                startTimeButton.Text = "Stop met Werken";     
 
                 //vanaf nu kun je pauzes nemen, dus de pauze knop wordt actief
                 pauseTimeButton.IsEnabled = true;
                 pauseTimeButton.BackgroundColor = Color.DarkOrange;
+
+
+
+
+                int last_activity_id = 0;
+                if (dbcontext.db.Table<Activiteit>().Any() == true)
+                {
+                    last_activity_id = dbcontext.db.Table<Activiteit>().Last().id;
+                }                
+                
+                dbcontext.Insert_Activity_Into_Table(new Activiteit { id = last_activity_id + 1, activiteit = activiteit_naam, startTijd = DateTime.Now, datum = DateTime.Now });   //insert new activiteit
             }
 
 
@@ -308,13 +383,25 @@ namespace Time2WorkApp
                 totaalPauze = String.Format("{0:00}:{1:00}:{2:00}",
                     totaalPauzeHrs, totaalPauzeMin, totaalPauzeSec);
 
-                //update current_activity with new eindtijd
-                //if (totaalPauze != null)
-                //{   
-                //    current_activity = dbcontext.db.Table<Activiteit>().Last();
-                //    current_activity.totaleTijd = totaalPauze;
+                //update activiteit
+
+                //if(activityIsUpdatedLabel.Text != "Activiteit:")
+                //{
+                //    activiteit_naam = activityIsUpdatedLabel.Text; //picker input 
                 //}
-                //dbcontext.Update_Activity_To_Table(current_activity);
+                //else
+                //{
+                //    activiteit_naam = "Lesgeven";
+                //}
+
+                
+
+                current_activity = dbcontext.db.Table<Activiteit>().LastOrDefault(x => x.activiteit != "Pauze");  //update laatste activiteit
+                current_activity.activiteit = activiteit_naam;
+                current_activity.stopTijd = DateTime.Now;
+                current_activity.totaleTijd = current_activity.stopTijd - current_activity.startTijd;
+                dbcontext.Update_Activity_To_Table(current_activity);
+
 
 
 
@@ -342,8 +429,8 @@ namespace Time2WorkApp
                 totaalPauzeUrenBerekening();
 
                 //functie die uren en minuten stuurt STUURT
-                current_month.totaleTijdPauzeUur = pauzeMinuten;
-                current_month.totaleTijdPauzeMin = pauzeUren;
+                current_month.totaleTijdPauzeUur = pauzeUren;
+                current_month.totaleTijdPauzeMin = pauzeMinuten;
 
                 dbcontext.Update_Month_From_Table(current_month);
 
@@ -398,20 +485,11 @@ namespace Time2WorkApp
                 startTimeButton.BackgroundColor = Color.Gray;
                 startTimeButton.IsEnabled = false;
 
-                if (dbcontext.db.Table<Activiteit>().FirstOrDefault() == null)
-                {
-                    dbcontext.Insert_Activity_Into_Table(new Activiteit { id = 1, datum = DateTime.Now, startTijd = DateTime.Now, activiteit = "placeholder" });
-                }
 
-
-                else
-                {
-                    int last_index_id_activiteiten = dbcontext.db.Table<Activiteit>().Last().id;
-                    dbcontext.Insert_Activity_Into_Table(new Activiteit { id = last_index_id_activiteiten + 1, datum = DateTime.Now, startTijd = now, activiteit = "Pauze" });
-                }
 
                 current_activity = dbcontext.db.Table<Activiteit>().Last();
-
+                int last_activity_id = current_activity.id;
+                dbcontext.Insert_Activity_Into_Table(new Activiteit { id= last_activity_id+1 , activiteit = "Pauze", startTijd = DateTime.Now , datum=DateTime.Now });   //insert new pauze
 
 
                 //tijd begint te lopen van de pauze
@@ -468,7 +546,10 @@ namespace Time2WorkApp
                     totaalPauzeHrs++;
                 }
 
-                current_activity.totaleTijd = totaalPauze;
+
+                current_activity = dbcontext.db.Table<Activiteit>().LastOrDefault(x => x.activiteit == "Pauze");  //update laatste activiteit met naam "Pauze"
+                current_activity.stopTijd = DateTime.Now;
+                current_activity.totaleTijd = current_activity.stopTijd - current_activity.startTijd;               
                 dbcontext.Update_Activity_To_Table(current_activity);
 
                 breakStopWatch.Reset();
@@ -484,132 +565,158 @@ namespace Time2WorkApp
 
 
 
-        private void activityToggleButton_Clicked(object sender, EventArgs e)
-        {
-            //toggle naar even/oneven
-            activityButtonToggle += 1;
-            //check of die even of oneven is
-            bool activityVisible = activityButtonToggle % 2 == 0;
-            //zichtbaarheid van activity elementen
-            activityName.IsVisible = activityVisible;
-            updateActivityButton.IsVisible = activityVisible;
-            //als activiteit wordt getoggled naar TRUE
-            if (activityVisible == true)
-            {
-                //kleur van de knop wordt lichtgroen
-                activityToggleButton.BackgroundColor = Color.LightGreen;
-            }
+        //private void activityToggleButton_Clicked(object sender, EventArgs e)
+        //{
+        //    //toggle naar even/oneven
+        //    activityButtonToggle += 1;
+        //    //check of die even of oneven is
+        //    bool activityVisible = activityButtonToggle % 2 == 0;
+        //    //zichtbaarheid van activity elementen
+        //    activityName.IsVisible = activityVisible;
+        //   // updateActivityButton.IsVisible = activityVisible;
+        //    //als activiteit wordt getoggled naar TRUE
+        //    if (activityVisible == true)
+        //    {
+        //        //kleur van de knop wordt lichtgroen
+        //        activityToggleButton.BackgroundColor = Color.LightGreen;
+        //    }
 
-            //wanneer de activiteit wordt getoggled naar FALSE
-            if (activityVisible == false)
-            {
-                //kleur van de knop wordt lichtblauw
-                activityToggleButton.BackgroundColor = Color.LightBlue;
-                activityIsUpdatedLabel.IsVisible = false;
-            }
-        }
+        //    //wanneer de activiteit wordt getoggled naar FALSE
+        //    if (activityVisible == false)
+        //    {
+        //        //kleur van de knop wordt lichtblauw
+        //        activityToggleButton.BackgroundColor = Color.LightBlue;
+        //        activityIsUpdatedLabel.IsVisible = false;
+        //    }
+        //}
 
 
-        //updatefunctie van de activiteit knop
-        private void updateActivityButton_Clicked(object sender, EventArgs e)
-        {
-            string elapsedTimeActiviteit;
-            if (activityStopWatch.IsRunning == false)
-            {
-                if (activityName.Text == null)
-                {
-                    DisplayAlert("Waarschuwing", "Vul eerst een activiteit in!", "Doorgaan");
-                }
-                else
-                {
-                    activityStopWatch.Start();
-                    huidigeActiviteit = activityName.Text;
-                    //verander huidig activiteit + de entry
-                    activityIsUpdatedLabel.Text = "Huidig activiteit: " + activityName.Text;
-                    //weergeef dat de activiteit up to date is
-                    activityIsUpdatedLabel.IsVisible = true;
-                }
-            }
-            else
-            {
-                if (activityName.Text == "")
-                {
-                    DisplayAlert("Waarschuwing", "Vul eerst een activiteit in!", "Doorgaan");
-                }
-                else if (huidigeActiviteit == activityName.Text)
-                {
-                    DisplayAlert("Waarschuwing", "Hey, je bent al bezig met deze activiteit", "Doorgaan");
-                }
-                else { 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        ////updatefunctie van de activiteit knop
+        //private void updateActivityButton_Clicked(object sender, EventArgs e)
+        //{
+        //    string elapsedTimeActiviteit;
+        //    if (activityStopWatch.IsRunning == false)
+        //    {
+        //        if (activityName.Text == null)
+        //        {
+        //            DisplayAlert("Waarschuwing", "Vul eerst een activiteit in!", "Doorgaan");
+        //        }
+        //        else
+        //        {
+        //            activityStopWatch.Start();
+        //            huidigeActiviteit = activityName.Text;
+        //            //verander huidig activiteit + de entry
+        //            activityIsUpdatedLabel.Text = "Huidig activiteit: " + activityName.Text;
+        //            //weergeef dat de activiteit up to date is
+        //            activityIsUpdatedLabel.IsVisible = true;
+        //        }
+        //    }
+        //    else
+        //    {
+        //        if (activityName.Text == "")
+        //        {
+        //            DisplayAlert("Waarschuwing", "Vul eerst een activiteit in!", "Doorgaan");
+        //        }
+        //        else if (huidigeActiviteit == activityName.Text)
+        //        {
+        //            DisplayAlert("Waarschuwing", "Hey, je bent al bezig met deze activiteit", "Doorgaan");
+        //        }
+        //        else
+        //        { 
                 
-                    activityStopWatch.Stop();
-                    DateTime today = new DateTime();
-                    string maand = today.Month.ToString();
-                    TimeSpan elapsedActivityTime = activityStopWatch.Elapsed;
-                    elapsedTimeActiviteit = String.Format("{0:00}:{1:00}:{2:00}",
-                    elapsedActivityTime.Hours, elapsedActivityTime.Minutes, elapsedActivityTime.Seconds);
+        //            activityStopWatch.Stop();
+        //            DateTime today = new DateTime();
+        //            string maand = today.Month.ToString();
+        //            TimeSpan elapsedActivityTime = activityStopWatch.Elapsed;
+        //            elapsedTimeActiviteit = String.Format("{0:00}:{1:00}:{2:00}",
+        //            elapsedActivityTime.Hours, elapsedActivityTime.Minutes, elapsedActivityTime.Seconds);
+
+
+
+        //            if (dbcontext.Get_Activiteit(0).activiteit == "Lesgeven") 
+        //            {
+        //                dbcontext.Get_Activiteit(0).totaleTijd = elapsedTimeActiviteit;
+        //            }
+
+        //            if (dbcontext.Get_Activiteit(1).activiteit == "Nakijken")
+        //            {
+        //                dbcontext.Get_Activiteit(1).totaleTijd = elapsedTimeActiviteit;
+        //            }
+
+        //            if (dbcontext.Get_Activiteit(2).activiteit == "Vergaderen")
+        //            {
+        //                dbcontext.Get_Activiteit(2).totaleTijd = elapsedTimeActiviteit;
+        //            }
+
+        //            if (dbcontext.Get_Activiteit(3).activiteit == "Administratie")
+        //            {
+        //                dbcontext.Get_Activiteit(3).totaleTijd = elapsedTimeActiviteit;
+        //            }
+
+        //            if (dbcontext.Get_Activiteit(4).activiteit == "Voorbereiden")
+        //            {
+        //                dbcontext.Get_Activiteit(4).totaleTijd = elapsedTimeActiviteit;
+        //            }
+        //            dbcontext.Update_Activity_To_Table(current_activity);
+
+
+
+
+        //            //dbcontext.Insert_Activity_Into_Table(new Activiteit { id = 1, datum = DateTime.Now, totaleTijd = elapsedTimeActiviteit, activiteit = dbcontext.Get_Activiteit(2).activiteit });
 
 
 
 
 
 
-
-                    if (dbcontext.Get_Activiteit(1).activiteit == "Lesgeven")
-                    {
-                        dbcontext.Get_Activiteit(1).totaleTijd = elapsedTimeActiviteit;
-                    }
-
-                    else if (dbcontext.Get_Activiteit(2).activiteit == "Nakijken")
-                    {
-                        dbcontext.Get_Activiteit(2).totaleTijd = elapsedTimeActiviteit;
-                    }
-
-                    else if (dbcontext.Get_Activiteit(3).activiteit == "Vergaderen")
-                    {
-                        dbcontext.Get_Activiteit(3).totaleTijd = elapsedTimeActiviteit;
-                    }
-
-                    else if (dbcontext.Get_Activiteit(4).activiteit == "Administratie")
-                    {
-                        dbcontext.Get_Activiteit(4).totaleTijd = elapsedTimeActiviteit;
-                    }
-
-                    else if (dbcontext.Get_Activiteit(5).activiteit == "Voorbereiden")
-                    {
-                        dbcontext.Get_Activiteit(5).totaleTijd = elapsedTimeActiviteit;
-                    }
-                    dbcontext.Update_Activity_To_Table(current_activity);
-                    //dbcontext.Insert_Activity_Into_Table(new Activiteit { id = 1, datum = DateTime.Now, totaleTijd = elapsedTimeActiviteit, activiteit = dbcontext.Get_Activiteit(2).activiteit });
-                
-
-                    
-
-        
-
-                        //reset stopwatch en begin opnieuw
-                        activityStopWatch.Reset();
-                        activityStopWatch.Start();
-                        huidigeActiviteit = activityName.Text;
-                        //verander huidig activiteit + de entry
-                        activityIsUpdatedLabel.Text = "Huidig activiteit: " + activityName.Text;
-                        //weergeef dat de activiteit up to date is
-                        activityIsUpdatedLabel.IsVisible = true;
-                    }
+        //            //reset stopwatch en begin opnieuw
+        //            activityStopWatch.Reset();
+        //                activityStopWatch.Start();
+        //                huidigeActiviteit = activityName.Text;
+        //                //verander huidig activiteit + de entry
+        //                activityIsUpdatedLabel.Text = "Huidig activiteit: " + activityName.Text;
+        //                //weergeef dat de activiteit up to date is
+        //                activityIsUpdatedLabel.IsVisible = true;
+        //            }
                
-                }
+        //        }
 
 
 
 
-                        //het opslaan naar de database:**************************************************************************************************************
+        //                //het opslaan naar de database:**************************************************************************************************************
 
-                        current_activity = dbcontext.db.Table<Activiteit>().Last();
-                        elapsedTimeActiviteit = totaalGewerkt;
-                        huidigeActiviteit = current_activity.activiteit;
+        //                current_activity = dbcontext.db.Table<Activiteit>().Last();
+        //                elapsedTimeActiviteit = totaalGewerkt;
+        //                huidigeActiviteit = current_activity.activiteit;
 
 
-                    }
+        // }
 
 
                 }

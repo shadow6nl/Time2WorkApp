@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using SQLite;
 using System.IO;
+using System.Linq;
 
 namespace Time2WorkApp.Model
 {
@@ -17,8 +18,11 @@ namespace Time2WorkApp.Model
         {
             var path = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
             path = Path.Combine(path, Database_Name);
-
             db = new SQLiteConnection(path);
+
+            Create_table_Activity();
+            Create_table_user();
+            Create_table_Month();
         }
 
         public void Create_table_Activity() // create a table of type <Activiteit> 
@@ -53,7 +57,10 @@ namespace Time2WorkApp.Model
         }
         public void Insert_User_Into_Table(Gebruiker user) //inserts an instance of an 'Gebruiker' object into the database 
         {
-            db.Insert(user);
+           
+                db.Insert(user);
+            
+            
         }
         public void Update_User_From_Table(Gebruiker user) // looks for the object in the DB where the object's id and ID argument match. changes the sometime atribute and then updates the new value
         {
@@ -78,6 +85,27 @@ namespace Time2WorkApp.Model
         public void Create_table_Month() // create a table of type <Gebruiker> 
         {
             db.CreateTable<Month>();
+
+
+            if (db.Table<Month>().Any<Month>() == false)
+            {
+
+                Insert_Month_Into_Table(new Month { maand = "Januari", totaleTijdgewerktMin = 0, totaleTijdGewerktUur = 0, totaleTijdPauzeMin = 0, totaleTijdPauzeUur = 0 });
+                Insert_Month_Into_Table(new Month { maand = "Februari", totaleTijdgewerktMin = 0, totaleTijdGewerktUur = 0, totaleTijdPauzeMin = 0, totaleTijdPauzeUur = 0 });
+                Insert_Month_Into_Table(new Month { maand = "Maart", totaleTijdgewerktMin = 0, totaleTijdGewerktUur = 0, totaleTijdPauzeMin = 0, totaleTijdPauzeUur = 0 });
+                Insert_Month_Into_Table(new Month { maand = "April", totaleTijdgewerktMin = 0, totaleTijdGewerktUur = 0, totaleTijdPauzeMin = 0, totaleTijdPauzeUur = 0 });
+                Insert_Month_Into_Table(new Month { maand = "Mei", totaleTijdgewerktMin = 0, totaleTijdGewerktUur = 0, totaleTijdPauzeMin = 0, totaleTijdPauzeUur = 0 });
+
+                Insert_Month_Into_Table(new Month { maand = "Juni", totaleTijdgewerktMin = 0, totaleTijdGewerktUur = 0, totaleTijdPauzeMin = 0, totaleTijdPauzeUur = 0 });
+
+                Insert_Month_Into_Table(new Month { maand = "Juli", totaleTijdgewerktMin = 0, totaleTijdGewerktUur = 0, totaleTijdPauzeMin = 0, totaleTijdPauzeUur = 0 });
+                Insert_Month_Into_Table(new Month { maand = "Augustus", totaleTijdgewerktMin = 0, totaleTijdGewerktUur = 0, totaleTijdPauzeMin = 0, totaleTijdPauzeUur = 0 });
+                Insert_Month_Into_Table(new Month { maand = "September", totaleTijdgewerktMin = 0, totaleTijdGewerktUur = 0, totaleTijdPauzeMin = 0, totaleTijdPauzeUur = 0 });
+                Insert_Month_Into_Table(new Month { maand = "Oktober", totaleTijdgewerktMin = 0, totaleTijdGewerktUur = 0, totaleTijdPauzeMin = 0, totaleTijdPauzeUur = 0 });
+                Insert_Month_Into_Table(new Month { maand = "November", totaleTijdgewerktMin = 0, totaleTijdGewerktUur = 0, totaleTijdPauzeMin = 0, totaleTijdPauzeUur = 0 });
+                Insert_Month_Into_Table(new Month { maand = "December", totaleTijdgewerktMin = 0, totaleTijdGewerktUur = 0, totaleTijdPauzeMin = 0, totaleTijdPauzeUur = 0 });
+
+            }
         }
         public void Insert_Month_Into_Table(Month user) //inserts an instance of an 'Gebruiker' object into the database 
         {
@@ -91,11 +119,11 @@ namespace Time2WorkApp.Model
 
         public Month Get_Month(string ID)// returns a Month object with the id that matches the ID argument. 
         {
-            Month user = db.Find<Month>(A => A.maand == ID);
+            Month month = db.Find<Month>(A => A.maand == ID);
 
-            return user;
+            return month;
         }
-        public void Delete_User_From_Table(Month month) // deletes an Month object from the db (probably looks at corresponding primary key) 
+        public void Delete_month_from_table(Month month) // deletes an Month object from the db (probably looks at corresponding primary key) 
         {
             db.Delete(month);
         }

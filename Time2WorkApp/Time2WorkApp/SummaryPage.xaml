@@ -53,8 +53,15 @@
                            FontAttributes="Italic"/>
 
                     <Label
+                        x:Name="ActiviteitenLabel"
                         Margin="0,20, 0, 0"
-                        Text="Activiteiten:"
+                        Text="Activiteiten:
+                        sometext sometext
+                        sometext sometext
+                        sometext sometext
+                        sometext sometext
+                        sometext sometext
+                        sometext sometext"
                         TextColor="Black"
                         FontSize="20"
                         FontAttributes="Bold"/>
@@ -77,34 +84,11 @@
                         <Label x:Name="Activiteit5"  IsVisible="True"
                     Text="*Activiteit 5*        *hoeveelheid tijd*"
                     FontSize="15"/>
-                        <Label x:Name="Activiteit6"  IsVisible="True"
-                    Text="*Activiteit 6*        *hoeveelheid tijd*"
-                    FontSize="15"/>
-                        <Label x:Name="Activiteit7"  IsVisible="True"
-                    Text="*Activiteit 7*        *hoeveelheid tijd*"
-                    FontSize="15"/>
-                        <Label x:Name="Activiteit8"  IsVisible="True"
-                    Text="*Activiteit 8*        *hoeveelheid tijd*"
-                    FontSize="15"/>
-                        <Label x:Name="Activiteit9"  IsVisible="True"
-                    Text="*Activiteit 9*        *hoeveelheid tijd*"
-                    FontSize="15"/>
-                        <Label x:Name="Activiteit10"  IsVisible="True"
-                    Text="*Activiteit 10*        *hoeveelheid tijd*"
-                    FontSize="15"/>
                     </StackLayout>
 
                     
                     <StackLayout
-                IsVisible="True">
-
-                        <Button x:Name="update_overview_button"
-                HeightRequest="50"
-                Text="Update"
-                FontSize="25"
-                BackgroundColor="ForestGreen"
-                TextColor="White"
-                Clicked="Update_Clicked"/>
+                IsVisible="True">                       
 
                         <Button x:Name="terugNaarKnoppenButton"
                 HeightRequest="50"
@@ -124,73 +108,85 @@
                         Text="Januari"
                         FontSize="15"
                         BackgroundColor="GreenYellow"
-                        Clicked="januariButton_Clicked"
+                        Clicked="Maand_button_clicked"
+                        ClassId="1"
                         />
                 <Button x:Name="februariButton"
                         Text="Februari"
                         FontSize="15"
                         BackgroundColor="GreenYellow"
-                        Clicked="februariButton_Clicked"
+                        Clicked="Maand_button_clicked"
+                        ClassId="2"
                         />
                 <Button x:Name="maartButton"
                         Text="Maart"
                         FontSize="15"
                         BackgroundColor="GreenYellow"
-                        Clicked="maartButton_Clicked"
+                        Clicked="Maand_button_clicked"
+                        ClassId="3"
                         />
                 <Button x:Name="aprilButton"
                         Text="April"
                         FontSize="15"
                         BackgroundColor="GreenYellow"
-                        Clicked="aprilButton_Clicked"
+                        Clicked="Maand_button_clicked"
+                        ClassId="4"
                         />
                 <Button x:Name="meiButton"
                         Text="Mei"
                         FontSize="15"
                         BackgroundColor="GreenYellow"
-                        Clicked="meiButton_Clicked"
+                        Clicked="Maand_button_clicked"
+                        ClassId="5"
                         />
                 <Button x:Name="juniButton"
                         Text="Juni"
                         FontSize="15"
                         BackgroundColor="GreenYellow"
-                        Clicked="juniButton_Clicked"
+                        Clicked="Maand_button_clicked"
+                        ClassId="6"
                         />
                 <Button x:Name="juliButton"
                         Text="Juli"
                         FontSize="15"
                         BackgroundColor="GreenYellow"
-                        Clicked="juliButton_Clicked"
+                        Clicked="Maand_button_clicked"
+                        ClassId="7"
                         />
                 <Button x:Name="augustusButton"
                         Text="Augustus"
                         FontSize="15"
                         BackgroundColor="GreenYellow"
-                        Clicked="augustusButton_Clicked"
+                        Clicked="Maand_button_clicked"
+                        ClassId="8"
                         />
                 <Button x:Name="septemberButton"
                         Text="September"
                         FontSize="15"
                         BackgroundColor="GreenYellow"
-                        Clicked="septemberButton_Clicked"
+                        Clicked="Maand_button_clicked"
+                        ClassId="9"
                         />
                 <Button x:Name="oktoberButton"
                         Text="Oktober"
                         FontSize="15"
                         BackgroundColor="GreenYellow"
-                        Clicked="oktoberButton_Clicked"
+                        Clicked="Maand_button_clicked"
+                        ClassId="10"
                         />
                 <Button x:Name="novemberButton"
                         Text="November"
                         FontSize="15"
                         BackgroundColor="GreenYellow"
-                        Clicked="novemberButton_Clicked"
+                        Clicked="Maand_button_clicked"
+                        ClassId="11"
                         />
                 <Button x:Name="decemberButton"
                         Text="December"
                         FontSize="15"
                         BackgroundColor="GreenYellow"
-                        Clicked="decemberButton_Clicked"
+                        Clicked="Maand_button_clicked"
+                        ClassId="12"
                         />
             </StackLayout>
 

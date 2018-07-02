@@ -11,7 +11,7 @@ namespace Time2WorkApp
 	public partial class MainPage : ContentPage
 	{
         DataContext dbcontext = new DataContext();
-        Gebruiker current_user;
+        Gebruiker current_user = null;
 
         public MainPage()
 		{
@@ -31,16 +31,31 @@ namespace Time2WorkApp
             else
             {
                 //comparing to DB
+
                 
-                Gebruiker current_user = dbcontext.Get_Gebruiker(2);
-                if (current_user.email == emailEntry.Text && current_user.password == passwordEntry.Text)
+
+
+                if(dbcontext.db.Table<Gebruiker>().FirstOrDefault(x => x.email == emailEntry.Text) != null) //checkt de database op user waarvan email overeenkomt
                 {
+                    current_user = dbcontext.db.Table<Gebruiker>().FirstOrDefault(x => x.email == emailEntry.Text);
+                    current_user.logged_in = false;
+                }
+                else
+                {
+                    DisplayAlert("Fout", " Email bestaat niet", "OK");
+                }
+                
+
+                if ( current_user.password == passwordEntry.Text) //checkt het wachtwoord
+                {
+                    current_user.logged_in = true;
                     Navigation.PushAsync(new MenuPage());
+                    
                 }
 
                 else
                 {
-                    DisplayAlert("Fout", " Email of Wachtwoord niet correct", "OK");
+                    DisplayAlert("Fout", " Wachtwoord niet correct", "OK");
                 }
             }
 

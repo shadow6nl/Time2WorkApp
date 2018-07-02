@@ -9,6 +9,8 @@ using Xamarin.Forms.Xaml;
 using Time2WorkApp.Model;
 using SQLite;
 
+
+
 namespace Time2WorkApp
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
@@ -39,12 +41,12 @@ namespace Time2WorkApp
         double totaleLoonAfgerond;
 
 
-        public void totaleLoonBerekening()
+        public void totaleLoonBerekening(string maand)
         {
             //Hiervoor is uit de database nodig: BRUTOLOON en TOTALE UREN en TOTALE MINUTEN
             //BRUTOLOON UIT DE DATABASE
-            current_month = dbcontext.Get_Month("Juni");
-            current_user = dbcontext.Get_Gebruiker(2);
+            current_month = dbcontext.Get_Month(maand);
+            current_user = dbcontext.db.Table<Gebruiker>().FirstOrDefault();  
             brutoLoon = current_user.brutoloon;
             totaalUren = current_month.totaleTijdGewerktUur;
             totaalMinuten = current_month.totaleTijdgewerktMin;
@@ -53,7 +55,7 @@ namespace Time2WorkApp
 
             totaleLoon = (brutoLoon * totaalUren) + (brutoLoon * minutenDoorZestig);
             totaleLoonAfgerond = Math.Round((Double)totaleLoon, 2);
-            loonLabel.Text = totaleLoonAfgerond.ToString();
+            loonLabel.Text = totaleLoonAfgerond.ToString();     
         }
 
         public void totaleTijdenWeergave()
@@ -72,10 +74,10 @@ namespace Time2WorkApp
             tijdOpPauzeLabel.Text = pauzeMinuten.ToString() + " uur en " + pauzeUren.ToString() + " minuten";
         }
 
-        public void refreshTemplate()
+        public void refreshTemplate() //?
         {
             refreshDePaginaDatabase();
-            totaleLoonBerekening();
+            //totaleLoonBerekening();
             totaleTijdenWeergave();
         }
 
@@ -95,86 +97,96 @@ namespace Time2WorkApp
             int last_index_activiteiten3 = last_index_activiteiten2 - 1;
             int last_index_activiteiten4 = last_index_activiteiten3 - 1;
             int last_index_activiteiten5 = last_index_activiteiten4 - 1;
-            int last_index_activiteiten6 = last_index_activiteiten5 - 1;
-            int last_index_activiteiten7 = last_index_activiteiten6 - 1;
-            int last_index_activiteiten8 = last_index_activiteiten7 - 1;
-            int last_index_activiteiten9 = last_index_activiteiten8 - 1;
-            int last_index_activiteiten10 = last_index_activiteiten9 - 1;
-
-
-
-
-            //string NaamActiviteit1 = dbcontext.Get_Activiteit(2).activiteit;
-            //string NaamActiviteit2 = dbcontext.Get_Activiteit(3).activiteit;
-            //string NaamActiviteit3 = dbcontext.Get_Activiteit(4).activiteit;
-            //string NaamActiviteit4 = dbcontext.Get_Activiteit(5).activiteit;
-            //string NaamActiviteit5 = dbcontext.Get_Activiteit(6).activiteit;
-            //string NaamActiviteit6 = dbcontext.Get_Activiteit(7).activiteit;
-            //string NaamActiviteit7 = dbcontext.Get_Activiteit(8).activiteit;
-            //string NaamActiviteit8 = dbcontext.Get_Activiteit(9).activiteit;
-            //string NaamActiviteit9 = dbcontext.Get_Activiteit(10).activiteit;
-            //string NaamActiviteit10 = dbcontext.Get_Activiteit(11).activiteit;
-
-            //string TotaleTijdActiviteit1 = dbcontext.Get_Activiteit(2).datum.ToString();
-            //string TotaleTijdActiviteit2 = dbcontext.Get_Activiteit(2).datum.ToString();
-            //string TotaleTijdActiviteit3 = dbcontext.Get_Activiteit(2).datum.ToString();
-            //string TotaleTijdActiviteit4 = dbcontext.Get_Activiteit(2).datum.ToString();
-            //string TotaleTijdActiviteit5 = dbcontext.Get_Activiteit(2).datum.ToString();
-            //string TotaleTijdActiviteit6 = dbcontext.Get_Activiteit(2).datum.ToString();
-            //string TotaleTijdActiviteit7 = dbcontext.Get_Activiteit(2).datum.ToString();
-            //string TotaleTijdActiviteit8 = dbcontext.Get_Activiteit(2).datum.ToString();
-            //string TotaleTijdActiviteit9 = dbcontext.Get_Activiteit(2).datum.ToString();
-            //string TotaleTijdActiviteit10 = dbcontext.Get_Activiteit(2).datum.ToString();
-
-            //Activiteit1.Text = dbcontext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten1).activiteit;
-
-            //if (dbcontext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten2) != null)
-            //{
-            //    Activiteit2.Text = dbcontext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten5).activiteit;
-            //}
-            //if (dbcontext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten3) != null)
-            //{
-            //    Activiteit3.Text = dbcontext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten5).activiteit;
-            //}
-            //if (dbcontext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten4) != null)
-            //{
-            //    Activiteit4.Text = dbcontext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten5).activiteit;
-            //}
-            //if (dbcontext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten5) != null)
-            //{
-            //    Activiteit5.Text = dbcontext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten5).activiteit;
-            //}
-            //if (dbcontext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten6) != null)
-            //{
-            //    Activiteit6.Text = dbcontext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten6).activiteit;
-            //}
-            //if (dbcontext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten7) != null)
-            //{
-            //    Activiteit7.Text = dbcontext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten7).activiteit;
-            //}
-            //if (dbcontext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten8) != null)
-            //{
-            //    Activiteit8.Text = dbcontext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten8).activiteit;
-            //}
-            //if (dbcontext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten9) != null)
-            //{
-            //    Activiteit9.Text = dbcontext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten9).activiteit;
-            //}
-            //if (dbcontext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten10) != null)
-            //{
-            //    Activiteit10.Text = dbcontext.db.Table<Activiteit>().FirstOrDefault(x => x.id == last_index_activiteiten10).activiteit;
-            //}
+            
+            
         }
 
 
-        private void Update_Clicked(object sender, EventArgs e)
+        //private void Update_Clicked(object sender, EventArgs e)
+        //{
+        //    refreshDePaginaDatabase();
+        //    if (maandLabel.Text ==  "Juni")
+        //    {
+        //        //totaleLoonBerekening();
+        //        totaleTijdenWeergave();
+        //    }
+        //}
+
+        private void Maand_button_clicked(object sender, EventArgs e)
         {
-            refreshDePaginaDatabase();
-            if (maandLabel.Text == "Juni")
+            alleValuesNul();
+            //     Activiteiten
+
+            string maand_string = ((Button)sender).Text;
+            int maand_int = Convert.ToInt32(((Button)sender).ClassId);
+
+            current_month = dbcontext.db.Table<Month>().FirstOrDefault(x => x.maand == maand_string);
+
+            tijdGewerktLabel.Text = Convert.ToString(current_month.totaleTijdGewerktUur)+ "uur en " + Convert.ToString(current_month.totaleTijdgewerktMin) + "minuten.";
+            tijdOpPauzeLabel.Text = Convert.ToString(current_month.totaleTijdPauzeUur) + "uur en " + Convert.ToString(current_month.totaleTijdPauzeMin) + "minuten.";
+
+
+
+
+            TimeSpan Lesgeven_tijd;
+            TimeSpan Nakijken_tijd;
+            TimeSpan Vergaderen_tijd;
+            TimeSpan Administratie_tijd;
+            TimeSpan Voorbereiden_tijd;
+            TimeSpan pauze_tijd;
+
+
+
+
+
+
+            foreach (Activiteit activiteit in dbcontext.db.Table<Activiteit>().Where<Activiteit>(x => x.activiteit == "Lesgeven" && x.datum.Month == maand_int)) //nog filteren op maand
             {
-                totaleLoonBerekening();
-                totaleTijdenWeergave();
+                Lesgeven_tijd = Lesgeven_tijd + activiteit.totaleTijd;
             }
+            foreach (Activiteit activiteit in dbcontext.db.Table<Activiteit>().Where<Activiteit>(x => x.activiteit == "Nakijken" && x.datum.Month == maand_int)) //nog filteren op maand
+            {
+                Nakijken_tijd = Nakijken_tijd + activiteit.totaleTijd;
+            }
+            foreach (Activiteit activiteit in dbcontext.db.Table<Activiteit>().Where<Activiteit>(x => x.activiteit == "Vergaderen" && x.datum.Month == maand_int)) //nog filteren op maand
+            {
+                Vergaderen_tijd = Vergaderen_tijd + activiteit.totaleTijd;
+            }
+            foreach (Activiteit activiteit in dbcontext.db.Table<Activiteit>().Where<Activiteit>(x => x.activiteit == "Administratie" && x.datum.Month == maand_int)) //nog filteren op maand
+            {
+                Administratie_tijd = Administratie_tijd + activiteit.totaleTijd;
+            }
+            foreach (Activiteit activiteit in dbcontext.db.Table<Activiteit>().Where<Activiteit>(x => x.activiteit == "Voorbereiden" && x.datum.Month == maand_int)) //nog filteren op maand
+            {
+                Voorbereiden_tijd = Voorbereiden_tijd + activiteit.totaleTijd;
+            }
+            foreach (Activiteit activiteit in dbcontext.db.Table<Activiteit>().Where<Activiteit>(x => x.activiteit == "Pauze" && x.datum.Month == maand_int)) //nog filteren op maand
+            {
+                pauze_tijd = pauze_tijd + activiteit.totaleTijd;
+            }
+
+
+            totaleLoonBerekening(maand_string);
+
+
+            ActiviteitenLabel.Text =
+                " Lesgeven:" + Lesgeven_tijd.ToString(@"d\.hh\:mm")
+                + "\n Nakijken:" + Nakijken_tijd.ToString(@"d\.hh\:mm")
+                + "\n Vergaderen:" + Vergaderen_tijd.ToString(@"d\.hh\:mm")
+                + "\n Administratie:" + Administratie_tijd.ToString(@"d\.hh\:mm")
+                + "\n Voorbereiden:" + Voorbereiden_tijd.ToString(@"d\.hh\:mm")
+                + "\n Pauze:" + pauze_tijd.ToString(@"d\.hh\:mm");
+
+
+
+
+
+            
+
+
+
+            allButtonsInvisible();
+            
         }
 
         
@@ -191,89 +203,7 @@ namespace Time2WorkApp
         }
 
 
-        private void januariButton_Clicked(object sender, EventArgs e)
-        {
-            alleValuesNul();
-            allButtonsInvisible();
-            maandLabel.Text = "Januari";
-        }
-
-        private void februariButton_Clicked(object sender, EventArgs e)
-        {
-            alleValuesNul();
-            allButtonsInvisible();
-            maandLabel.Text = "Februari";
-        }
-
-        private void maartButton_Clicked(object sender, EventArgs e)
-        {
-            alleValuesNul();
-            allButtonsInvisible();
-            maandLabel.Text = "Maart";
-        }
-
-        private void aprilButton_Clicked(object sender, EventArgs e)
-        {
-            alleValuesNul();
-            allButtonsInvisible();
-            maandLabel.Text = "April";
-        }
-
-        private void meiButton_Clicked(object sender, EventArgs e)
-        {
-            alleValuesNul();
-            allButtonsInvisible();
-            maandLabel.Text = "Mei";
-        }
-
-        private void juniButton_Clicked(object sender, EventArgs e)
-        {
-            refreshTemplate();
-            allButtonsInvisible();
-            maandLabel.Text = "Juni";
-        }
-
-        private void juliButton_Clicked(object sender, EventArgs e)
-        {
-            alleValuesNul();
-            allButtonsInvisible();
-            maandLabel.Text = "Juli";
-        }
-
-        private void augustusButton_Clicked(object sender, EventArgs e)
-        {
-            alleValuesNul();
-            allButtonsInvisible();
-            maandLabel.Text = "Augustus";
-        }
-
-        private void septemberButton_Clicked(object sender, EventArgs e)
-        {
-            alleValuesNul();
-            allButtonsInvisible();
-            maandLabel.Text = "September";
-        }
-
-        private void oktoberButton_Clicked(object sender, EventArgs e)
-        {
-            alleValuesNul();
-            allButtonsInvisible();
-            maandLabel.Text = "Oktober";
-        }
-
-        private void novemberButton_Clicked(object sender, EventArgs e)
-        {
-            alleValuesNul();
-            allButtonsInvisible();
-            maandLabel.Text = "November";
-        }
-
-        private void decemberButton_Clicked(object sender, EventArgs e)
-        {
-            alleValuesNul();
-            allButtonsInvisible();
-            maandLabel.Text = "December";
-        }
+        
 
                    
     }

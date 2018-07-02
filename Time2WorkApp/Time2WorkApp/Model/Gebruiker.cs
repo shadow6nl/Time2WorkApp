@@ -20,5 +20,7 @@ namespace Time2WorkApp.Model
         public string email { get; set; }
 
         public string password { get; set; }
+
+        public bool logged_in { get; set; }
     }
 }

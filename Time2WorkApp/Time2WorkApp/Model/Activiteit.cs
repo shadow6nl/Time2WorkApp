@@ -19,7 +19,7 @@ namespace Time2WorkApp.Model
 
         public DateTime stopTijd { get; set; }
 
-        public string totaleTijd { get; set; }
+        public TimeSpan totaleTijd { get; set; }
 
         public DateTime pauze { get; set; }
 
