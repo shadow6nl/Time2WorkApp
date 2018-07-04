@@ -47,35 +47,50 @@ namespace Time2WorkApp
             string password1 = firstUsePassword1.Text;
             string password2 = firstUsePassword2.Text;
 
-            if (isFirstnameEmpty || isLastnameEmpty || isBrutoEmpty || isEmailEmpty || isPassword1Empty || isPassword2Empty)
+            if (isFirstnameEmpty || isLastnameEmpty || isBrutoEmpty || isEmailEmpty || isPassword1Empty || isPassword2Empty) //checkt eerst als iets leeg is
             {
                 DisplayAlert("Fout", "Vul alle tekstvakken in. Anders kan de app niet optimaal gebruikt worden.", "OK");
-            }
-            if (password1 != password2)
-            {
-                DisplayAlert("Fout", "Wachtwoorden komen niet overeen.", "OK");
-            }           
 
+
+            }
             else
             {
-                ////Updating new user
+                if (double.Parse(firstUseBruto.Text) < 0)  //checkt als brutoloon valid is
+                {
+
+                    DisplayAlert("Fout", "Vul een geldig brutoloonbedrag in.", "OK");
+
+                }
+
+                else
+                {
+                    if (password1 != password2) //checkt als wachtwoord valid is
+                    {
+                        DisplayAlert("Fout", "Wachtwoorden komen niet overeen.", "OK");
+                    }
+
+                    else
+                    {
+                        ////Updating new user
+
+                        current_user = dbcontext.db.Table<Gebruiker>().Last();
+                        current_user.firstname = firstUseFirstname.Text;
+                        current_user.lastname = firstUseLastname.Text;
+                        current_user.brutoloon = double.Parse(firstUseBruto.Text);
+                        current_user.email = firstUseEmailEntry.Text;
+                        current_user.password = firstUsePassword1.Text;
+                        current_user.logged_in = true;
 
 
-                current_user = dbcontext.db.Table<Gebruiker>().Last();
-                current_user.firstname = firstUseFirstname.Text;
-                current_user.lastname = firstUseLastname.Text;
-                current_user.brutoloon = double.Parse(firstUseBruto.Text);
-                current_user.email = firstUseEmailEntry.Text;
-                current_user.password = firstUsePassword1.Text;
-                current_user.logged_in = true;
-
-
-                dbcontext.Update_User_From_Table(current_user);
+                        dbcontext.Update_User_From_Table(current_user);
 
 
 
-                Navigation.PushAsync(new MenuPage());
-                
+                        Navigation.PushAsync(new MenuPage());
+
+
+                    }
+                }
             }
         }
     }

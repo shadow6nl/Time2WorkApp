@@ -36,10 +36,13 @@ namespace Time2WorkApp
             }
         }
 
+        
+
         private void ResetFirstTimeSetup_Clicked(object sender, EventArgs e)
         {
-            current_user = dbcontext.db.Table<Gebruiker>().LastOrDefault( x => x.logged_in == true);
-            dbcontext.Delete_User_From_Table(current_user);
+            dbcontext.db.DropTable<Gebruiker>(); 
+            dbcontext.db.DropTable<Month>();
+            dbcontext.db.DropTable<Activiteit>();
             IsFirstTime = "yes";
         }
         private void ResetPassword_Clicked(object sender, EventArgs e)

@@ -10,6 +10,7 @@ namespace Time2WorkApp.Model
     {
         [PrimaryKey]
         public string maand { get; set; }
+        public int maand_ID { get; set; }
         public int totaleTijdGewerktUur { get; set; }
         public int totaleTijdgewerktMin { get; set; }
         public DateTime datum_tijd { get; set; }

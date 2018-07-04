@@ -58,33 +58,33 @@ namespace Time2WorkApp
             loonLabel.Text = totaleLoonAfgerond.ToString();     
         }
 
-        public void totaleTijdenWeergave()
+        public void totaleTijdenWeergave(string maand)
         {
             //totaalgewerkte tijd UIT de database
-            current_month = dbcontext.Get_Month("Juni");
+            current_month = dbcontext.Get_Month(maand);
 
             totaalUren = current_month.totaleTijdGewerktUur;
             totaalMinuten = current_month.totaleTijdgewerktMin;
              
-            tijdGewerktLabel.Text = totaalUren.ToString() + " uur en " + totaalMinuten.ToString() + " minuten";
+            tijdGewerktLabel.Text = totaalUren.ToString() + " uur en " + totaalMinuten.ToString() + " minuten. ";
 
             //totalePAUZE tijd UIT de database
             pauzeUren = current_month.totaleTijdPauzeUur;
             pauzeMinuten = current_month.totaleTijdPauzeMin;
-            tijdOpPauzeLabel.Text = pauzeMinuten.ToString() + " uur en " + pauzeUren.ToString() + " minuten";
+            tijdOpPauzeLabel.Text = pauzeMinuten.ToString() + " uur en " + pauzeUren.ToString() + " minuten. ";
         }
 
         public void refreshTemplate() //?
         {
             refreshDePaginaDatabase();
             //totaleLoonBerekening();
-            totaleTijdenWeergave();
+            //totaleTijdenWeergave();
         }
 
         public void alleValuesNul()
         {
-            tijdGewerktLabel.Text = "0" + " uur en " + "0" + " minuten";
-            tijdOpPauzeLabel.Text = "0" + " uur en " + "0" + " minuten";
+            tijdGewerktLabel.Text = "0 " + " uur en " + "0" + " minuten. ";
+            tijdOpPauzeLabel.Text = "0 " + " uur en " + "0" + " minuten. ";
             loonLabel.Text = "0";
         }
 
@@ -167,6 +167,7 @@ namespace Time2WorkApp
 
 
             totaleLoonBerekening(maand_string);
+            totaleTijdenWeergave(maand_string);
 
 
             ActiviteitenLabel.Text =

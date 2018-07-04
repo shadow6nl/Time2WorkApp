@@ -26,7 +26,7 @@ namespace Time2WorkApp
             if (isEmailEmpty || ispasswordEmpty)
             {
 
-
+                DisplayAlert("Waarschuwing", "Vul alle velden in", "OK");
             }
             else
             {
@@ -39,6 +39,23 @@ namespace Time2WorkApp
                 {
                     current_user = dbcontext.db.Table<Gebruiker>().FirstOrDefault(x => x.email == emailEntry.Text);
                     current_user.logged_in = false;
+
+
+
+
+                    if (current_user.password == passwordEntry.Text) //checkt het wachtwoord
+                    {
+                        current_user.logged_in = true;
+                        Navigation.PushAsync(new MenuPage());
+
+                    }
+
+                    else
+                    {
+                        DisplayAlert("Fout", " Wachtwoord niet correct", "OK");
+                    }
+
+
                 }
                 else
                 {
@@ -46,17 +63,7 @@ namespace Time2WorkApp
                 }
                 
 
-                if ( current_user.password == passwordEntry.Text) //checkt het wachtwoord
-                {
-                    current_user.logged_in = true;
-                    Navigation.PushAsync(new MenuPage());
-                    
-                }
-
-                else
-                {
-                    DisplayAlert("Fout", " Wachtwoord niet correct", "OK");
-                }
+                
             }
 
         }

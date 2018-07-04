@@ -78,34 +78,7 @@ namespace Time2WorkApp
 
         public TimerPage()
         {
-            InitializeComponent();
-
-            //dbcontext.Insert_User_Into_Table(new Gebruiker { id = 1, brutoloon = 10000, email = "A", password = "A" });
-
-            //if(dbcontext.db.Table<Activiteit>().FirstOrDefault( x => x.id == 0 ) == null )  
-            //{
-            //    dbcontext.Insert_Activity_Into_Table(new Activiteit { id = 0,  activiteit = "Lesgeven" });
-            //}
-            //if (dbcontext.db.Table<Activiteit>().FirstOrDefault(x => x.id == 1) == null)
-            //{
-            //    dbcontext.Insert_Activity_Into_Table(new Activiteit { id = 1,  activiteit = "Nakijken" });
-            //}
-            //if (dbcontext.db.Table<Activiteit>().FirstOrDefault(x => x.id == 2) == null)
-            //{
-            //    dbcontext.Insert_Activity_Into_Table(new Activiteit { id = 2, activiteit = "Vergaderen" });
-            //}
-            //if (dbcontext.db.Table<Activiteit>().FirstOrDefault(x => x.id == 3) == null)
-            //{
-            //    dbcontext.Insert_Activity_Into_Table(new Activiteit { id = 3,  activiteit = "Administratie" });
-            //}
-            //if (dbcontext.db.Table<Activiteit>().FirstOrDefault(x => x.id == 4) == null)
-            //{
-            //    dbcontext.Insert_Activity_Into_Table(new Activiteit { id = 4,  activiteit = "Voorbereiden" });
-            //}
-            //if (dbcontext.db.Table<Activiteit>().FirstOrDefault(x => x.id == 5) == null)
-            //{
-            //    dbcontext.Insert_Activity_Into_Table(new Activiteit { id = 5,  activiteit = "Pauze" });
-            //}          
+            InitializeComponent();       
 
 
 
@@ -122,46 +95,6 @@ namespace Time2WorkApp
             //assign de string aan de label
             datumVanVandaag.Text = systeemDatum;
 
-
-            //Picker picker = new Picker
-            //{
-            //    Title = "Activiteit:",
-            //    VerticalOptions = LayoutOptions.CenterAndExpand
-
-            //};
-
-            //foreach (string activityNumber in activityToUpdate.Keys)
-            //{
-            //    picker.Items.Add(activityNumber);
-            //}
-
-            // Create BoxView for displaying picked Color
-            //BoxView boxView = new BoxView
-            //{
-            //    WidthRequest = 150,
-            //    HeightRequest = 150,
-            //    HorizontalOptions = LayoutOptions.Center,
-            //    VerticalOptions = LayoutOptions.CenterAndExpand
-            //};
-
-            //picker.SelectedIndexChanged += (sender, args) =>
-            //{
-            //    if (picker.SelectedIndex == -1)
-            //    {
-            //        boxView.Color = Color.Default;
-            //    }
-            //    else
-            //    {
-            //        string activityNumber = picker.Items[picker.SelectedIndex];
-            //        boxView.Color = activityToUpdate[activityNumber];
-            //    }
-            //};         
-
-
-
-
-            //mainStackLayout.Children.Add(picker);
-            //mainStackLayout.Children.Add(boxView);
 
 
             MyPicker.Items.Add("Lesgeven");
@@ -383,16 +316,7 @@ namespace Time2WorkApp
                 totaalPauze = String.Format("{0:00}:{1:00}:{2:00}",
                     totaalPauzeHrs, totaalPauzeMin, totaalPauzeSec);
 
-                //update activiteit
-
-                //if(activityIsUpdatedLabel.Text != "Activiteit:")
-                //{
-                //    activiteit_naam = activityIsUpdatedLabel.Text; //picker input 
-                //}
-                //else
-                //{
-                //    activiteit_naam = "Lesgeven";
-                //}
+               
 
                 
 
@@ -414,11 +338,14 @@ namespace Time2WorkApp
 
                 totaalGewerkteUrenBerekening();
                 //functie die uren en minuten stuurt STUURT
-                current_month = dbcontext.Get_Month("Juni");
+                current_month = dbcontext.db.Table<Month>().First( x => x.maand_ID == DateTime.Now.Month);
                 current_month.totaleTijdgewerktMin = totaalMinuten;
                 if (totaalUren < 1) { }
                 else
+                {
                     current_month.totaleTijdGewerktUur = totaalUren;
+                }
+                    
 
                 dbcontext.Update_Month_From_Table(current_month);
 
@@ -488,6 +415,7 @@ namespace Time2WorkApp
 
 
                 current_activity = dbcontext.db.Table<Activiteit>().Last();
+                current_activity.stopTijd = DateTime.Now;
                 int last_activity_id = current_activity.id;
                 dbcontext.Insert_Activity_Into_Table(new Activiteit { id= last_activity_id+1 , activiteit = "Pauze", startTijd = DateTime.Now , datum=DateTime.Now });   //insert new pauze
 

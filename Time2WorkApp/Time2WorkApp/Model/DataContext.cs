@@ -90,20 +90,20 @@ namespace Time2WorkApp.Model
             if (db.Table<Month>().Any<Month>() == false)
             {
 
-                Insert_Month_Into_Table(new Month { maand = "Januari", totaleTijdgewerktMin = 0, totaleTijdGewerktUur = 0, totaleTijdPauzeMin = 0, totaleTijdPauzeUur = 0 });
-                Insert_Month_Into_Table(new Month { maand = "Februari", totaleTijdgewerktMin = 0, totaleTijdGewerktUur = 0, totaleTijdPauzeMin = 0, totaleTijdPauzeUur = 0 });
-                Insert_Month_Into_Table(new Month { maand = "Maart", totaleTijdgewerktMin = 0, totaleTijdGewerktUur = 0, totaleTijdPauzeMin = 0, totaleTijdPauzeUur = 0 });
-                Insert_Month_Into_Table(new Month { maand = "April", totaleTijdgewerktMin = 0, totaleTijdGewerktUur = 0, totaleTijdPauzeMin = 0, totaleTijdPauzeUur = 0 });
-                Insert_Month_Into_Table(new Month { maand = "Mei", totaleTijdgewerktMin = 0, totaleTijdGewerktUur = 0, totaleTijdPauzeMin = 0, totaleTijdPauzeUur = 0 });
+                Insert_Month_Into_Table(new Month { maand = "Januari", maand_ID = 1   ,totaleTijdgewerktMin = 0, totaleTijdGewerktUur = 0, totaleTijdPauzeMin = 0, totaleTijdPauzeUur = 0 });
+                Insert_Month_Into_Table(new Month { maand = "Februari", maand_ID = 2, totaleTijdgewerktMin = 0, totaleTijdGewerktUur = 0, totaleTijdPauzeMin = 0, totaleTijdPauzeUur = 0 });
+                Insert_Month_Into_Table(new Month { maand = "Maart", maand_ID = 3, totaleTijdgewerktMin = 0, totaleTijdGewerktUur = 0, totaleTijdPauzeMin = 0, totaleTijdPauzeUur = 0 });
+                Insert_Month_Into_Table(new Month { maand = "April", maand_ID = 4, totaleTijdgewerktMin = 0, totaleTijdGewerktUur = 0, totaleTijdPauzeMin = 0, totaleTijdPauzeUur = 0 });
+                Insert_Month_Into_Table(new Month { maand = "Mei", maand_ID = 5, totaleTijdgewerktMin = 0, totaleTijdGewerktUur = 0, totaleTijdPauzeMin = 0, totaleTijdPauzeUur = 0 });
 
-                Insert_Month_Into_Table(new Month { maand = "Juni", totaleTijdgewerktMin = 0, totaleTijdGewerktUur = 0, totaleTijdPauzeMin = 0, totaleTijdPauzeUur = 0 });
+                Insert_Month_Into_Table(new Month { maand = "Juni", maand_ID = 6, totaleTijdgewerktMin = 0, totaleTijdGewerktUur = 0, totaleTijdPauzeMin = 0, totaleTijdPauzeUur = 0 });
 
-                Insert_Month_Into_Table(new Month { maand = "Juli", totaleTijdgewerktMin = 0, totaleTijdGewerktUur = 0, totaleTijdPauzeMin = 0, totaleTijdPauzeUur = 0 });
-                Insert_Month_Into_Table(new Month { maand = "Augustus", totaleTijdgewerktMin = 0, totaleTijdGewerktUur = 0, totaleTijdPauzeMin = 0, totaleTijdPauzeUur = 0 });
-                Insert_Month_Into_Table(new Month { maand = "September", totaleTijdgewerktMin = 0, totaleTijdGewerktUur = 0, totaleTijdPauzeMin = 0, totaleTijdPauzeUur = 0 });
-                Insert_Month_Into_Table(new Month { maand = "Oktober", totaleTijdgewerktMin = 0, totaleTijdGewerktUur = 0, totaleTijdPauzeMin = 0, totaleTijdPauzeUur = 0 });
-                Insert_Month_Into_Table(new Month { maand = "November", totaleTijdgewerktMin = 0, totaleTijdGewerktUur = 0, totaleTijdPauzeMin = 0, totaleTijdPauzeUur = 0 });
-                Insert_Month_Into_Table(new Month { maand = "December", totaleTijdgewerktMin = 0, totaleTijdGewerktUur = 0, totaleTijdPauzeMin = 0, totaleTijdPauzeUur = 0 });
+                Insert_Month_Into_Table(new Month { maand = "Juli", maand_ID = 7, totaleTijdgewerktMin = 0, totaleTijdGewerktUur = 0, totaleTijdPauzeMin = 0, totaleTijdPauzeUur = 0 });
+                Insert_Month_Into_Table(new Month { maand = "Augustus", maand_ID = 8, totaleTijdgewerktMin = 0, totaleTijdGewerktUur = 0, totaleTijdPauzeMin = 0, totaleTijdPauzeUur = 0 });
+                Insert_Month_Into_Table(new Month { maand = "September", maand_ID = 9, totaleTijdgewerktMin = 0, totaleTijdGewerktUur = 0, totaleTijdPauzeMin = 0, totaleTijdPauzeUur = 0 });
+                Insert_Month_Into_Table(new Month { maand = "Oktober", maand_ID = 10, totaleTijdgewerktMin = 0, totaleTijdGewerktUur = 0, totaleTijdPauzeMin = 0, totaleTijdPauzeUur = 0 });
+                Insert_Month_Into_Table(new Month { maand = "November", maand_ID = 11, totaleTijdgewerktMin = 0, totaleTijdGewerktUur = 0, totaleTijdPauzeMin = 0, totaleTijdPauzeUur = 0 });
+                Insert_Month_Into_Table(new Month { maand = "December", maand_ID = 12, totaleTijdgewerktMin = 0, totaleTijdGewerktUur = 0, totaleTijdPauzeMin = 0, totaleTijdPauzeUur = 0 });
 
             }
         }

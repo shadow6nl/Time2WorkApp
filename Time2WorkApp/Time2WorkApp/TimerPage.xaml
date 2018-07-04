@@ -53,7 +53,7 @@
 
 
             <Picker x:Name="MyPicker"    
-                    Title="Kies Activiteit"
+                    Title="Lesgeven"
                     SelectedIndexChanged="MyPicker_Clicked"
                     />
 
