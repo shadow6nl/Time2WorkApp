@@ -34,7 +34,7 @@
                        TextColor="Black"
                        FontAttributes="Bold"
                        FontSize="15"/>
-                <Label Text="*******************************************************."
+                <Label Text="Op deze pagina kunt u, uw wachtwoord aanpassen en een factory reset uitvoeren. Pas hier wel bij op als u deze uitvoert bent u al uw gegevens kwijt."
                        TextColor="Black"
                        FontSize="15"/>
             </StackLayout>

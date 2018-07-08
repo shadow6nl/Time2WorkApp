@@ -35,24 +35,17 @@ namespace Time2WorkApp
             bool isnewPassword1inDB = string.IsNullOrEmpty(newPassword1.Text);
             bool isnewPassword2inDB = string.IsNullOrEmpty(newPassword2.Text);
 
-            if (isoldPasswordEmpty || isnewPassword1Empty || isnewPassword2Empty)
+            if (isoldPasswordEmpty || isnewPassword2Empty || isnewPassword2Empty)
             {   //If a field is empty this will pop-up
                 DisplayAlert("Waarschuwing", "Er is nog een tekstvak leeg.", "OK");
             }
-            else if(isnewPassword1Empty == isnewPassword2Empty)
-            {   
+            else
+            {   //if fields are correct this will pop-up
+                DisplayAlert("Waarschuwing", "Uw wachtwoord is opgeslagen", "OK");
 
-                current_user = dbcontext.db.Table<Gebruiker>().Last();
+                current_user = dbcontext.Get_Gebruiker(2);
                 current_user.password = newPassword1.Text;
                 dbcontext.Update_User_From_Table(current_user);
-
-
-                //if fields are correct this will pop-up
-                DisplayAlert("Waarschuwing", "Uw wachtwoord is opgeslagen", "OK");
-            }
-            else
-            {
-                DisplayAlert("Waarschuwing", "Wachtwoorden komen niet overeen", "OK");
             }
             Navigation.PushAsync(new OptionsPage());
 
