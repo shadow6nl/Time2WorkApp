@@ -171,12 +171,12 @@ namespace Time2WorkApp
 
 
             ActiviteitenLabel.Text =
-                " Lesgeven:" + Lesgeven_tijd.ToString(@"d\.hh\:mm")
-                + "\n Nakijken:" + Nakijken_tijd.ToString(@"d\.hh\:mm")
-                + "\n Vergaderen:" + Vergaderen_tijd.ToString(@"d\.hh\:mm")
-                + "\n Administratie:" + Administratie_tijd.ToString(@"d\.hh\:mm")
-                + "\n Voorbereiden:" + Voorbereiden_tijd.ToString(@"d\.hh\:mm")
-                + "\n Pauze:" + pauze_tijd.ToString(@"d\.hh\:mm");
+                " Lesgeven: " + Lesgeven_tijd.ToString(@"d\.hh\:mm")
+                + "\n Nakijken: " + Nakijken_tijd.ToString(@"d\.hh\:mm")
+                + "\n Vergaderen: " + Vergaderen_tijd.ToString(@"d\.hh\:mm")
+                + "\n Administratie: " + Administratie_tijd.ToString(@"d\.hh\:mm")
+                + "\n Voorbereiden: " + Voorbereiden_tijd.ToString(@"d\.hh\:mm")
+                + "\n Pauze: " + pauze_tijd.ToString(@"d\.hh\:mm");
 
 
 
