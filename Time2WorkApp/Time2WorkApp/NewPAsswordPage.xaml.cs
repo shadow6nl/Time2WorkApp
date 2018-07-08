@@ -43,7 +43,7 @@ namespace Time2WorkApp
             {   //if fields are correct this will pop-up
                 DisplayAlert("Waarschuwing", "Uw wachtwoord is opgeslagen", "OK");
 
-                current_user = dbcontext.Get_Gebruiker(2);
+                current_user = dbcontext.Get_Gebruiker(1);
                 current_user.password = newPassword1.Text;
                 dbcontext.Update_User_From_Table(current_user);
             }
