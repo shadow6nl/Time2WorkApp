@@ -71,7 +71,7 @@ namespace Time2WorkApp
             //totalePAUZE tijd UIT de database
             pauzeUren = current_month.totaleTijdPauzeUur;
             pauzeMinuten = current_month.totaleTijdPauzeMin;
-            tijdOpPauzeLabel.Text = pauzeMinuten.ToString() + " uur en " + pauzeUren.ToString() + " minuten. ";
+            tijdOpPauzeLabel.Text = pauzeUren.ToString() + " uur en " + pauzeMinuten.ToString() + " minuten. ";
         }
 
         public void refreshTemplate() //?
