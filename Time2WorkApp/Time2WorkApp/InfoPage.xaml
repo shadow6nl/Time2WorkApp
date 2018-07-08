@@ -6,7 +6,7 @@
         <ScrollView>
             <StackLayout VerticalOptions="Center" 
                      Margin="20">
-                <Label Text="welkom op de informatie pagina."
+                <Label Text="Welkom op de informatie pagina."
                        TextColor="Black"
                        FontAttributes="Bold"
                        FontSize="15"/>
@@ -18,7 +18,7 @@
                        TextColor="Black"
                        FontAttributes="Bold"
                        FontSize="15"/>
-                <Label Text="****************************************************."
+                <Label Text="Op deze pagina kunt u uw gewerkte tijd bijhouden. Onderin is een drop-down menu met 5 werk activiteiten. LET OP! Zorg dat u eerst de activiteit stopt voordat u met een nieuwe activiteit begint!"
                        TextColor="Black"
                        FontSize="15"/>
                 
@@ -26,7 +26,7 @@
                        TextColor="Black"
                        FontAttributes="Bold"
                        FontSize="15"/>
-                <Label Text="*****************************************************."
+                <Label Text="Hier ziet u per activiteit hoe lang u hier aan besteed heeft. LET OP! Ga terug naar het maand menu en klik op de juiste maand om uw tijden te updaten."
                        TextColor="Black"
                        FontSize="15"/>
                 
